@@ -1,0 +1,30 @@
+{
+  "name": "ajax-learning",
+  "homepage": "https://github.com/yifon/WebLearning",
+  "authors": [
+    "yifon <yolina_379653734@qq.com>"
+  ],
+  "description": "ajax-learning, may use node.js,mongodb,jade,jquery,bootstrap...",
+  "main": "",
+  "keywords": [
+    "ajax",
+    "node.js",
+    "mongodb",
+    "jade",
+    "jquery",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

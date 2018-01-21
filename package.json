@@ -1,0 +1,40 @@
+{
+  "name": "ajax-learning",
+  "version": "1.0.0",
+  "description": "ajax-learning, may use node.js,mongodb,jade,jquery,bootstrap...",
+  "main": "app.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yifon/WebLearning.git"
+  },
+  "keywords": [
+    "ajax",
+    "node.js",
+    "mongodb",
+    "jade",
+    "jquery",
+    "bootstrap"
+  ],
+  "author": "June",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yifon/WebLearning/issues"
+  },
+  "homepage": "https://github.com/yifon/WebLearning#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "connect-mongo": "^2.0.1",
+    "express-session": "^1.15.6",
+    "http-proxy-middleware": "^0.17.4"
+  }
+}
