@@ -15,4 +15,5 @@ module.exports = function (app) {
     app.post('/submitAcc', Index.submitAcc);//验证输入的账户
     app.get('/enterPwd', Index.enterPwd);//下一个页面是enter password
     app.post('/submitPwd', Index.submitPwd);//验证输入的密码
+    app.get('/chooseAtm', Index.chooseAtm);//选择服务的ATM
 }

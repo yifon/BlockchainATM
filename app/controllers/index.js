@@ -16,12 +16,9 @@ exports.enterAcc = function (req, res) {
 //验证客人输入的卡号，验证成功则跳转输入密码页
 exports.submitAcc = function (req, res) {
     var _customer = req.body.customer;
-    req.session.customer = new Customer();
-    // var customer = req.session.customer;
-    // console.log(typeof customer);
-    // Object.defineProperty(customer, "debitAccount", _customer.debitAccount)//将debitAccount存储在session中
+    req.session.customer = _customer;
+    var customer = req.session.customer;
     req.session.customer["debitAccount"] = _customer.debitAccount;//将debitAccount存储在session中
-    console.log(req.session.customer["debitAccount"]);
     var data = {
         "success": true,
         "msg": "/enterPwd"
@@ -31,11 +28,10 @@ exports.submitAcc = function (req, res) {
 //输入密码页
 exports.enterPwd = function (req, res) {
     var _customer = req.session.customer;
-    console.log(_customer["debitAccount"]);
+    console.log("debitAccount:"+req.session.customer["debitAccount"]);
     if (typeof _customer == "undefined" || !_customer.hasOwnProperty("debitAccount") || _customer.debitAccount == "") {
         return res.redirect("/");//若未输入过卡号，则因跳转到首页
     }
-    console.log(req.session.customer.debitAccount);
     res.render('enterPwd', {
         bigTitle: "Please enter your password:"
     });
@@ -44,9 +40,7 @@ exports.enterPwd = function (req, res) {
 exports.submitPwd = function (req, res) {
     var _customer = req.body.customer;
     var customer = req.session.customer;
-    console.log(typeof customer);
-    // Object.defineProperty(customer, "password", _customer.password)//将debitAccount存储在session中
-    // req.session.customer["password"] = _customer.password;//将debitAccount存储在session中
+    req.session.customer["password"] = _customer.password;//将debitAccount存储在session中
     var data = {
         "success": true,
         "msg": "/chooseAtm"
@@ -56,6 +50,7 @@ exports.submitPwd = function (req, res) {
 //选择ATM页
 exports.chooseAtm = function (req, res) {
     var _customer = req.session.customer;
+    console.log("password:"+req.session.customer["password"]);
     if (typeof _customer == "undefined" || !_customer.hasOwnProperty("debitAccount") || _customer.debitAccount == "") {
         return res.redirect("/");//若未输入过卡号，则因跳转到首页
     } else if (!_customer.hasOwnProperty("password")) {
