@@ -1,0 +1,56 @@
+//-录入页是一个表单，需要用到很多字段
+extend ../layout 
+block content
+    .container
+        .row
+            form.form-horizontal(method='post',action='/admin/atm',enctype='multipart/form-data')
+                //-隐藏域，表示atm是新录入或者更新的
+                if atm._id
+                    input(type="hidden",name='atm[_id]',value=atm._id)
+
+                .form-group
+                    label.col-sm-4.control-label(for='inputAtmId') ATM ID:
+                    .col-sm-6
+                        input#inputAtmId.form-control(type='text',name='atm[atmId]',value=atm.atmId)
+                
+                 .form-group
+                    label.col-sm-4.control-label(for='inputLocation') Location:
+                    .col-sm-6
+                        input#inputLocation.form-control(type='text',name='atm[location]',value=atm.location)
+
+                 .form-group.form-inline
+                    label.col-sm-4.control-label(for='') Supported Transactions:
+                    .col-sm-6
+                        input.form-control(type='checkbox') 
+                        | Balance Inquiry
+                        input.form-control(type='checkbox') 
+                        | Cash Withdrawal
+                        input.form-control(type='checkbox') 
+                        | Cash Deposit
+                        input.form-control(type='checkbox') 
+                        | Transfer
+
+                .form-group
+                    label.col-sm-4.control-label(for='inputBank') Bank:
+                    .col-sm-6
+                        input#inputBank.form-control(type='text',name='atm[bank]',value=atm.bank)
+
+                .form-group
+                    label.col-sm-4.control-label(for='inputModel') Model:
+                    .col-sm-6
+                        input#inputModel.form-control(type='text',name='atm[model]',value=atm.model)
+                
+                 .form-group
+                    label.col-sm-4.control-label(for='inputVendor') Vendor:
+                    .col-sm-6
+                        input#inputVendor.form-control(type='text',name='atm[vendor]',value=atm.vendor)
+                
+                 .form-group
+                    label.col-sm-4.control-label(for='uploadPicture') Upload the picture:
+                    .col-sm-6
+                        input#uploadPicture.form-control(type='file',name='uploadPicture')
+
+                 .form-group
+                    .col-sm-offset-3.col-sm-3
+                    button.btn.btn-info(type='submit') Add
+                                                        

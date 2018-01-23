@@ -1,5 +1,6 @@
 //拿到控制层的入口文件
 var Index = require('../app/controllers/index');
+var Atm = require('../app/controllers/atm');
 
 module.exports = function (app) {
     //为客人信息设置缓存
@@ -16,4 +17,10 @@ module.exports = function (app) {
     app.get('/enterPwd', Index.enterPwd);//下一个页面是enter password
     app.post('/submitPwd', Index.submitPwd);//验证输入的密码
     app.get('/chooseAtm', Index.chooseAtm);//选择服务的ATM
+
+    //atmp后台
+    app.get('/admin/atm/new', Atm.new);//atm录入页
+    app.get('/admin/atm/list', Atm.atmlist);//atm列表页
+    app.post('/admin/atm', Atm.save);//将atm录入页的信息存储到数据库中
+    app.get('/atm/:id', Atm.detail);//具体某台atm的详情页
 }

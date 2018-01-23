@@ -1,0 +1,25 @@
+extend ../layout 
+block content
+    .container
+        .row
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th ATM ID
+                        th location
+                        th Supported transactions
+                        th Modified time
+                        th Update
+                        th Delete
+                    tbody
+                        each item in atms
+                            tr(class='.item-id-#{item._id}')
+                                td #{item.atmId}
+                                td #{item.location}
+                                td #{item.supportedTxns}
+                                //-对录入时间进行格式化
+                                td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
+                                td: a(target='_blank',href='/admin/atm/update/#{item._id}') 修改
+                                td
+                                    button.btn.btn-danger.del(type='button',data-id='#{item._id}') 删除
+                                script(src='/js/atmp.js')

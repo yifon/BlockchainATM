@@ -5,13 +5,15 @@ module.exports = function (grunt) {
             jade: {
                 files: ['views/**'],
                 options: {
-                    livereload: true//当文件出现改动时重启服务器
+                    livereload: true//避免与默认对35729使用冲突
+                    port: 35728//避免与默认对35729使用冲突
                 }
             },
             js: {
                 files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
                 options: {
-                    livereload: true
+                    livereload: true//避免与默认对35729使用冲突
+                    port: 35728//避免与默认对35729使用冲突
                 }
             }
         },
@@ -26,7 +28,7 @@ module.exports = function (grunt) {
                     debug: true,
                     delayTime: 1,//如果有大批量文件要改动时，则等待x ms再重启服务器
                     env: {
-                        PORT: 3000
+                        PORT: 4000
                     },
                     cwd: __dirname//目录
                 }

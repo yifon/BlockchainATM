@@ -3,7 +3,7 @@
  */
 var express = require('express');//加载express模块
 var app = express();//启动一个web服务器，将实例赋予给app变量
-var port = process.env.PORT || 1000;//从命令行中设置port口，默认是3000
+var port = process.env.PORT || 4000;//从命令行中设置port口，默认是3000
 app.listen(port);//监听端口
 
 var mongoose = require('mongoose');//引入mongoose模块，来连接本地数据库
@@ -16,6 +16,9 @@ app.use(express.static(path.join(__dirname, 'public')))//静态资源的获取�
 
 app.set('views', './app/views/pages');//设置视图的根目录
 app.set('view engine', 'jade');//设置默认的模版引擎
+
+//添加moment模块用于格式化时间
+app.locals.moment = require('moment');
 
 var expressSession = require('express-session');//会话持久性判断
 var mongoStore = require('connect-mongo')(expressSession);//利用mongodb做会话的持久性
