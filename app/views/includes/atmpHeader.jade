@@ -1,29 +1,44 @@
 .container
-    .row
-        .page-header.clearfix
-            h2 ATMP后台系统
-            .col-md-4
-                h4=pageTitle
-            .col-md-8
-                form(method='GET',action='./results')
-                    .input-group.col-sm-4.pull-right
-                        input.form-control(type='text',name='q')
-                        span.input-group-btn
-                            button.btn.btn-default(type='submit') 搜索
-.navbar.navbar-inverse.navbar-fixed-bottom
+    //- .row
+    //-     .page-header.clearfix.header-bg
+    //-         h2 ATMP后台系统
+    //-         .col-md-4
+    //-             h4=pageTitle
+    //-         .col-md-8
+    //-             form(method='GET',action='./results')
+    //-                 .input-group.col-sm-4.pull-right
+    //-                     input.form-control(type='text',name='q')
+    //-                     span.input-group-btn
+    //-                         button.btn.btn-default(type='submit') 搜索
+
+
+.navbar.navbar-inverse.navbar-relative-top
     .container 
         .navbar-header
-            a.navbar-brand(href="/") 首页
-        if user
-            p.navbar-text.navbar-right
-                span 欢迎您，#{user.name}
-                span &nbsp;|&nbsp;
-                a.navbar-link(href="/logout") 登出
-        else
-            p.navbar-text.navbar-right
-                a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册
-                span &nbsp;|&nbsp;
-                a.navbar-link(href="#",data-toggle="modal",data-target="#signinModal") 登陆
+            .navbar-brand.atmp-title ATMP后台系统
+        //- form(method='GET',action='./results')
+        //-     .input-group.col-sm-3.pull-right.bottom
+        //-         input.form-control(type='text',name='q')
+        //-         span.input-group-btn
+        //-             button.btn.btn-default(type='submit') 搜索
+
+
+.navbar.navbar-default.navbar-fixed-bottom
+    .container 
+            .navbar-header
+                h4=pageTitle
+            if user
+                p.navbar-text.navbar-right
+                    span 欢迎您，#{user.name}
+                    span &nbsp;|&nbsp;
+                    a.navbar-link(href="/logout") 登出
+            else
+                p.navbar-text.navbar-right
+                    a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册
+                    span &nbsp;|&nbsp;
+                    a.navbar-link(href="#",data-toggle="modal",data-target="#signinModal") 登陆
+
+
 #signupModal.modal.fade
     .modal-dialog
         .modal-content
