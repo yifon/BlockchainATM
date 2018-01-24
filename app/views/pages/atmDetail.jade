@@ -1,0 +1,24 @@
+
+extend ../atmp
+block content
+    .container  
+        .row
+            .col-md-5
+                image.atmPicture(src="/upload/"+atm.picture)            
+            .col-md-5
+                dl.dl-horizontal
+                    dt ATM ID:
+                    dd=atm.atmId
+                    dt 地理位置:
+                    dd=atm.location
+                    dt 支持交易:
+                    dd=atm.supportedTxns
+                    dt 所属银行:
+                    dd=atm.bank
+                    dt 设备型号:
+                    dd=atm.model
+                    dt 供应商:
+                    dd=atm.vendor
+
+
+            script(src='/js/atmp.js')

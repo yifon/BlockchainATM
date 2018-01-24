@@ -22,6 +22,10 @@ app.locals.moment = require('moment');
 
 var expressSession = require('express-session');//会话持久性判断
 var mongoStore = require('connect-mongo')(expressSession);//利用mongodb做会话的持久性
+var multipart = require('connect-multiparty');//文件上传模块
+app.use(multipart({
+    maxFiesSize: 5 * 1024 * 1024
+}));
 app.use(expressSession({
     secret: 'blockchainAtm',
     resave: false,

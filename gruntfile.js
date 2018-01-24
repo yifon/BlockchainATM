@@ -6,14 +6,14 @@ module.exports = function (grunt) {
                 files: ['views/**'],
                 options: {
                     livereload: true//避免与默认对35729使用冲突
-                    port: 35728//避免与默认对35729使用冲突
+                    // port: 35728//避免与默认对35729使用冲突
                 }
             },
             js: {
                 files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
                 options: {
                     livereload: true//避免与默认对35729使用冲突
-                    port: 35728//避免与默认对35729使用冲突
+                    // port: 35728//避免与默认对35729使用冲突
                 }
             }
         },

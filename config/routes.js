@@ -21,6 +21,6 @@ module.exports = function (app) {
     //atmp后台
     app.get('/admin/atm/new', Atm.new);//atm录入页
     app.get('/admin/atm/list', Atm.atmlist);//atm列表页
-    app.post('/admin/atm', Atm.save);//将atm录入页的信息存储到数据库中
+    app.post('/admin/atm', Atm.savePicture, Atm.save);//将atm录入页的信息存储到数据库中
     app.get('/atm/:id', Atm.detail);//具体某台atm的详情页
 }

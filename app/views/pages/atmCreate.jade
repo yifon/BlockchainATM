@@ -1,9 +1,9 @@
 //-录入页是一个表单，需要用到很多字段
-extend ../layout 
+extend ../atmp
 block content
     .container
         .row
-            form.form-horizontal(method='post',action='/admin/atm',enctype='multipart/form-data')
+            form.form-horizontal#atmForm(method='post',action='/admin/atm',enctype='multipart/form-data')
                 //-隐藏域，表示atm是新录入或者更新的
                 if atm._id
                     input(type="hidden",name='atm[_id]',value=atm._id)
@@ -12,45 +12,55 @@ block content
                     label.col-sm-4.control-label(for='inputAtmId') ATM ID:
                     .col-sm-6
                         input#inputAtmId.form-control(type='text',name='atm[atmId]',value=atm.atmId)
-                
+
                  .form-group
-                    label.col-sm-4.control-label(for='inputLocation') Location:
+                    label.col-sm-4.control-label(for='inputLocation') 位置:
                     .col-sm-6
                         input#inputLocation.form-control(type='text',name='atm[location]',value=atm.location)
 
-                 .form-group.form-inline
-                    label.col-sm-4.control-label(for='') Supported Transactions:
-                    .col-sm-6
-                        input.form-control(type='checkbox') 
-                        | Balance Inquiry
-                        input.form-control(type='checkbox') 
-                        | Cash Withdrawal
-                        input.form-control(type='checkbox') 
-                        | Cash Deposit
-                        input.form-control(type='checkbox') 
-                        | Transfer
+                 .form-group
+                    label.col-sm-4.control-label(for='') 支持交易:
+                    .col-sm-4.col-sm-offset-1#supportTxns
+                        .checkbox
+                            input(type='checkbox' name='atm[supportedTxns]' value='查询余额')
+                            |查询
+                        .checkbox
+                            input(type='checkbox' name='atm[supportedTxns]' value='取款')
+                            |取款
+                        .checkbox
+                            input(type='checkbox' name='atm[supportedTxns]' value='存款')
+                            |存款
+                        .checkbox
+                            input(type='checkbox' name='atm[supportedTxns]' value='转账')
+                            |转账
 
                 .form-group
-                    label.col-sm-4.control-label(for='inputBank') Bank:
+                    label.col-sm-4.control-label(for='inputBank') 所属银行:
                     .col-sm-6
                         input#inputBank.form-control(type='text',name='atm[bank]',value=atm.bank)
 
                 .form-group
-                    label.col-sm-4.control-label(for='inputModel') Model:
+                    label.col-sm-4.control-label(for='inputModel') 机型:
                     .col-sm-6
                         input#inputModel.form-control(type='text',name='atm[model]',value=atm.model)
-                
+
                  .form-group
-                    label.col-sm-4.control-label(for='inputVendor') Vendor:
+                    label.col-sm-4.control-label(for='inputVendor') 供应商:
                     .col-sm-6
                         input#inputVendor.form-control(type='text',name='atm[vendor]',value=atm.vendor)
-                
+
+                .form-group
+                    label.col-sm-4.control-label(for='inputPicture') 机器图片地址:
+                    .col-sm-6
+                        input#inputPicture.form-control(type='text',name='atm[picture]',value=atm.picture)
+
                  .form-group
-                    label.col-sm-4.control-label(for='uploadPicture') Upload the picture:
+                    label.col-sm-4.control-label(for='uploadPicture') 上传机器图片:
                     .col-sm-6
                         input#uploadPicture.form-control(type='file',name='uploadPicture')
 
                  .form-group
                     .col-sm-offset-3.col-sm-3
-                    button.btn.btn-info(type='submit') Add
-                                                        
+                    button.btn.btn-info#createAtm(type='submit') 添加
+                script(src="/js/atmp.js")
+

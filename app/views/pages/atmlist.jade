@@ -1,16 +1,17 @@
-extend ../layout 
+extend ../atmp
 block content
     .container
         .row
             table.table.table-hover.table-bordered
                 thead
-                    tr
+                    tr.active
                         th ATM ID
-                        th location
-                        th Supported transactions
-                        th Modified time
-                        th Update
-                        th Delete
+                        th 位置
+                        th 支持交易
+                        th 录入时间
+                        th 查看
+                        th 更新
+                        th 删除
                     tbody
                         each item in atms
                             tr(class='.item-id-#{item._id}')
@@ -19,7 +20,11 @@ block content
                                 td #{item.supportedTxns}
                                 //-对录入时间进行格式化
                                 td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
+                                td: a(target='_blank',href='/atm/#{item._id}') 查看
+                                    span.glyphicon.glyphicon-search
                                 td: a(target='_blank',href='/admin/atm/update/#{item._id}') 修改
+                                    span.glyphicon.glyphicon-pencil
                                 td
                                     button.btn.btn-danger.del(type='button',data-id='#{item._id}') 删除
+                                        span.glyphicon.glyphicon-trash
                                 script(src='/js/atmp.js')
