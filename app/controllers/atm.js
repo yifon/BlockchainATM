@@ -106,3 +106,44 @@ exports.detail = function (req, res) {
         })
     })
 }
+
+//修改atm录入信息
+//在列表页点击更新时，会跳转到后台录入post页，同时要初始化表单数据
+exports.update = function (req, res) {
+    //先拿到id,判断id是否存在
+    var id = req.params.id;
+    //若id存在，则通过模型Atm来拿到数据库中已有的Atm信息
+    if (id) {
+        Atm.findById(id, function (err, atm) {
+            //拿到atm数据后，直接去渲染表单，即atm录入页
+            res.render('atmCreate', {
+                pageTitle: "ATM录入页",
+                atm: atm//将数据库中查到的atm数据传入表单
+            })
+        })
+    }
+}
+//删除atm
+exports.del = function (req, res) {
+    var id = req.query.id;
+    var data;
+    if (id) {
+        Atm.remove({ _id: id }, function (err, atm) {
+            if (err) {
+                data = {
+                    "success": false,
+                    "message": "删除失败！"
+                };
+            }
+            //如果没有异常，则给客户端返回json数据
+            else {
+                data = {
+                    "success": true,
+                    "message": "删除成功！"
+                };
+
+            }
+            res.json(data);
+        })
+    }
+}

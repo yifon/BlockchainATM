@@ -11,16 +11,18 @@
     //-                     span.input-group-btn
     //-                         button.btn.btn-default(type='submit') 搜索
 
-
-.navbar.navbar-inverse.navbar-relative-top
+//-顶部标题栏
+.navbar.navbar-inverse.navbar-static-top
     .container 
         .navbar-header
-            .navbar-brand.atmp-title ATMP后台系统
-        //- form(method='GET',action='./results')
-        //-     .input-group.col-sm-3.pull-right.bottom
-        //-         input.form-control(type='text',name='q')
-        //-         span.input-group-btn
-        //-             button.btn.btn-default(type='submit') 搜索
+            .navbar-brand ATMP后台系统  
+            ul.nav.navbar-nav
+                li
+                    a(href="/admin/atm/list") ATM信息页
+                li
+                    a(href="#") 银行卡信息页
+                li
+                    a(href="#") 交易信息页      
 
 
 .navbar.navbar-default.navbar-fixed-bottom

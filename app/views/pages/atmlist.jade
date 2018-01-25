@@ -1,30 +1,40 @@
-extend ../atmp
+extend ../atmInfo
 block content
     .container
         .row
-            table.table.table-hover.table-bordered
-                thead
-                    tr.active
-                        th ATM ID
-                        th 所属银行
-                        th 支持交易
-                        th 录入时间
-                        th 查看
-                        th 更新
-                        th 删除
-                    tbody
-                        each item in atms
-                            tr(class='.item-id-#{item._id}')
-                                td #{item.atmId}
-                                td #{item.bank}
-                                td #{item.supportedTxns}
-                                //-对录入时间进行格式化
-                                td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
-                                td: a(target='_blank',href='/atm/#{item._id}') 查看
-                                    span.glyphicon.glyphicon-search
-                                td: a(target='_blank',href='/admin/atm/update/#{item._id}') 修改
-                                    span.glyphicon.glyphicon-pencil
-                                td
-                                    button.btn.btn-danger.del(type='button',data-id='#{item._id}') 删除
-                                        span.glyphicon.glyphicon-trash
-                                script(src='/js/atmp.js')
+            .col-sm-10
+                table.table.table-hover.table-bordered
+                    thead
+                        tr.active
+                            th ATM ID
+                            th 所属银行
+                            th 支持交易
+                            th 录入时间
+                            th 查看
+                            th 更新
+                            th 删除
+                        tbody
+                            each item in atms
+                                tr(class='.item-id-#{item._id}')
+                                    td #{item.atmId}
+                                    td #{item.bank}
+                                    td #{item.supportedTxns}
+                                    //-对录入时间进行格式化
+                                    td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
+                                    td: a(href='/atm/#{item._id}') 查看
+                                        span.glyphicon.glyphicon-search
+                                    td: a(href='/admin/atm/update/#{item._id}') 修改
+                                        span.glyphicon.glyphicon-pencil
+                                    td
+                                        button.btn.btn-danger.del(data-toggle="modal",data-target="#delModal") 删除
+                                            span.glyphicon.glyphicon-trash
+                                //-删除确认框
+                                #delModal.modal.fade
+                                    .modal-dialog
+                                        .modal-content
+                                            .modal-header.h4 删除提醒
+                                            .modal-body 确认删除？
+                                            .modal-footer
+                                                button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+                                                button.btn.btn-danger#delAtm(type="button" data-id="#{item._id}" data-dismiss="modal") 确认
+                                                    span.glyphicon.glyphicon-remove
