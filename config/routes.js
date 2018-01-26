@@ -1,6 +1,7 @@
 //拿到控制层的入口文件
 var Index = require('../app/controllers/index');
 var Atm = require('../app/controllers/atm');
+var Bin = require('../app/controllers/bin');
 
 module.exports = function (app) {
     //为客人信息设置缓存
@@ -18,11 +19,18 @@ module.exports = function (app) {
     app.post('/submitPwd', Index.submitPwd);//验证输入的密码
     app.get('/chooseAtm', Index.chooseAtm);//选择服务的ATM
 
-    //atmp后台
+    //atm信息
     app.get('/admin/atm/new', Atm.new);//atm录入页
     app.get('/admin/atm/list', Atm.atmlist);//atm列表页
     app.post('/admin/atm', Atm.savePicture, Atm.save);//将atm录入页的信息存储到数据库中
     app.get('/atm/:id', Atm.detail);//具体某台atm的详情页
     app.get('/admin/atm/update/:id', Atm.update);//修改atm信息
     app.delete('/admin/atm/list',Atm.del);//删除atm
+    
+    //bin信息
+    app.get('/admin/bin/new', Bin.new);//bin录入页
+    app.get('/admin/bin/list', Bin.binlist);//bin列表页
+    app.post('/admin/bin', Bin.save);//将bin录入页的信息存储到数据库中
+    app.get('/admin/bin/update/:id', Bin.update);//修改bin信息
+    app.delete('/admin/bin/list',Bin.del);//删除bin
 }

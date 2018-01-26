@@ -1,0 +1,28 @@
+//-录入页是一个表单，需要用到很多字段
+extend ../blockchainInfo
+block content
+    .container
+        .row
+            .col-sm-8
+                .form-horizontal
+                    //-隐藏域，表示bin是新录入或者更新的
+                    if binMapping._id
+                        input(type="hidden",name='binMapping[_id]',value=binMapping._id)
+                    //-一个银行可以有多个BIN,一个BIN只可以属于一个银行
+                    .form-group
+                        label.col-sm-4.control-label(for='inputBin') BIN:
+                        .col-sm-6
+                            input#inputBin.form-control(type='text',name='binMapping[bin]',value=binMapping.bin)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='inputBank') 所属银行:
+                        .col-sm-6
+                            input#inputBank.form-control(type='text',name='binMapping[bank]',value=binMapping.bank)
+                    //-验证结果，只有失败才会提醒
+                    .form-group
+                        .col-sm-4
+                        .inputChecking#checkBin
+                    .form-group
+                        .col-sm-offset-3.col-sm-3
+                        button.btn.btn-info#createBin 确认
+

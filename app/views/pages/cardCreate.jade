@@ -1,5 +1,5 @@
 //-录入页是一个表单，需要用到很多字段
-extend ../cardInfo
+extend ../blockchainInfo
 block content
     .container
         .row
@@ -10,7 +10,7 @@ block content
                         input(type="hidden",name='card[_id]',value=card._id)
 
                     .form-group
-                        label.col-sm-4.control-label(for='inputcardId') 银行:
+                        label.col-sm-4.control-label(for='inputcardNumber') 卡号:
                         .col-sm-6
                             input#inputcardId.form-control(type='text',name='card[cardId]',value=card.cardId)
 
@@ -23,8 +23,7 @@ block content
                         label.col-sm-4.control-label(for='inputLocation') 位置:
                         .col-sm-6
                             input#inputLocation.form-control(type='text',name='card[location]',value=card.location)
-
-                    
+      
                     .form-group
                         .col-sm-offset-3.col-sm-3
                         button.btn.btn-info#createcard(type='submit') 添加
