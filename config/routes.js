@@ -2,6 +2,7 @@
 var Index = require('../app/controllers/index');
 var Atm = require('../app/controllers/atm');
 var Bin = require('../app/controllers/bin');
+var Bank = require('../app/controllers/bank');
 
 module.exports = function (app) {
     //为客人信息设置缓存
@@ -25,12 +26,19 @@ module.exports = function (app) {
     app.post('/admin/atm', Atm.savePicture, Atm.save);//将atm录入页的信息存储到数据库中
     app.get('/atm/:id', Atm.detail);//具体某台atm的详情页
     app.get('/admin/atm/update/:id', Atm.update);//修改atm信息
-    app.delete('/admin/atm/list',Atm.del);//删除atm
-    
+    app.delete('/admin/atm/list', Atm.del);//删除atm
+
     //bin信息
     app.get('/admin/bin/new', Bin.new);//bin录入页
     app.get('/admin/bin/list', Bin.binlist);//bin列表页
     app.post('/admin/bin', Bin.save);//将bin录入页的信息存储到数据库中
     app.get('/admin/bin/update/:id', Bin.update);//修改bin信息
-    app.delete('/admin/bin/list',Bin.del);//删除bin
+    app.delete('/admin/bin/list', Bin.del);//删除bin
+
+    //bank信息
+    app.get('/admin/bank/new', Bank.new);//bank录入页
+    app.get('/admin/bank/list', Bank.banklist);//bank列表页
+    app.post('/admin/bank', Bank.save);//将bank录入页的信息存储到数据库中
+    app.get('/admin/bank/update/:id', Bank.update);//修改bank信息
+    app.delete('/admin/bank/list', Bank.del);//删除bank
 }

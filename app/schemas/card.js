@@ -5,13 +5,18 @@ var ObjectId = Schema.Types.ObjectId;//声明一个对象ID类型，等同于Mon
 
 //传入与card有关的字段和类型
 var CardSchema = new Schema({
-    cardNumber: {
-        unique: true,//卡号不可重复
+    //获取在BIN创建页创建过的银行,一个Card只有一个Bin
+    bank: {
+        type: ObjectId,
+        ref: 'Bin'
+    },
+    number: {
+        unique: true,//卡号唯一
         type: String
     },
-    customer: String,//卡主
-    bank: String,//所属银行
-    balance: Number,//余额
+    name: String,//客人姓名
+    password: Number,//银行卡密码
+    balance: Number,//银行卡余额
     //meta存放的是录入或者更新数据时的时间纪录
     meta: {
         //创建时间
@@ -49,8 +54,8 @@ CardSchema.statics = {
         return this.findOne({ _id: id }).exec(cb);//执行查询，并将结果传入回调方法
     },
     //查询数据库中单条数据（根据卡号去查找）
-    findBycardNumber: function (cardNumber, cb) {
-        return this.findOne({ cardNumber: cardNumber }).exec(cb);//执行查询，并将结果传入回调方法
+    findByNumber: function (number, cb) {
+        return this.findOne({ number: number }).exec(cb);//执行查询，并将结果传入回调方法
     }
 }
 //将模式导出

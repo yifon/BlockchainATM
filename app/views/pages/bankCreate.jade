@@ -1,0 +1,23 @@
+//-录入页是一个表单，需要用到很多字段
+extend ../blockchainInfo
+block content
+    .container
+        .row
+            .col-sm-8
+                .form-horizontal
+                    //-隐藏域，表示bank是新录入或者更新的
+                    if bank._id
+                        input#inputId(type="hidden",name='bank[_id]',value=bank._id)
+                    .form-group
+                        label.col-sm-4.control-label(for='inputName') 银行名字：
+                        .col-sm-6
+                            input#inputName.form-control(type='text',name='bank[name]',value=bank.name)
+
+                    //-验证结果，只有失败才会提醒
+                    .form-group
+                        .col-sm-4
+                        .inputChecking#checkBank
+                    .form-group
+                        .col-sm-offset-3.col-sm-3
+                        button.btn.btn-info#createBank 确认
+

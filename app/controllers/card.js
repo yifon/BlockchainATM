@@ -1,5 +1,6 @@
 //加载编译的模型
-var card = require('../models/card');
+var Card = require('../models/card');
+var Bin = require('../models/bin');
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');
@@ -13,16 +14,23 @@ exports.cardlist = function (req, res) {
         }
         res.render('cardlist', {
             pageTitle: "银行卡列表页",
-            cards: cards
+            cards: cards//获取所有的银行卡信息
         })
     })
 }
 
 //card录入url，实现跳转到card录入页
 exports.new = function (req, res) {
-    res.render('cardCreate', {
-        pageTitle: "银行卡信息录入页",
-        card: {}
+    //获取所有可以选择的bin对象信息
+    Bin.fetch(function (err, bins) {
+        if (err) {
+            console.log(err);
+        }
+        res.render('cardCreate', {
+            pageTitle: "银行卡信息录入页",
+            bins: bins,
+            card: {}
+        })
     })
 }
 

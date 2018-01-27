@@ -4,27 +4,27 @@ block content
     .container
         .row
             .col-sm-8
-                form.form-horizontal#cardForm(method='post',action='/admin/card',enctype='multipart/form-data')
+                .form-horizontal
                     //-隐藏域，表示card是新录入或者更新的
                     if card._id
-                        input(type="hidden",name='card[_id]',value=card._id)
+                        input#inputId(type="hidden",name='card[_id]',value=card._id)
+                    //-可以选择的银行
+                    .form-group
+                        label.col-sm-4.control-label(for='chooseBank') 所属银行:
+                        select.col-sm-6
+                            each bin in bins
+                                option.form-control(type='text',name='bin[bank]',value=bin.bank)
 
-                    .form-group
-                        label.col-sm-4.control-label(for='inputcardNumber') 卡号:
-                        .col-sm-6
-                            input#inputcardId.form-control(type='text',name='card[cardId]',value=card.cardId)
+                    //- .form-group
+                    //-     label.col-sm-4.control-label(for='inputBin') BIN:
+                    //-     .col-sm-6
+                    //-         input#inputBin.form-control(type='text',name='binMapping[bin]',value=binMapping.bin)
 
-                    .form-group
-                        label.col-sm-4.control-label(for='inputcardId') 卡号:
-                        .col-sm-6
-                            input#inputcardId.form-control(type='text',name='card[cardId]',value=card.cardId)
-
-                    .form-group
-                        label.col-sm-4.control-label(for='inputLocation') 位置:
-                        .col-sm-6
-                            input#inputLocation.form-control(type='text',name='card[location]',value=card.location)
-      
-                    .form-group
-                        .col-sm-offset-3.col-sm-3
-                        button.btn.btn-info#createcard(type='submit') 添加
+                    //- //-验证结果，只有失败才会提醒
+                    //- .form-group
+                    //-     .col-sm-4
+                    //-     .inputChecking#checkBin
+                    //- .form-group
+                    //-     .col-sm-offset-3.col-sm-3
+                    //-     button.btn.btn-info#createBin 确认
 
