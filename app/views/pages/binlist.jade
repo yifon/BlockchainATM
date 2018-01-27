@@ -21,15 +21,15 @@ block content
                                     td: a(href='/admin/bin/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.del(data-toggle="modal",data-target="#delModal") 删除
+                                        button.btn.btn-danger.tempId(data-toggle="modal",data-target="#delModal" data-id="#{item._id}" ) 删除
                                             span.glyphicon.glyphicon-trash
-                                //-删除确认框
-                                #delModal.modal.fade
-                                    .modal-dialog
-                                        .modal-content
-                                            .modal-header.h4 删除提醒
-                                            .modal-body 确认删除？
-                                            .modal-footer
-                                                button.btn.btn-default(type="button" data-dismiss="modal") 关闭
-                                                button.btn.btn-danger#delbin(type="button" data-id="#{item._id}" data-dismiss="modal") 确认
-                                                    span.glyphicon.glyphicon-remove
+                //-删除确认框    
+                #delModal.modal.fade
+                    .modal-dialog
+                        .modal-content
+                            .modal-header.h4 删除提醒
+                            .modal-body 确认删除？
+                            .modal-footer
+                                button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+                                button.btn.btn-danger#delBin(type="button" data-dismiss="modal") 确认
+                                    span.glyphicon.glyphicon-remove

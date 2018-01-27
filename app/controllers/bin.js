@@ -11,7 +11,7 @@ exports.binlist = function (req, res) {
             console.log(err);
         }
         res.render('binlist', {
-            pageTitle: "Bin列表页",
+            pageTitle: "BIN列表页",
             binMappings: binMappings
         })
     })
@@ -20,7 +20,7 @@ exports.binlist = function (req, res) {
 //bin录入url，实现跳转到bin录入页
 exports.new = function (req, res) {
     res.render('binCreate', {
-        pageTitle: "Bin信息录入页",
+        pageTitle: "BIN信息录入页",
         binMapping: {}
     })
 }
@@ -33,24 +33,60 @@ exports.save = function (req, res) {
     var binObj = req.body.binMapping;//拿到传过来的bin对象
     var _bin;
     var data;
-    if (id) {
-        //证明bin是存储进数据库过的，需要对其进行更新
-        Bin.findById(id, function (err, binMapping) {
-            if (err) {
-                console.log(err);
+    var tempId = "";//查看当前的bin是否在数据库中有其它人注册过
+    //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
+    const promise = new Promise(function (resolve, reject) {
+        //无论是新创建还是更改，都要看数据库中是否有创建过此bin
+        Bin.findByBin(binObj.bin, function (err, binMapping) {
+            if (binMapping && binMapping._id != null) {
+                tempId = binMapping._id;
             }
-            //需要将post过来的bin数据替换掉数据库中老的bin数据
-            /**
-             * _.extend(destination,source)
-             */
-            _bin = _.extend(binMapping, binObj);
+            resolve(tempId);
+        })
+    });
+    promise.then(function (tempId) {
+        if (id) {
+            //如果是修改，则需检查新post的bin是否跟数据库中其它纪录重复
+            if (tempId.toString() != id) {
+                data = {
+                    "success": false,
+                    "msg": "此BIN已被其它注册过，请使用其它BIN！"
+                }
+                res.json(data);
+            }
+            //证明bin是存储进数据库过的，需要对其进行更新
+            else Bin.findById(id, function (err, binMapping) {
+                if (err) {
+                    console.log(err);
+                }
+                //需要将post过来的bin数据替换掉数据库中老的bin数据
+                /**
+                 * _.extend(destination,source)
+                 */
+                _bin = _.extend(binMapping, binObj);
+                _bin.save(function (err, binMapping) {
+                    if (err) {
+                        console.log(err);
+                        data = {
+                            "success": false,
+                            "msg": "创建失败！"
+                        }
+                    }
+                    //保存成功后，跳转到bin列表页
+                    data = {
+                        "success": true,
+                        "msg": "创建成功！"
+                    }
+                    res.json(data);
+                })
+            })
+        }
+        //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
+        else if (tempId == "") {
+            _bin = new Bin(binObj);
             _bin.save(function (err, binMapping) {
                 if (err) {
                     console.log(err);
-                    data = {
-                        "success": false,
-                        "message": "创建失败！"
-                    }
                 }
                 //保存成功后，跳转到bin列表页
                 data = {
@@ -59,23 +95,17 @@ exports.save = function (req, res) {
                 }
                 res.json(data);
             })
-        })
-    }
-    //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
-    else {
-        _bin = new Bin(binObj);
-        _bin.save(function (err, binMapping) {
-            if (err) {
-                console.log(err);
-            }
-            //保存成功后，跳转到bin列表页
+        }
+        //新创建的bin在数据库中存在过
+        else {
             data = {
-                "success": true,
-                "message": "创建成功！"
+                "success": false,
+                "msg": "此BIN已被其它注册过，请使用其它BIN！"
             }
             res.json(data);
-        })
-    }
+        }
+
+    })
 }
 
 //修改bin录入信息
@@ -97,20 +127,21 @@ exports.update = function (req, res) {
 //删除bin
 exports.del = function (req, res) {
     var id = req.query.id;
+    console.log("id:"+id);
     var data;
     if (id) {
-        bin.remove({ _id: id }, function (err, binMapping) {
+        Bin.remove({ _id: id }, function (err, binMapping) {
             if (err) {
                 data = {
                     "success": false,
-                    "message": "删除失败！"
+                    "msg": "删除失败！"
                 };
             }
             //如果没有异常，则给客户端返回json数据
             else {
                 data = {
                     "success": true,
-                    "message": "删除成功！"
+                    "msg": "删除成功！"
                 };
 
             }

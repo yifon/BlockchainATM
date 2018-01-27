@@ -7,7 +7,7 @@ block content
                 .form-horizontal
                     //-隐藏域，表示bin是新录入或者更新的
                     if binMapping._id
-                        input(type="hidden",name='binMapping[_id]',value=binMapping._id)
+                        input#inputId(type="hidden",name='binMapping[_id]',value=binMapping._id)
                     //-一个银行可以有多个BIN,一个BIN只可以属于一个银行
                     .form-group
                         label.col-sm-4.control-label(for='inputBin') BIN:
