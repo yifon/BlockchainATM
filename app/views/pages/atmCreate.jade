@@ -4,24 +4,36 @@ block content
     .container
         .row
             .col-sm-8
-                form.form-horizontal#atmForm(method='post',action='/admin/atm',enctype='multipart/form-data')
+                .form-horizontal(enctype="multipart/form-data")
                     //-隐藏域，表示atm是新录入或者更新的
                     if atm._id
-                        input(type="hidden",name='atm[_id]',value=atm._id)
+                        input#_id(type="hidden",u,value=atm._id)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='inputBank') 所属银行:
+                        #selectBank
+                        each bank in banks
+                            label.radio-inline
+                                if atm._id
+                                    input(type="radio",value="#{bank.name}",checked=bank.name.toString()==atm.bank.toString())
+                                    | #{bank.name}
+                                else
+                                    input(type="radio",value="#{bank.name}")
+                                    | #{bank.name}
 
                     .form-group
                         label.col-sm-4.control-label(for='inputAtmId') ATM ID:
                         .col-sm-6
-                            input#inputAtmId.form-control(type='text',name='atm[atmId]',value=atm.atmId)
+                            input#inputAtmId.form-control(type='text',value=atm.atmId)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputLocation') 位置:
                         .col-sm-6
-                            input#inputLocation.form-control(type='text',name='atm[location]',value=atm.location)
+                            input#inputLocation.form-control(type='text',value=atm.location)
 
                     .form-group
                         label.col-sm-4.control-label(for='') 支持交易:
-                        .col-sm-4.col-sm-offset-1
+                        .col-sm-4.col-sm-offset-1#selectSupportedTxns
                             if atm.supportedTxns && atm.supportedTxns!=""
                                 - var checkINQ,checkCWD,checkDEP,checkTFR
                                 each txn in atm.supportedTxns
@@ -34,57 +46,58 @@ block content
                                     if(!checkTFR)
                                         - checkTFR=txn=="转账"
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='查询余额' checked=checkINQ)
+                                    input(type='checkbox',value='查询余额', checked=checkINQ)
                                     |查询余额
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='取款' checked=checkCWD)
+                                    input(type='checkbox', value='取款', checked=checkCWD)
                                     |取款
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='存款' checked=checkDEP)
+                                    input(type='checkbox',value='存款', checked=checkDEP)
                                     |存款
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='转账' checked=checkTFR)
+                                    input(type='checkbox',value='转账', checked=checkTFR)
                                     |转账
                             else
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='查询余额')
+                                    input(type='checkbox',value='查询余额')
                                     |查询余额
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='取款')
+                                    input(type='checkbox',value='取款')
                                     |取款
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='存款')
+                                    input(type='checkbox',value='存款')
                                     |存款
                                 .checkbox
-                                    input(type='checkbox' name='atm[supportedTxns]' value='转账')
+                                    input(type='checkbox',value='转账')
                                     |转账
 
-                    .form-group
-                        label.col-sm-4.control-label(for='inputBank') 所属银行:
-                        .col-sm-6
-                            input#inputBank.form-control(type='text',name='atm[bank]',value=atm.bank)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputModel') 机型:
                         .col-sm-6
-                            input#inputModel.form-control(type='text',name='atm[model]',value=atm.model)
+                            input#inputModel.form-control(type='text',value=atm.model)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputVendor') 供应商:
                         .col-sm-6
-                            input#inputVendor.form-control(type='text',name='atm[vendor]',value=atm.vendor)
+                            input#inputVendor.form-control(type='text',value=atm.vendor)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputPicture') 机器图片地址:
                         .col-sm-6
-                            input#inputPicture.form-control(type='text',name='atm[picture]',value=atm.picture)
+                            input#inputPicture.form-control(type='text',value=atm.picture)
 
                     .form-group
                         label.col-sm-4.control-label(for='uploadPicture') 上传机器图片:
                         .col-sm-6
-                            input#uploadPicture.form-control(type='file',name='uploadPicture')
+                            input#uploadPicture.form-control(type='file' name="uploadPicture")
+
+                    //-验证结果，只有失败才会提醒
+                    .form-group
+                        .col-sm-10.col-sm-offset-2
+                            .inputChecking#checkAtm
 
                     .form-group
                         .col-sm-offset-3.col-sm-3
-                        button.btn.btn-info#createAtm(type='submit') 添加
+                        button.btn.btn-info#createAtm 添加
 

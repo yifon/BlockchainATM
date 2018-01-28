@@ -1,3 +1,5 @@
+var atmCreateUrl = "/admin/atm";
+var atmlistUrl = "/admin/atm/list";
 var binCreateUrl = "/admin/bin";
 var binlistUrl = "/admin/bin/list";
 var bankCreateUrl = "/admin/bank";
@@ -6,7 +8,6 @@ var banklistUrl = "/admin/bank/list";
 $(function () {
     //加载侧边导航栏
     var currentUrl = String(window.location);//转为string
-    console.log(currentUrl);
     var html;
     if (currentUrl.indexOf("atm") != -1) {
         html = "<li><a href='/admin/atm/list'>ATM列表页</a></li><li><a href='/admin/atm/new'>创建ATM</a></li>";
@@ -22,6 +23,87 @@ $(function () {
         $("#sideBar").append(html);
     }
 
+    //新创建ATM，则需要去数据库中查询ATM ID是否被使用过了
+    $("#createAtm").bind("click", function () {
+        //确保所有位都有选择
+        var checkResult = "";
+        var _id = $("#_id").val();
+        var bank = $("input[type='radio']:checked").val();
+        var atmId = $("#inputAtmId").val();
+        var location = $("#inputLocation").val();
+        var supportedTxns = [];
+        $("#selectSupportedTxns input[type='checkbox']:checked").each(function () {
+            supportedTxns.push($(this).val());
+        })
+
+        var model = $("#inputModel").val();
+        var vendor = $("#inputVendor").val();
+        var picture = $("#inputPicture").val();
+        var formData = new FormData();
+        var uploadPicture = document.getElementById("#uploadPicture").files[0];
+        formData.append('file', uploadPicture);
+        // formData.append('action', atmCreateUrl);
+
+        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture) {
+            if (!bank) {
+                checkResult += "必须选择一家银行！";
+            }
+            if (!atmId) {
+                checkResult += "必须输入ATM ID！";
+            }
+            if (!location) {
+                checkResult += "必须输入地址！";
+            }
+            if (!supportedTxns) {
+                checkResult += "必须输入支持的交易！";
+            }
+            if (!model) {
+                checkResult += "必须输入设备模型！";
+            }
+            if (!vendor) {
+                checkResult += "必须输入供应商！";
+            }
+            if (!picture) {
+                if (!uploadPicture)
+                    checkResult += "必须输入图片地址或上传图片！";
+            }
+        } else {
+            $.ajax({
+                type: "POST",
+                url: atmCreateUrl,
+                dataType: "JSON",
+                data: {
+                    atm: {
+                        _id: _id,
+                        bank: bank,
+                        atmId: atmId,
+                        location: location,
+                        supportedTxns: supportedTxns,
+                        model: model,
+                        vendor: vendor,
+                        picture: picture
+                    },
+                    files: {
+                        uploadPicture: formData.files
+                    }
+                },
+                success: function (data) {
+                    console.log("data.success:" + data.success);
+                    if (data.success) {
+                        // window.location = atmlistUrl;
+                    } else {
+                        checkResult = data.msg;
+                    }
+                    $("#checkAtm").html(checkResult);
+                },
+                error: function (jqXHR) {
+                    checkResult = "服务器异常：" + jqXHR.status;
+                    $("#checkAtm").html(checkResult);
+                }
+            })
+        }
+        $("#checkAtm").html(checkResult);
+    })
     const promiseAtm = new Promise(function (resolve, reject) {
         $(".tempAtm").bind("click", function (e) {
             var target = $(e.target);
