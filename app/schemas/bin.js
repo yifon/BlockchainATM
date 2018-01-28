@@ -9,12 +9,16 @@ var BinSchema = new Schema({
         unique: true,//bin id不可重复
         type: Number
     },
-    //数组，保存card的ObjectId,一个Bin可以有多个Card
+    //数组，保存card,一个Bin可以有多个Card
     cards: [{
-        type: ObjectId,
+        type: String,
         ref: 'Card'
     }],
-    bank: String,//所属银行
+    //数组，保存bank的,一个bin只属于一个bank
+    bank: {
+        type: String,
+        ref: 'Bank'
+    },
     //meta存放的是录入或者更新数据时的时间纪录
     meta: {
         //创建时间

@@ -21,9 +21,9 @@ block content
                                     td: a(href='/admin/bin/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.tempId(data-toggle="modal",data-target="#delModal" data-id="#{item._id}" ) 删除
+                                        button.btn.btn-danger.tempBinObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}", data-bin="#{item.bin}",data-bank="#{item.bank}") 删除
                                             span.glyphicon.glyphicon-trash
-                //-删除确认框    
+                //-删除确认框
                 #delModal.modal.fade
                     .modal-dialog
                         .modal-content

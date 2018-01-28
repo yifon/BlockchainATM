@@ -53,7 +53,7 @@ $(function () {
         var checkResult = "";
         var _id = $("#inputId").val();
         var bin = $("#inputBin").val();
-        var bank = $("#inputBank").val();
+        var bank = $("input[name='binMapping[bank]']:checked").val();
         var type = /^[1-9][0-9]{5}$/;//以1-9开头,0-9结尾的6位数字
         var binType = new RegExp(type);
         if (!bin.match(type) || bank === "") {
@@ -93,20 +93,23 @@ $(function () {
         $("#checkBin").html(checkResult);
     })
 
-    const promiseBin = new Promise(function (resolve, reject) {
-        $(".tempId").bind("click", function (e) {
+    const promiseBin = new Promise((resolve, reject) => {
+        $(".tempBinObj").bind("click", e => {
             var target = $(e.target);
             var id = target.data('id');
-            resolve(id);
+            var bin = target.data('bin');
+            var bank = target.data('bank');
+            resolve([id, bin, bank]);
         })
-    });
-    //删除bin
-    promiseBin.then(function (id) {
+    }).then(([id, bin, bank]) => {
         var tr = $(".item-id-" + id);
+        console.log(id)
+        console.log(bin)
+        console.log(bank)
         $("#delBin").bind("click", function () {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
-                url: "/admin/bin/list?id=" + id
+                url: "/admin/bin/list?bin=" + bin + "&bank=" + bank
             })//删除后，服务器返回的状态
                 .done(function (data) {
                     if (data.msg) {
@@ -114,9 +117,11 @@ $(function () {
                             tr.remove();
                         }
                     }
-                    window.location.reload();//刷新内容
+                    window.location = binlistUrl;//刷新内容
                 })
         });
+    }).catch(error => {
+        console.log(error);
     });
     //新创建银行，则需要去数据库中查询银行是否被使用过了；
     $("#createBank").bind("click", function () {

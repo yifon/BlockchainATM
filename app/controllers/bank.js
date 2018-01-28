@@ -37,7 +37,7 @@ exports.save = function (req, res) {
     var data;
     var tempId = "";//查看当前的bank是否在数据库中有其它人注册过
     //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
-    const promise = new Promise(function (resolve, reject) {
+    const promise = new Promise((resolve, reject) => {
         //无论是新创建还是更改，都要看数据库中是否有创建过此bank
         Bank.findByName(bankObj.name, function (err, bank) {
             if (bank && bank._id != null) {
@@ -45,8 +45,7 @@ exports.save = function (req, res) {
             }
             resolve(tempId);
         })
-    });
-    promise.then(function (tempId) {
+    }).then(tempId => {
         if (id) {
             //如果是修改，则需检查新post的bank是否跟数据库中其它纪录重复
             if (tempId.toString() != id) {
@@ -85,7 +84,7 @@ exports.save = function (req, res) {
         }
         //如果bank是新加的，则直接调用模型的构造函数，来传入bank数据
         else if (tempId == "") {
-            _bank = new bank(bankObj);
+            _bank = new Bank(bankObj);
             _bank.save(function (err, bank) {
                 if (err) {
                     console.log(err);
@@ -107,7 +106,9 @@ exports.save = function (req, res) {
             res.json(data);
         }
 
-    })
+    }).catch((error) => {
+        console.log(error);
+    });
 }
 
 //修改bank录入信息

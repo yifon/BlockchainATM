@@ -9,19 +9,19 @@ var BankSchema = new Schema({
         unique: true,//银行名字不可重复
         type: String
     },
-    //数组，保存bin的ObjectId,一个bank可以有多个bin
+    //数组，保存bin,一个bank可以有多个bin
     bins: [{
-        type: ObjectId,
+        type: String,
         ref: 'Bin'
     }],
-    //数组，保存card的ObjectId,一个bank可以有多个atm
+    //数组，保存atm,一个bank可以有多个atm
     atms: [{
-        type: ObjectId,
+        type: String,
         ref: 'Atm'
     }],
-    //数组，保存card的ObjectId,一个bank可以有多个card
+    //数组，保存card,一个bank可以有多个card
     cards: [{
-        type: ObjectId,
+        type: String,
         ref: 'Card'
     }],
     //meta存放的是录入或者更新数据时的时间纪录

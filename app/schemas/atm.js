@@ -11,7 +11,11 @@ var AtmSchema = new Schema({
     },
     location: String,//地理位置
     supportedTxns: Array,//支持的交易类型是一个数组，如INQ,CWD,TFR,DEP
-    bank: String,//所属银行
+    //数组，保存bank,一个atm只属于一个bank
+    bank: {
+        type: String,
+        ref: 'Bank'
+    },
     model: String,//设备模型，如SS23,SS27
     vendor: String,//设备供应商，如GRG,NCR,Wincor,Diebold...
     picture: String,//设备图片

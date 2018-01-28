@@ -16,8 +16,15 @@ block content
 
                     .form-group
                         label.col-sm-4.control-label(for='inputBank') 所属银行:
-                        .col-sm-6
-                            input#inputBank.form-control(type='text',name='binMapping[bank]',value=binMapping.bank)
+                        each bank in banks
+                            label.radio-inline
+                                if binMapping._id
+                                    input(type="radio",name="binMapping[bank]",value="#{bank.name}",checked=bank.name.toString()==binMapping.bank.toString())
+                                    | #{bank.name}
+                                else
+                                    input(type="radio",name="binMapping[bank]",value="#{bank.name}")
+                                    | #{bank.name}
+
                     //-验证结果，只有失败才会提醒
                     .form-group
                         .col-sm-4
