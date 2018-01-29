@@ -86,5 +86,8 @@ ATM ID：ATM ID在所有银行中必须唯一［必填项］
 2.bin模型, bank数据是从bank模型里获取 [done]  
 3.ajax传文件 [done]  
 4.atm数据删除时，将atms和banks中对应的数据删除，且将上传的文件删除 [done]  
-5.atm数据更新时，若有更新图片，则应该将旧的图片删除 
+5.atm数据更新时，将atms和banks中对应的数据更新，若有更新图片，则应该将旧的图片删除  [done]  
+6.解决数据更新时，radio按钮点击后不是单选的情况 [done]-->设置相同的name即可  
+7.bin数据更新处理  [done]  
+8.完成card部分注册和数据关联
 

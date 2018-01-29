@@ -48,7 +48,7 @@ $(function () {
         formData.append('atm[bank]', bank);
         formData.append('atm[atmId]', atmId);
         formData.append('atm[location]', location);
-        formData.append('atm[supportedTxns]', supportedTxns);
+        formData.append('atm[supportedTxns]', supportedTxns);//传的是字符串
         formData.append('atm[model]', model);
         formData.append('atm[vendor]', vendor);
         formData.append('atm[picture]', picture);

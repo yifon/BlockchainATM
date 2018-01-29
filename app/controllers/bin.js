@@ -129,12 +129,16 @@ exports.update = function (req, res) {
     var id = req.params.id;
     //若id存在，则通过模型bin来拿到数据库中已有的bin信息
     if (id) {
-        Bin.findById(id, function (err, binMapping) {
-            //拿到bin数据后，直接去渲染表单，即bin录入页
-            res.render('binCreate', {
-                pageTitle: "bin录入页",
-                binMapping: binMapping//将数据库中查到的bin数据传入表单
-            })
+        Bin.findById(id, (err, binMapping) => {
+            //获取所有的银行
+            Bank.find({}, (err, banks) => {
+                //拿到bin数据后，直接去渲染表单，即bin录入页
+                res.render('binCreate', {
+                    pageTitle: "bin录入页",
+                    binMapping: binMapping,//将数据库中查到的bin数据传入表单
+                    banks: banks
+                });
+            });
         })
     }
 }

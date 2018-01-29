@@ -11,14 +11,13 @@ block content
 
                     .form-group
                         label.col-sm-4.control-label(for='inputBank') 所属银行:
-                        #selectBank
                         each bank in banks
                             label.radio-inline
                                 if atm._id
-                                    input(type="radio",value="#{bank.name}",checked=bank.name.toString()==atm.bank.toString())
+                                    input(type="radio",name="atm[bank]",value="#{bank.name}",checked=bank.name.toString()==atm.bank.toString())
                                     | #{bank.name}
                                 else
-                                    input(type="radio",value="#{bank.name}")
+                                    input(type="radio",name="atm[bank]",value="#{bank.name}")
                                     | #{bank.name}
 
                     .form-group

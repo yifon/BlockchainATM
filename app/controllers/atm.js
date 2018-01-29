@@ -61,6 +61,10 @@ exports.save = function (req, res) {
     //需要拿到传过来的id
     var id = req.body.atm._id;
     var atmObj = req.body.atm;//拿到传过来的atm对象
+    var txnArray = [];
+    txnArray = atmObj.supportedTxns.split(',');//将formData传的字符串转换成数组
+    console.log(txnArray);
+    atmObj.supportedTxns = txnArray;
     var _atm;
     var tempId = "";
     //传来atm图片，则要重写atm图片地址
@@ -91,6 +95,15 @@ exports.save = function (req, res) {
                 if (err) {
                     console.log(err);
                 }
+                //如果有更新图片，则需要将原路径的图片删除
+                if (req.picture) {
+                    var delPicturePath = path.join(__dirname, '../../', '/public/upload/' + atm.picture);
+                    //存在则删除
+                    if (fs.existsSync(delPicturePath)) {
+                        fs.unlinkSync(delPicturePath);
+                    }
+                }
+
                 //需要将post过来的atm数据替换掉数据库中老的atm数据
                 /**
                  * _.extend(destination,source)
@@ -139,7 +152,7 @@ exports.save = function (req, res) {
         else {
             data = {
                 "success": false,
-                "msg": "此ATN ID已被其它注册过，请使用其它ATM ID！"
+                "msg": "服务器异常！"
             }
             res.json(data);
         }
@@ -152,8 +165,9 @@ exports.save = function (req, res) {
 //atm详情页
 exports.detail = function (req, res) {
     var id = req.params.id;//id为查询的id
+
     //传入id,从回调方法里拿到查询到的atm数据
-    Atm.findById(id, function (err, atm) {
+    Atm.findById(id, (err, atm) => {
         res.render('atmDetail', {
             pageTitle: "ATM详情页",
             atm: atm//传入atm对象
@@ -168,11 +182,16 @@ exports.update = function (req, res) {
     var id = req.params.id;
     //若id存在，则通过模型Atm来拿到数据库中已有的Atm信息
     if (id) {
-        Atm.findById(id, function (err, atm) {
-            //拿到atm数据后，直接去渲染表单，即atm录入页
-            res.render('atmCreate', {
-                pageTitle: "ATM录入页",
-                atm: atm//将数据库中查到的atm数据传入表单
+        Atm.findById(id, (err, atm) => {
+            //获取所有的银行
+            Bank.find({}, (err, banks) => {
+                //拿到atm数据后，直接去渲染表单，即atm录入页
+                res.render('atmCreate', {
+                    pageTitle: "ATM录入页",
+                    atm: atm,//将数据库中查到的atm数据传入表单
+                    banks: banks
+                })
+
             })
         })
     }
@@ -205,10 +224,10 @@ exports.del = function (req, res) {
 
         });
         //删掉对应的图片文件
-        if(picture!="undefined"){
+        if (picture != "undefined") {
             var delPicturePath = path.join(__dirname, '../../', '/public/upload/' + picture);
             //存在则删除
-            if(fs.existsSync(delPicturePath)){
+            if (fs.existsSync(delPicturePath)) {
                 fs.unlinkSync(delPicturePath);
             }
         }
