@@ -27,7 +27,7 @@ $(function () {
     $("#createAtm").bind("click", function () {
         //确保所有位都有选择
         var checkResult = "";
-        var _id = $("#_id").val();
+        var _id = $("#inputId").val();
         var bank = $("input[type='radio']:checked").val();
         var atmId = $("#inputAtmId").val();
         var location = $("#inputLocation").val();
@@ -35,14 +35,24 @@ $(function () {
         $("#selectSupportedTxns input[type='checkbox']:checked").each(function () {
             supportedTxns.push($(this).val());
         })
-
         var model = $("#inputModel").val();
         var vendor = $("#inputVendor").val();
         var picture = $("#inputPicture").val();
+        var uploadPicture = $("#uploadPicture")[0].files[0];
+
         var formData = new FormData();
-        var uploadPicture = document.getElementById("#uploadPicture").files[0];
-        formData.append('file', uploadPicture);
-        // formData.append('action', atmCreateUrl);
+
+        if ((typeof _id) != "undefined") {
+            formData.append('atm[_id]', _id);
+        }
+        formData.append('atm[bank]', bank);
+        formData.append('atm[atmId]', atmId);
+        formData.append('atm[location]', location);
+        formData.append('atm[supportedTxns]', supportedTxns);
+        formData.append('atm[model]', model);
+        formData.append('atm[vendor]', vendor);
+        formData.append('atm[picture]', picture);
+        formData.append('uploadPicture', uploadPicture);
 
         if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture) {
             if (!bank) {
@@ -71,26 +81,12 @@ $(function () {
             $.ajax({
                 type: "POST",
                 url: atmCreateUrl,
-                dataType: "JSON",
-                data: {
-                    atm: {
-                        _id: _id,
-                        bank: bank,
-                        atmId: atmId,
-                        location: location,
-                        supportedTxns: supportedTxns,
-                        model: model,
-                        vendor: vendor,
-                        picture: picture
-                    },
-                    files: {
-                        uploadPicture: formData.files
-                    }
-                },
+                contentType: false,
+                processData: false,
+                data: formData,
                 success: function (data) {
-                    console.log("data.success:" + data.success);
                     if (data.success) {
-                        // window.location = atmlistUrl;
+                        window.location = atmlistUrl;
                     } else {
                         checkResult = data.msg;
                     }
@@ -225,7 +221,6 @@ $(function () {
                     }
                 },
                 success: function (data) {
-                    console.log("data.success:" + data.success);
                     if (data.success) {
                         window.location = banklistUrl;
                     } else {

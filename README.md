@@ -82,7 +82,8 @@ ATM ID：ATM ID在所有银行中必须唯一［必填项］
 2.2.一个card只可以属于一个bin
 
 ### 待完成项：
-1.应该设计一个bank模型，一个bank关联多个bin对象，多个card对象，多个atm对象，多个信息对象 ［30%］
-2.bin模型, bank数据是从bank模型里获取 [done]
-3.ajax传文件
+1.应该设计一个bank模型，一个bank关联多个bin对象，多个card对象，多个atm对象，多个信息对象 ［40%］ 
+2.bin模型, bank数据是从bank模型里获取 [done]  
+3.ajax传文件 [done]  
+4.atm数据删除时，将atms和banks中对应的数据删除，且将上传的文件删除 
 
