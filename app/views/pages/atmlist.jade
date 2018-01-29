@@ -26,7 +26,7 @@ block content
                                     td: a(href='/admin/atm/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.del.tempAtm(data-toggle="modal",data-target="#delModal",data-id="#{item._id}") 删除
+                                        button.btn.btn-danger.del.tempAtm(data-toggle="modal",data-target="#delModal",data-id="#{item._id}",data-atmid="#{item.atmId}",data-bank="#{item.bank}",data-picture="#{item.picture}") 删除
                                             span.glyphicon.glyphicon-trash
                         //-删除确认框
                         #delModal.modal.fade

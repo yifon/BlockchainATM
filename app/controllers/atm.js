@@ -77,7 +77,7 @@ exports.save = function (req, res) {
             resolve(tempId);
         })
     }).then(tempId => {
-        if (id ) {
+        if (id) {
             //如果是修改，则需检查新post的atm id是否跟数据库中其它纪录重复
             if (tempId.toString() != id) {
                 data = {
@@ -179,25 +179,38 @@ exports.update = function (req, res) {
 }
 //删除atm
 exports.del = function (req, res) {
-    var id = req.query.id;
+    var atmId = req.query.atmId;
+    var bank = req.query.bank;
+    var picture = req.query.picture;
     var data;
-    if (id) {
-        Atm.remove({ _id: id }, function (err, atm) {
+    if (atmId) {
+        //将atm从atm collection里删掉
+        Atm.remove({ "atmId": atmId }, (err, newAtm) => {
             if (err) {
-                data = {
-                    "success": false,
-                    "message": "删除失败！"
-                };
+                console.log(err);
             }
-            //如果没有异常，则给客户端返回json数据
-            else {
+        });
+        //将atm在注册的银行中删除
+        Bank.update({ "name": bank }, { $pull: { "atms": atmId } }, (err, bank) => {
+            if (err) {
+                console.log(err);
+            } else {
+                //如果没有异常，则给客户端返回json数据
                 data = {
                     "success": true,
-                    "message": "删除成功！"
+                    "msg": "删除成功！"
                 };
-
+                res.json(data);
             }
-            res.json(data);
-        })
+
+        });
+        //删掉对应的图片文件
+        if(picture!="undefined"){
+            var delPicturePath = path.join(__dirname, '../../', '/public/upload/' + picture);
+            //存在则删除
+            if(fs.existsSync(delPicturePath)){
+                fs.unlinkSync(delPicturePath);
+            }
+        }
     }
 }

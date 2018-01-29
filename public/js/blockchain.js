@@ -100,20 +100,22 @@ $(function () {
         }
         $("#checkAtm").html(checkResult);
     })
-    const promiseAtm = new Promise(function (resolve, reject) {
+    const promiseAtm = new Promise((resolve, reject) => {
         $(".tempAtm").bind("click", function (e) {
             var target = $(e.target);
             var id = target.data('id');
-            resolve(id);
+            var atmId = target.data('atmid');
+            alert(atmId)
+            var bank = target.data('bank');
+            var picture = target.data('picture');
+            resolve([id, atmId, bank, picture]);
         })
-    });
-    //删除atm
-    promiseAtm.then(function (id) {
+    }).then(([id, atmId, bank, picture]) => {
         var tr = $(".item-id-" + id);
         $("#delAtm").bind("click", function () {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
-                url: "/admin/atm/list?id=" + id
+                url: "/admin/atm/list?atmId=" + atmId + "&bank=" + bank + "&picture=" + picture
             })//删除后，服务器返回的状态
                 .done(function (data) {
                     if (data.msg) {
@@ -124,6 +126,8 @@ $(function () {
                     window.location.reload();//刷新内容
                 })
         });
+    }).catch(error => {
+        console.log(error);
     });
     //新创建BIN，则需要去数据库中查询BIN是否被使用过了；若是修改银行信息，则BIN还可以使用
     $("#createBin").bind("click", function () {
