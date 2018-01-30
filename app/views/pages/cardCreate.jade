@@ -7,24 +7,54 @@ block content
                 .form-horizontal
                     //-隐藏域，表示card是新录入或者更新的
                     if card._id
-                        input#inputId(type="hidden",name='card[_id]',value=card._id)
-                    //-可以选择的银行
+                        input#cardId(type="hidden",name='card[_id]',value=card._id)
+
+                    //-一个银行可以有多张卡,一张卡只可以属于一个银行
                     .form-group
-                        label.col-sm-4.control-label(for='chooseBank') 所属银行:
-                        select.col-sm-6
-                            each bin in bins
-                                option.form-control(type='text',name='bin[bank]',value=bin.bank)
+                        label.col-sm-4.control-label(for='cardBank') 所属银行:
+                        #cardBank
+                        each bank in banks
+                            label.radio-inline
+                                if card._id
+                                    input.cardBank(type="radio",name="card[bank]",value="#{bank.name}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
+                                    | #{bank.name}
+                                else
+                                    input.cardBank(type="radio",name="card[bank]",value="#{bank.name}",data-bins="#{bank.bins}")
+                                    | #{bank.name}
+                    //-前六位为选择的银行对应可以选择的bin，若该银行无可选的bin则需提示
+                    .form-group
+                        label.col-sm-4.control-label(for='cardNumber') 卡号:
+                        select.col-sm-2.form-control#cardBin(data-cardBins="#{cardBins}")
+                            if cardBins&&cardBins!=""
+                                each bin in cardBins
+                                    option.form-control(name='card[bin]',value=bin)
 
-                    //- .form-group
-                    //-     label.col-sm-4.control-label(for='inputBin') BIN:
-                    //-     .col-sm-6
-                    //-         input#inputBin.form-control(type='text',name='binMapping[bin]',value=binMapping.bin)
+                        .col-sm-4
+                            input#cardCustomerNumber.form-control(type='text',value=card.customerNumber)
 
-                    //- //-验证结果，只有失败才会提醒
-                    //- .form-group
-                    //-     .col-sm-4
-                    //-     .inputChecking#checkBin
-                    //- .form-group
-                    //-     .col-sm-offset-3.col-sm-3
-                    //-     button.btn.btn-info#createBin 确认
+                    .form-group
+                        label.col-sm-4.control-label(for='cardName') 姓名:
+                        .col-sm-6
+                            input#cardName.form-control(type='text',value=card.name)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='cardPassword') 银行卡密码:
+                        .col-sm-6
+                            input#cardPassword.form-control(type='password',value=card.password)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='cardPasswordAgain') 再次确认密码:
+                        .col-sm-6
+                            input#cardPasswordAgain.form-control(type='password')
+                    .form-group
+                        label.col-sm-4.control-label(for='cardBalance') 账户余额:
+                        .col-sm-6
+                            input#cardBalance.form-control(type='text')
+                    //-验证结果，只有失败才会提醒
+                    .form-group
+                        .col-sm-4
+                        .inputChecking#checkCard
+                    .form-group
+                        .col-sm-offset-3.col-sm-3
+                        button.btn.btn-info#createCard 确认
 

@@ -8,7 +8,7 @@ block content
                         tr.active
                             th 所属银行
                             th 卡号
-                            th 客人姓名
+                            th 客户姓名
                             th 余额
                             th 录入时间
                             th 更新
@@ -25,9 +25,9 @@ block content
                                     td: a(href='/admin/card/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.tempCard(data-toggle="modal",data-target="#delModal" data-id="#{item._id}" ) 删除
+                                        button.btn.btn-danger.tempCardObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}", data-number="#{item.number}",data-bank="#{item.bank}") 删除
                                             span.glyphicon.glyphicon-trash
-                //-删除确认框    
+                //-删除确认框
                 #delModal.modal.fade
                     .modal-dialog
                         .modal-content

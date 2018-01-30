@@ -1,7 +1,6 @@
 //加载编译的模型
 var Bin = require('../models/bin');
 var Bank = require('../models/bank');
-var Card = require('../models/card');
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');

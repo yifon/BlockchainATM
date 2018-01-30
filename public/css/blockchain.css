@@ -11,3 +11,8 @@
     color: red;
     height: 40px;
 }
+#cardBin{
+    border: 1px solid #000;
+    width: 80px;
+    margin-left: 15px;
+}
