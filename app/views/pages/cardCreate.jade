@@ -24,10 +24,7 @@ block content
                     //-前六位为选择的银行对应可以选择的bin，若该银行无可选的bin则需提示
                     .form-group
                         label.col-sm-4.control-label(for='cardNumber') 卡号:
-                        select.col-sm-2.form-control#cardBin(data-cardBins="#{cardBins}")
-                            if cardBins&&cardBins!=""
-                                each bin in cardBins
-                                    option.form-control(name='card[bin]',value=bin)
+                        select.col-sm-2.form-control#cardBin
 
                         .col-sm-4
                             input#cardCustomerNumber.form-control(type='text',value=card.customerNumber)

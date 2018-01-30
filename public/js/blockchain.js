@@ -370,11 +370,27 @@ $(function () {
 
     //获取卡支持的bin
     $(".cardBank").bind("click", (e) => {
+        $("#cardBin").find("option").remove();
+        $("#checkCard").empty();
         var target = $(e.target);
-        var bins = target.data("bins").split(",");
-        console.log(bins);
-        if (bins != "") {
-            $("#cardBins").data("cardBins", bins);
+        var bins = String(target.data("bins"));
+        var binsArr = [];
+        var html = "";
+        if (bins.indexOf(",") != -1) {
+            binsArr = bins.split(",");
+            $.each(binsArr, (index, bin) => {
+                html += "<option name='card[bin]' value=card.bin>" + bin + "</option>";
+            })
+        } else {
+            if (bins != "") {
+                html += "<option name='card[bin]' value=card.bin>" + bins + "</option>";
+            }else{
+                $("#checkCard").append("该银行未注册可使用的bin，请重新选择其它银行！");
+            }
         }
+        $("#cardBin").append(html);
     })
+
+
+
 });
