@@ -134,7 +134,6 @@ $(function () {
                     }
                 },
                 success: function (data) {
-                    console.log("data.success:" + data.success);
                     if (data.success) {
                         window.location = binlistUrl;
                     } else {
@@ -190,18 +189,18 @@ $(function () {
     //新创建银行卡
     $("#createCard").bind("click", function () {
         var checkResult = "";
-        var cardCnType = /[0-9]{10}$/;//以0-9开头的10位数字
+        var cardCnType = /[0-9]{10,13}$/;//以0-9开头的10-13位数字
         var cardPwdType = /[0-9]{6}$/;//以0-9开头的6位数字
-        var cardBalType = /^[1-9][0-9]{n}$/;//以1-9开头的n位数字
-        var cardId = $("#inputCardId").val();
-        var cardBank = $("#cardBank input[type='radio']:checked").val();
-        var cardBin = $("#cardBin:checked").val();
+        var cardBalType = /^[0-9]*$/;//以1-9开头的n位数字
+        var cardId = $("#cardId").val();
+        var cardBank = $("#cardBank").find("input[type='radio']:checked").val();
+        var cardBin = $("#cardBin").find("option:selected").val();
         var cardCustomerNumber = $("#cardCustomerNumber").val();
         var cardName = $("#cardName").val();
         var cardPassword = $("#cardPassword").val();
         var cardPasswordAgain = $("#cardPasswordAgain").val();
-        var cardBalance = $("#cardBalance").val().match(cardBalType) ? $("#cardBalance").val() : 0;
-        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) && cardPassword != cardPasswordAgain) {
+        var cardBalance = !$("#cardBalance").val().match(cardBalType) ? 0 : $("#cardBalance").val();
+        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
             if (!cardBin) {
                 checkResult += "必须选择有注册了BIN的银行！";
             }
@@ -211,7 +210,7 @@ $(function () {
             if (!cardName) {
                 checkResult += "必须输入客户姓名！";
             }
-            if (!cardPassword.match(cardPwdType) && cardPassword != cardPasswordAgain) {
+            if (!cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
                 checkResult += "必须输入6位数字的银行卡密码且保持两次输入密码相同！";
             }
 
@@ -237,7 +236,7 @@ $(function () {
                     } else {
                         checkResult = data.msg;
                     }
-                    $("#checkAtm").html(checkResult);
+                    $("#checkCard").html(checkResult);
                 },
                 error: function (jqXHR) {
                     checkResult = "服务器异常：" + jqXHR.status;
@@ -291,9 +290,6 @@ $(function () {
         })
     }).then(([id, bin, bank]) => {
         var tr = $(".item-id-" + id);
-        console.log(id)
-        console.log(bin)
-        console.log(bank)
         $("#delBin").bind("click", () => {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
@@ -369,7 +365,7 @@ $(function () {
     });
 
     //获取卡支持的bin
-    $(".cardBank").bind("click", (e) => {
+    $("#cardBank input[type='radio']").bind("click", (e) => {
         $("#cardBin").find("option").remove();
         $("#checkCard").empty();
         var target = $(e.target);
@@ -379,12 +375,12 @@ $(function () {
         if (bins.indexOf(",") != -1) {
             binsArr = bins.split(",");
             $.each(binsArr, (index, bin) => {
-                html += "<option name='card[bin]' value=card.bin>" + bin + "</option>";
+                html += "<option name='card[bin]'>" + bin + "</option>";
             })
         } else {
             if (bins != "") {
-                html += "<option name='card[bin]' value=card.bin>" + bins + "</option>";
-            }else{
+                html += "<option name='card[bin]'>" + bins + "</option>";
+            } else {
                 $("#checkCard").append("该银行未注册可使用的bin，请重新选择其它银行！");
             }
         }

@@ -13,21 +13,26 @@ block content
                     .form-group
                         label.col-sm-4.control-label(for='cardBank') 所属银行:
                         #cardBank
-                        each bank in banks
-                            label.radio-inline
-                                if card._id
-                                    input.cardBank(type="radio",name="card[bank]",value="#{bank.name}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
-                                    | #{bank.name}
-                                else
-                                    input.cardBank(type="radio",name="card[bank]",value="#{bank.name}",data-bins="#{bank.bins}")
-                                    | #{bank.name}
+                            each bank in banks
+                                label.radio-inline
+                                    if card._id
+                                        input(type="radio",name="card[bank]",value="#{bank.name}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
+                                        | #{bank.name}
+                                    else
+                                        input(type="radio",name="card[bank]",value="#{bank.name}",data-bins="#{bank.bins}")
+                                        | #{bank.name}
                     //-前六位为选择的银行对应可以选择的bin，若该银行无可选的bin则需提示
                     .form-group
                         label.col-sm-4.control-label(for='cardNumber') 卡号:
                         select.col-sm-2.form-control#cardBin
+                            if card._id
+                                option#oldCardBin(name="card[bin]") #{card.number.substring(0,6)}
 
                         .col-sm-4
-                            input#cardCustomerNumber.form-control(type='text',value=card.customerNumber)
+                            if card._id
+                                input#cardCustomerNumber.form-control(type='text',value=card.number.substring(6))
+                            else 
+                                input#cardCustomerNumber.form-control(type='text')
 
                     .form-group
                         label.col-sm-4.control-label(for='cardName') 姓名:
@@ -37,7 +42,7 @@ block content
                     .form-group
                         label.col-sm-4.control-label(for='cardPassword') 银行卡密码:
                         .col-sm-6
-                            input#cardPassword.form-control(type='password',value=card.password)
+                            input#cardPassword.form-control(type='password')
 
                     .form-group
                         label.col-sm-4.control-label(for='cardPasswordAgain') 再次确认密码:
@@ -49,7 +54,7 @@ block content
                             input#cardBalance.form-control(type='text')
                     //-验证结果，只有失败才会提醒
                     .form-group
-                        .col-sm-4
+                        .col-sm-10.col-sm-offset-4
                         .inputChecking#checkCard
                     .form-group
                         .col-sm-offset-3.col-sm-3

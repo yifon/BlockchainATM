@@ -42,15 +42,15 @@ exports.save = function (req, res) {
     var tempId = "";//查看当前的卡号是否在数据库中有其它人注册过
     //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
     const promise = new Promise((resolve, reject) => {
-        //无论是新创建还是更改，都要看数据库中是否有创建过此bin
-        Card.findByNumber(card.number, (err, card) => {
+        //无论是新创建还是更改，都要看数据库中是否有创建过此卡号
+        Card.findByNumber(cardObj.number, (err, card) => {
             if (card && card._id != null) {
-                tempId = card._id;
+                tempId = card._id;//获取到数据库中此卡号的_id
             }
-            resolve(tempId);
         })
+        resolve(tempId);
     }).then(tempId => {
-        if (id) {
+        if (id && tempId.toString() != "") {
             //如果是修改，则需检查新post的card是否跟数据库中其它纪录重复
             if (tempId.toString() != id) {
                 data = {
@@ -62,61 +62,62 @@ exports.save = function (req, res) {
             //证明card是存储进数据库过的，需要对其进行更新
             else {
                 //需要将post过来的card数据替换掉数据库中老的card数据
-                Card.findById(id, (err, card) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                    //若有更换银行，则需要更新银行信息
-                    if (cardObj.bank != card.bank) {
-                        //删除旧的
-                        Bank.update({ "name": cardObj.bank }, { $pull: { "cards": cardObj.number } }, (err, bank) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
-                        //添加新的
-                        Bank.update({ "name": card.bank }, { $push: { "cards": card.number } }, (err, bank) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
-                    }
-                    //若有更换bin，则需要更新bin信息
-                    if (cardObj.bin != card.bin) {
-                        //删除旧的
-                        Bin.update({ "bin": cardObj.bin }, { $pull: { "cards": cardObj.number } }, (err, bin) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
-                        //添加新的
-                        Bin.update({ "bin": card.bin }, { $push: { "cards": card.number } }, (err, bin) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
-                    }
-                    _card = _.extend(card, cardObj);
-                    _card.save((err, card) => {
+                const p0 = new Promise((resolve, reject) => {
+                    Card.findById(id, (err, card) => {
+                        console.log(card);
                         if (err) {
-                            console.log(err);
-                            data = {
-                                "success": false,
-                                "msg": "创建失败！"
+                            console.log(err)
+                            throw (err);
+                        }
+                        _card = _.extend(card, cardObj);
+                        _card.save((err, card) => {
+                            if (err) {
+                                console.log(err);
+                                throw (err);
                             }
+                        });
+
+                        //若有更换银行，则需要更新银行信息
+                        if (cardObj.bank != card.bank) {
+                            //删除旧的,添加新的
+                            Bank.update({ "name": cardObj.bank }, { $pull: { "cards": cardObj.number } }, { $addToSet: { "cards": card.number } }, (err, bank) => {
+                                if (err) {
+                                    console.log(err);
+                                    throw (err);
+                                }
+                            });
                         }
-                        //保存成功后，跳转到card列表页
-                        data = {
-                            "success": true,
-                            "msg": "创建成功！"
+                        //若有更换bin，则需要更新bin信息
+                        if (cardObj.bin != card.bin) {
+                            //删除旧的,添加新的
+                            Bin.update({ "bin": cardObj.bin }, { $pull: { "cards": cardObj.number } }, { $addToSet: { "cards": card.number } }, (err, bin) => {
+                                if (err) {
+                                    console.log(err);
+                                    throw (err);
+                                }
+                            });
                         }
-                        res.json(data);
-                    })
-                });
+                    });
+                }).then(() => {
+                    //保存成功后，跳转到card列表页
+                    data = {
+                        "success": true,
+                        "msg": "创建成功！"
+                    }
+                    res.json(data);
+                }).catch(e => {
+                    //保存成功后，跳转到card列表页
+                    data = {
+                        "success": false,
+                        "msg": "创建失败！"
+                    }
+                    res.json(data);
+                })
             }
         }
         //如果card是新加的
         else if (tempId == "") {
+            var result = "";
             //直接调用模型的构造函数，来传入card数据
             const p1 = new Promise((resolve, reject) => {
                 _card = new Card(cardObj);
@@ -125,41 +126,41 @@ exports.save = function (req, res) {
                         console.log(err);
                         throw (err);
                     }
+                    result = "success";
+                    resolve(result);
                 });
-            })
+            });
             //将卡号纪录到所属银行中
             const p2 = new Promise((resolve, reject) => {
-                Bank.findByName(card.bank, (err, bank) => {
-                    bank.cards.push(card.number);//将卡号存到所属的银行中
-                    bank.save((err, bank) => {
-                        if (err) {
-                            console.log(err);
-                            throw (err);
-                        }
-                    })
+                Bank.update({ "name": cardObj.bank }, { $addToSet: { "cards": cardObj.number } }, (err, bank) => {
+                    if (err) {
+                        console.log(err);
+                        throw (err);
+                    }
+                    result = "success";
+                    resolve(result);
                 });
             });
             //将卡号纪录到所属bin中
             const p3 = new Promise((resolve, reject) => {
-                Bin.findByBin(card.bin, (err, bin) => {
-                    bin.cards.push(card.number);//将卡号存到所属的bin中
-                    bin.save((err, bin) => {
-                        if (err) {
-                            console.log(err);
-                            throw (err);
-                        }
-                    })
+                Bin.update({ "bin": cardObj.bin }, { $addToSet: { "cards": cardObj.number } }, (err, bin) => {
+                    if (err) {
+                        console.log(err);
+                        throw (err);
+                    }
+                    result = "success";
+                    resolve(result);
                 });
             });
             //上述3个异步操作全部结束后，返回结果
-            const p = Promise.all([p1, p2, p3]).then(() => {
-                data = {
-                    "success": true,
-                    "msg": "创建银行卡信息成功!"
+            const p = Promise.all([p1, p2, p3]).then((result) => {
+                if (result == "success") {
+                    data = {
+                        "success": true,
+                        "msg": "创建银行卡信息成功!"
+                    }
+                    res.json(data);
                 }
-                res.json(data);
-            }).catch(e => {
-                console.log(e);
             });
         }
         //新创建的card在数据库中存在过
@@ -171,8 +172,13 @@ exports.save = function (req, res) {
             res.json(data);
         }
 
-    }).catch(error => {
-        console.log(error);
+    }).catch(e => {
+        console.log(e);
+        data = {
+            "success": false,
+            "msg": "创建失败!"
+        }
+        res.json(data);
     })
 }
 
@@ -184,6 +190,9 @@ exports.update = function (req, res) {
     //若id存在，则通过模型Card来拿到数据库中已有的card信息
     if (id) {
         Card.findById(id, (err, card) => {
+            if (err) {
+                console.log(err);
+            }
             //获取所有的银行
             Bank.find({}, (err, banks) => {
                 //拿到card数据后，直接去渲染表单，即card录入页
