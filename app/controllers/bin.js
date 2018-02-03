@@ -56,19 +56,19 @@ exports.save = function (req, res) {
     var _bin;
     var data;
     var tempId = "";//查看当前的bin是否在数据库中有其它人注册过
-    //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
-    const promise = new Promise((resolve, reject) => {
-        //无论是新创建还是更改，都要看数据库中是否有创建过此bin
-        Bin.findByBin(binObj.bin, function (err, binMapping) {
-            if (binMapping && binMapping._id != null) {
-                tempId = binMapping._id;
-            }
-            resolve(tempId);
-        })
-    }).then(tempId => {
-        if (id) {
-            //如果是修改，则需检查新post的bin是否跟数据库中其它纪录重复
-            if (tempId.toString() != id) {
+
+    if (id) {
+        //如果是修改，则需检查新post的bin是否跟数据库中其它纪录重复
+        const p = new Promise((resolve, reject) => {
+            Bin.findByBin(binObj.bin, function (err, binMapping) {
+                if (binMapping && binMapping._id != null) {
+                    tempId = binMapping._id.toString();
+                }
+                resolve(tempId);
+                console.log("tempId:" + tempId);
+            })
+        }).then(tempId => {
+            if ("" != tempId && tempId != id) {
                 data = {
                     "success": false,
                     "msg": "此BIN已被其它注册过，请使用其它BIN！"
@@ -81,18 +81,12 @@ exports.save = function (req, res) {
                     console.log(err);
                 }
                 //需要将post过来的bin数据替换掉数据库中老的bin数据
-                /**
-                 * _.extend(destination,source)
-                 */
                 _bin = _.extend(binMapping, binObj);
-                _bin.save(function (err, binMapping) {
+                _bin.save(function (err, newBin) {
                     if (err) {
                         console.log(err);
-                        data = {
-                            "success": false,
-                            "msg": "创建失败！"
-                        }
                     }
+
                     //保存成功后，跳转到bin列表页
                     data = {
                         "success": true,
@@ -101,43 +95,34 @@ exports.save = function (req, res) {
                     res.json(data);
                 })
             })
-        }
-        //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
-        else if (tempId == "") {
-            _bin = new Bin(binObj);
-            var bankId = binObj.bank;
-            _bin.save(function (err, binMapping) {
-                if (err) {
-                    console.log(err);
-                }
-                //通过bankId拿到当前对应的bank
-                if (bankId) {
-                    Bank.findById(bankId, (err, bank) => {
-                        bank.bins.push(binMapping._id);
-                        bank.save((err, bank) => {
-                            //保存成功后，跳转到bin列表页
-                            data = {
-                                "success": true,
-                                "message": "创建成功！"
-                            }
-                            res.json(data);
-                        })
-                    })
-                }
-            })
-        }
-        //新创建的bin在数据库中存在过
-        else {
-            data = {
-                "success": false,
-                "msg": "此BIN已被其它注册过，请使用其它BIN！"
-            }
-            res.json(data);
-        }
 
-    }).catch(error => {
-        console.log(error);
-    })
+        })
+    }
+    //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
+    else {
+        _bin = new Bin(binObj);
+        var bankId = binObj.bank;
+        console.log(_bin)
+        _bin.save(function (err, binMapping) {
+            if (err) {
+                console.log(err);
+            }
+            //通过bankId拿到当前对应的bank
+            if (bankId) {
+                Bank.findById(bankId, (err, bank) => {
+                    bank.bins.push(_bin._id);
+                    bank.save((err, bank) => {
+                        //保存成功后，跳转到bin列表页
+                        data = {
+                            "success": true,
+                            "message": "创建成功！"
+                        }
+                        res.json(data);
+                    })
+                })
+            }
+        })
+    }
 }
 
 //修改bin录入信息

@@ -1,6 +1,9 @@
 //加载编译的模型
 var Bank = require('../models/bank');
-
+var Atm = require('../models/atm');
+var Card = require('../models/card');
+var Bin = require('../models/bin');
+var async = require('async');
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');
 
@@ -27,27 +30,27 @@ exports.new = function (req, res) {
 
 //bank录入页提交的信息存储到数据库中
 exports.save = function (req, res) {
-    console.log("here");
     //传过来的数据可能是新添加的，也可能是修改已存在的数据
     //需要拿到传过来的id
     var id = req.body.bank._id;
     var bankObj = req.body.bank;//拿到传过来的bank对象
+
     var _bank;
     var data;
     var tempId = "";//查看当前的bank是否在数据库中有其它人注册过
-    //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
-    const promise = new Promise((resolve, reject) => {
-        //无论是新创建还是更改，都要看数据库中是否有创建过此bank
-        Bank.findByName(bankObj.name, function (err, bank) {
-            if (bank && bank._id != null) {
-                tempId = bank._id;
-            }
-            resolve(tempId);
-        })
-    }).then(tempId => {
-        if (id) {
+    if (id) {
+        //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
+        const promise = new Promise((resolve, reject) => {
+            //无论是新创建还是更改，都要看数据库中是否有创建过此bank
+            Bank.findByName(bankObj.name, function (err, bank) {
+                if (bank && bank._id != null) {
+                    tempId = bank._id;
+                }
+                resolve(tempId);
+            })
+        }).then(tempId => {
             //如果是修改，则需检查新post的bank是否跟数据库中其它纪录重复
-            if (tempId.toString() != id) {
+            if ("" != tempId && tempId != id) {
                 data = {
                     "success": false,
                     "msg": "此名字已被其它银行注册过，请使用其它名字！"
@@ -67,10 +70,6 @@ exports.save = function (req, res) {
                 _bank.save(function (err, bank) {
                     if (err) {
                         console.log(err);
-                        data = {
-                            "success": false,
-                            "msg": "创建失败！"
-                        }
                     }
                     //保存成功后，跳转到bank列表页
                     data = {
@@ -80,34 +79,24 @@ exports.save = function (req, res) {
                     res.json(data);
                 })
             })
-        }
-        //如果bank是新加的，则直接调用模型的构造函数，来传入bank数据
-        else if (tempId == "") {
-            _bank = new Bank(bankObj);
-            _bank.save(function (err, bank) {
-                if (err) {
-                    console.log(err);
-                }
-                //保存成功后，跳转到bank列表页
-                data = {
-                    "success": true,
-                    "message": "创建成功！"
-                }
-                res.json(data);
-            })
-        }
-        //新创建的bank在数据库中存在过
-        else {
+        })
+    }
+    //如果bank是新加的，则直接调用模型的构造函数，来传入bank数据
+    else {
+        _bank = new Bank(bankObj);
+        _bank.save(function (err, bank) {
+            if (err) {
+                console.log(err);
+            }
+            //保存成功后，跳转到bank列表页
             data = {
-                "success": false,
-                "msg": "此bank已被其它注册过，请使用其它bank！"
+                "success": true,
+                "message": "创建成功！"
             }
             res.json(data);
-        }
+        })
+    }
 
-    }).catch((error) => {
-        console.log(error);
-    });
 }
 
 //修改bank录入信息
@@ -131,21 +120,55 @@ exports.del = function (req, res) {
     var id = req.query.id;
     var data;
     if (id) {
-        Bank.remove({ _id: id }, function (err, bank) {
-            if (err) {
-                data = {
-                    "success": false,
-                    "msg": "删除失败！"
-                };
-            }
-            //如果没有异常，则给客户端返回json数据
-            else {
-                data = {
-                    "success": true,
-                    "msg": "删除成功！"
-                };
-
-            }
+        //删除bank collection
+        const p1 = new Promise((resolve, reject) => {
+            Bank.findById(id, (err, oldBank) =>{
+                if (err) {
+                    console.log(err);
+                }
+                resolve(oldBank);
+            });
+        }).then(oldBank => {
+            async.each(oldBank.bins, (bin, callback) => {
+                Bin.remove({ _id: bin }, (err, bin) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    callback(null);
+                })
+            }, err => {
+                console.log(err);
+            });
+            async.each(oldBank.atms, (atm, callback) => {
+                Atm.remove({ _id: atm }, (err, atm) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    callback(null);
+                })
+            }, err => {
+                console.log(err);
+            });
+            async.each(oldBank.cards, (card, callback) => {
+                Card.remove({ _id: card }, (err, card) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    callback(null);
+                })
+            }, err => {
+                console.log(err);
+            });
+            Bank.remove({ _id: id }, function (err, bank) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }).then(() => {
+            data = {
+                "success": true,
+                "msg": "删除成功！"
+            };
             res.json(data);
         })
     }
