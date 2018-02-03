@@ -32,7 +32,6 @@ exports.save = function (req, res) {
     //需要拿到传过来的id
     var id = req.body.bank._id;
     var bankObj = req.body.bank;//拿到传过来的bank对象
-    console.log(bankObj);
     var _bank;
     var data;
     var tempId = "";//查看当前的bank是否在数据库中有其它人注册过
@@ -130,7 +129,6 @@ exports.update = function (req, res) {
 //删除bank
 exports.del = function (req, res) {
     var id = req.query.id;
-    console.log("id:" + id);
     var data;
     if (id) {
         Bank.remove({ _id: id }, function (err, bank) {

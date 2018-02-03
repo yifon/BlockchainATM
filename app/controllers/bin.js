@@ -2,14 +2,17 @@
 var Bin = require('../models/bin');
 var Bank = require('../models/bank');
 var async = require('async');
+//传入mongoose的建模工具模块
+var mongoose = require('mongoose');
+
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');
 
 //bin列表页
-exports.binlist = function (req, res) {
+exports.binlist = (req, res) => {
     var tempBinArr = [];
-    Bin.fetch(function (err, binMappings) {
+    Bin.fetch((err, binMappings) => {
         if (err) {
             console.log(err);
         }
@@ -101,7 +104,6 @@ exports.save = function (req, res) {
         }
         //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
         else if (tempId == "") {
-            console.log(binObj)
             _bin = new Bin(binObj);
             var bankId = binObj.bank;
             _bin.save(function (err, binMapping) {
@@ -161,8 +163,8 @@ exports.update = function (req, res) {
 //删除bin
 exports.del = function (req, res) {
     var id = req.query._id;
-    var bin = req.query.bin;
     var bank = req.query.bank;
+    console.log(bank);
     var data;
     if (id) {
         Bin.remove({ _id: id }, (err, newBinObj) => {
@@ -171,18 +173,18 @@ exports.del = function (req, res) {
             }
         });
         //将bin在注册的银行中删除
-        // Bank.update({ "name": bank }, { $pull: { "bins": bin } }, (err, bank) => {
-        //     if (err) {
-        //         console.log(err);
-        //     } else {
-        //         //如果没有异常，则给客户端返回json数据
-        //         data = {
-        //             "success": true,
-        //             "msg": "删除成功！"
-        //         };
-        //         res.json(data);
-        //     }
+        Bank.update({ "name": bank }, { $pull: { "bins": mongoose.Types.ObjectId(id) } }, (err, bank) => {
+            if (err) {
+                console.log(err);
+            } else {
+                //如果没有异常，则给客户端返回json数据
+                data = {
+                    "success": true,
+                    "msg": "删除成功！"
+                };
+                res.json(data);
+            }
 
-        // });
+        });
     }
 }
