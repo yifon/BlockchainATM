@@ -11,17 +11,17 @@ var BankSchema = new Schema({
     },
     //数组，保存bin,一个bank可以有多个bin
     bins: [{
-        type: String,
+        type: ObjectId,
         ref: 'Bin'
     }],
     //数组，保存atm,一个bank可以有多个atm
     atms: [{
-        type: String,
+        type: ObjectId,
         ref: 'Atm'
     }],
     //数组，保存card,一个bank可以有多个card
     cards: [{
-        type: String,
+        type: ObjectId,
         ref: 'Card'
     }],
     //meta存放的是录入或者更新数据时的时间纪录

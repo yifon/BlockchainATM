@@ -19,10 +19,10 @@ block content
                         each bank in banks
                             label.radio-inline
                                 if binMapping._id
-                                    input(type="radio",name="binMapping[bank]",value="#{bank.name}",checked=bank.name.toString()==binMapping.bank.toString())
+                                    input(type="radio",name="binMapping[bank]",value="#{bank._id}",checked=bank.name.toString()==binMapping.bank.toString())
                                     | #{bank.name}
                                 else
-                                    input(type="radio",name="binMapping[bank]",value="#{bank.name}")
+                                    input(type="radio",name="binMapping[bank]",value="#{bank._id}")
                                     | #{bank.name}
 
                     //-验证结果，只有失败才会提醒

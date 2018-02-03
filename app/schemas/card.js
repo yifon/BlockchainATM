@@ -7,11 +7,11 @@ var ObjectId = Schema.Types.ObjectId;//声明一个对象ID类型，等同于Mon
 var CardSchema = new Schema({
     //获取在BIN创建页创建过的银行,一个Card只有一个Bin
     bank: {
-        type: String,
+        type: ObjectId,
         ref: 'Bank'
     },
     bin: {
-        type: String,
+        type: ObjectId,
         ref: 'Bin'
     },
     number: {

@@ -1,20 +1,34 @@
 //加载编译的模型
 var Bin = require('../models/bin');
 var Bank = require('../models/bank');
+var async = require('async');
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');
 
 //bin列表页
 exports.binlist = function (req, res) {
+    var tempBinArr = [];
     Bin.fetch(function (err, binMappings) {
         if (err) {
             console.log(err);
         }
-        res.render('binlist', {
-            pageTitle: "BIN列表页",
-            binMappings: binMappings
+        //关联查询，返回查询的数组，再渲染页面
+        async.each(binMappings, (binMapping, callback) => {
+            Bin.findOne({ bank: binMapping.bank })
+                .populate({ path: 'bank', select: 'name' })
+                .exec((err, bin) => {
+                    tempBinArr.push(bin);
+                    callback(null);
+                })
+        }, err => {
+            console.log(err);
+            res.render('binlist', {
+                pageTitle: "BIN列表页",
+                binMappings: tempBinArr,
+            })
         })
+
     })
 }
 
@@ -87,24 +101,27 @@ exports.save = function (req, res) {
         }
         //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
         else if (tempId == "") {
+            console.log(binObj)
             _bin = new Bin(binObj);
+            var bankId = binObj.bank;
             _bin.save(function (err, binMapping) {
                 if (err) {
                     console.log(err);
                 }
-                //通过所属银行名字拿到当前bin对应的银行
-                Bank.findByName(binMapping.bank, (err, bank) => {
-                    bank.bins.push(binMapping.bin);//将bin存到所属的银行中
-                    bank.save((err, bank) => {
-                        //保存成功后，跳转到bin列表页
-                        data = {
-                            "success": true,
-                            "message": "创建成功！"
-                        }
-                        res.json(data);
+                //通过bankId拿到当前对应的bank
+                if (bankId) {
+                    Bank.findById(bankId, (err, bank) => {
+                        bank.bins.push(binMapping._id);
+                        bank.save((err, bank) => {
+                            //保存成功后，跳转到bin列表页
+                            data = {
+                                "success": true,
+                                "message": "创建成功！"
+                            }
+                            res.json(data);
+                        })
                     })
-                })
-
+                }
             })
         }
         //新创建的bin在数据库中存在过
@@ -143,28 +160,29 @@ exports.update = function (req, res) {
 }
 //删除bin
 exports.del = function (req, res) {
+    var id = req.query._id;
     var bin = req.query.bin;
     var bank = req.query.bank;
     var data;
-    if (bin) {
-        Bin.remove({ "bin": bin }, (err, newBinObj) => {
+    if (id) {
+        Bin.remove({ _id: id }, (err, newBinObj) => {
             if (err) {
                 console.log(err);
             }
         });
         //将bin在注册的银行中删除
-        Bank.update({ "name": bank }, { $pull: { "bins": bin } }, (err, bank) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //如果没有异常，则给客户端返回json数据
-                data = {
-                    "success": true,
-                    "msg": "删除成功！"
-                };
-                res.json(data);
-            }
+        // Bank.update({ "name": bank }, { $pull: { "bins": bin } }, (err, bank) => {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         //如果没有异常，则给客户端返回json数据
+        //         data = {
+        //             "success": true,
+        //             "msg": "删除成功！"
+        //         };
+        //         res.json(data);
+        //     }
 
-        });
+        // });
     }
 }

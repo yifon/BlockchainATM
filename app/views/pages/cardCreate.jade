@@ -16,10 +16,10 @@ block content
                             each bank in banks
                                 label.radio-inline
                                     if card._id
-                                        input(type="radio",name="card[bank]",value="#{bank.name}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
+                                        input(type="radio",name="card[bank]",value="#{bank._id}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
                                         | #{bank.name}
                                     else
-                                        input(type="radio",name="card[bank]",value="#{bank.name}",data-bins="#{bank.bins}")
+                                        input(type="radio",name="card[bank]",value="#{bank._id}",data-bins="#{bank.bins}")
                                         | #{bank.name}
                     //-前六位为选择的银行对应可以选择的bin，若该银行无可选的bin则需提示
                     .form-group

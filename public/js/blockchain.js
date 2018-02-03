@@ -293,7 +293,8 @@ $(function () {
         $("#delBin").bind("click", () => {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
-                url: "/admin/bin/list?bin=" + bin + "&bank=" + bank
+                url: "/admin/bin/list?_id=" +id
+                // url: "/admin/bin/list?bin=" + bin + "&bank=" + bank
             })//删除后，服务器返回的状态
                 .done(data => {
                     if (data.msg) {
