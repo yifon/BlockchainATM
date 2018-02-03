@@ -19,7 +19,7 @@ block content
                         each bank in banks
                             label.radio-inline
                                 if binMapping._id
-                                    input(type="radio",name="binMapping[bank]",value="#{bank._id}",checked=bank.name.toString()==binMapping.bank.toString())
+                                    input(type="radio",name="binMapping[bank]",value="#{bank._id}",checked=bank._id.toString()==binMapping.bank.toString())
                                     | #{bank.name}
                                 else
                                     input(type="radio",name="binMapping[bank]",value="#{bank._id}")
@@ -27,7 +27,7 @@ block content
 
                     //-验证结果，只有失败才会提醒
                     .form-group
-                        .col-sm-4
+                        .col-sm-10.col-sm-offset-4
                         .inputChecking#checkBin
                     .form-group
                         .col-sm-offset-3.col-sm-3

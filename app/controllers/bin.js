@@ -15,7 +15,7 @@ exports.binlist = function (req, res) {
         }
         //关联查询，返回查询的数组，再渲染页面
         async.each(binMappings, (binMapping, callback) => {
-            Bin.findOne({ bank: binMapping.bank })
+            Bin.findOne({ _id: binMapping._id })
                 .populate({ path: 'bank', select: 'name' })
                 .exec((err, bin) => {
                     tempBinArr.push(bin);
