@@ -344,16 +344,14 @@ $(function () {
         $(".tempCardObj").bind("click", e => {
             var target = $(e.target);
             var id = target.data('id');
-            var number = target.data('number');
-            var bank = target.data('bank');
-            resolve([id, number, bank]);
+            resolve(id);
         })
-    }).then(([id, number, bank]) => {
+    }).then((id) => {
         var tr = $(".item-id-" + id);
         $("#delCard").bind("click", () => {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
-                url: "/admin/card/list?number=" + number + "&bank=" + bank
+                url: "/admin/card/list?id=" + id
             })//删除后，服务器返回的状态
                 .done(data => {
                     if (data.msg) {

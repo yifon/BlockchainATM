@@ -25,7 +25,7 @@ block content
                                     td: a(href='/admin/card/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.tempCardObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}", data-number="#{item.number}",data-bank="#{item.bank.name}") 删除
+                                        button.btn.btn-danger.tempCardObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}") 删除
                                             span.glyphicon.glyphicon-trash
                 //-删除确认框
                 #delModal.modal.fade

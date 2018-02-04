@@ -73,10 +73,10 @@ exports.save = function (req, res) {
             Bin.findByBin(bin, (err, bin) => {
                 binId = bin._id;//bin id
                 cardObj.bin = binId;//存进card的是bin id
-                resolve(binId);
+                resolve([binId, bin]);
             })
         }
-    }).then(binId => {
+    }).then(([binId, bin]) => {
         if (id) {
             //mongodb的增删查改操作默认是异步的，由于后面的操作需要用到tempId,所以需要将结果同步下去
             const promise = new Promise((resolve, reject) => {
@@ -85,9 +85,9 @@ exports.save = function (req, res) {
                     if (card && card._id != null) {
                         tempId = card._id.toString();//获取到数据库中此卡号的_id
                     }
-                    resolve(tempId);
+                    resolve([tempId, card]);
                 })
-            }).then((tempId) => {
+            }).then(([tempId, card]) => {
                 //如果是修改，则需检查新post的card是否跟数据库中其它纪录重复
                 if ("" != tempId && tempId.toString() != id) {
                     data = {
@@ -99,20 +99,18 @@ exports.save = function (req, res) {
                 //证明card是存储进数据库过的，需要对其进行更新
                 else {
                     //需要将post过来的card数据替换掉数据库中老的card数据
-                    Card.findById(tempId, (err, card) => {
-                        _card = _.extend(card, cardObj);
-                        _card.save((err, newCard) => {
-                            if (err) {
-                                throw (err);;
-                            }
-                            //保存成功后，跳转到card列表页
-                            data = {
-                                "success": true,
-                                "msg": "创建成功！"
-                            }
-                            res.json(data);
-                        });
-                    })
+                    _card = _.extend(card, cardObj);
+                    _card.save((err, newCard) => {
+                        if (err) {
+                            throw (err);;
+                        }
+                        //保存成功后，跳转到card列表页
+                        data = {
+                            "success": true,
+                            "msg": "创建成功！"
+                        }
+                        res.json(data);
+                    });
                 }
             })
         }
@@ -138,13 +136,11 @@ exports.save = function (req, res) {
                         })
                     }
                     //将card id存进bin
-                    Bin.findById(binId, (err, bin) => {
-                        bin.cards.push(_card._id);
-                        bin.save((err, bin) => {
-                            if (err) {
-                                throw (err);;
-                            }
-                        })
+                    bin.cards.push(_card._id);
+                    bin.save((err, bin) => {
+                        if (err) {
+                            throw (err);;
+                        }
                     })
                     resolve();
                 })
@@ -199,37 +195,57 @@ exports.update = function (req, res) {
 }
 //删除card
 exports.del = function (req, res) {
-    var number = req.query.number;
-    var bin = card.subString(0, 5);
-    var bank = req.query.bank;
+    var id = req.query.id;
     var data;
-    if (number) {
-        //将卡号在银行卡数据库中删除
+    var bankId = "";//所属的银行id
+    var binId = "";//所属的bin id
+    if (id) {
+        //查找到bank id, bin id,
         const p1 = new Promise((resolve, reject) => {
-            Card.remove({ "number": number }, (err, newCardObj) => {
+            Card.findById(id, (err, card) => {
+                if (err) {
+                    console.log(err);
+                }
+                bankId = card.bank;
+                binId = card.bin;
+                resolve([bankId, binId]);
+            });
+        }).then(([bankId, binId]) => {
+
+            //将卡号在银行卡数据库中删除
+            Card.remove({ _id: id }, (err, newCardObj) => {
                 if (err) {
                     console.log(err);
                     throw (err);
                 }
             });
-        });
-        //将卡号在注册的银行中删除
-        const p2 = new Promise((resolve, reject) => {
-            Bank.update({ "name": bank }, { $pull: { "cards": number } }, (err, bank) => {
+            //将卡号在注册的银行中删除
+            Bank.update({ _id: bankId }, { $pull: { "cards": id } }, (err, bank) => {
                 if (err) {
                     console.log(err);
                     throw (err);
                 }
             });
-        });
-        //上述2个异步操作全部结束后，返回结果
-        const p = Promise.all([p1, p2]).then(() => {
+            //将卡号在注册的bin中删除
+            Bin.update({ _id: binId }, { $pull: { "cards": id } }, (err, bin) => {
+                if (err) {
+                    console.log(err);
+                    throw (err);
+                }
+            });
+            resolve();
+        }).then(() => {
             data = {
                 "success": true,
                 "msg": "删除银行卡信息成功!"
             }
             res.json(data);
         }).catch(e => {
+            data = {
+                "success": false,
+                "msg": "删除失败!"
+            }
+            res.json(data);
             console.log(e);
         });
     }
