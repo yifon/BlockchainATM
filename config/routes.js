@@ -4,6 +4,7 @@ var Atm = require('../app/controllers/atm');
 var Bin = require('../app/controllers/bin');
 var Bank = require('../app/controllers/bank');
 var Card = require('../app/controllers/card');
+var Transaction = require('../app/controllers/transaction');
 
 module.exports = function (app) {
     //为客人信息设置缓存
@@ -49,4 +50,7 @@ module.exports = function (app) {
     app.post('/admin/card', Card.save);//将card录入页的信息存储到数据库中
     app.get('/admin/card/update/:id', Card.update);//修改card信息
     app.delete('/admin/card/list', Card.del);//删除card
+
+    //transaction信息
+    app.get('/admin/transaction/list', Transaction.transactionlist);//transaction信息
 }

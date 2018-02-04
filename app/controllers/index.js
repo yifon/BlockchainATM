@@ -4,13 +4,13 @@ var Customer = require('../models/customer');
 exports.welcome = function (req, res) {
     delete req.session.customer;//清除customer的session数据
     res.render('welcome', {
-        bigTitle: "Welcome to use the Blockchain ATM!"
+        bigTitle: "欢迎使用区块链ATM系统!"
     });
 }
 //输入卡号页
 exports.enterAcc = function (req, res) {
     res.render('enterAcc', {
-        bigTitle: "Please enter your card number:"
+        bigTitle: "请输入您的卡号和密码："
     });
 }
 //验证客人输入的卡号，验证成功则跳转输入密码页
@@ -21,7 +21,7 @@ exports.submitAcc = function (req, res) {
     req.session.customer["debitAccount"] = _customer.debitAccount;//将debitAccount存储在session中
     var data = {
         "success": true,
-        "msg": "/enterPwd"
+        "msg": "/chooseAtm"
     };
     res.send(data);//先直接跳转，等待后边集成blockchain后做密码判断
 }
@@ -33,7 +33,7 @@ exports.enterPwd = function (req, res) {
         return res.redirect("/");//若未输入过卡号，则因跳转到首页
     }
     res.render('enterPwd', {
-        bigTitle: "Please enter your password:"
+        bigTitle: "请输入您的密码："
     });
 }
 //验证客人输入的密码，验证成功则跳转到选择atm页
@@ -57,6 +57,6 @@ exports.chooseAtm = function (req, res) {
         return res.redirect("/enterPwd");//若未输入过密码，则因跳转到输入密码页
     }
     res.render('chooseAtm', {
-        bigTitle: "Please select the ATM to serve you:"
+        bigTitle: "请选择服务的ATM:"
     });
 }

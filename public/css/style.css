@@ -66,11 +66,17 @@ input{
     line-height: 200px;
     margin-top: -100px;
 }
+.input-label{
+    font-size: 30px;
+    height: 140px;
+    line-height: 140px;
+    color: #fff;
+    text-align: right;
+}
 .input-value{
     font-size: 60px;
     border-radius: 20px;
     width: 100%;
-    height: 140px;
     height: 140px;
     margin-bottom: 30px;
 }
@@ -238,8 +244,8 @@ video{
         font-size: 40px;
     }
     .btn-atm{
-        height: 80px;
-        line-height: 80px;
+        height: 70px;
+        line-height: 70px;
         font-size: 20px;
     }
     .leaderboard h1 {
@@ -260,22 +266,14 @@ video{
 
 @media screen and (min-width:781px){
     .btn-atm{
-        height: 100px;
-        line-height: 100px;
+        height: 80px;
+        line-height: 80px;
         font-size: 30px;
     }
     .leaderboard h1 {
         font-size: 40px;
         color:#e5f1e5;
     }
-    /* .input-form{
-        width: 80%;
-        height: 80%;
-        margin-left: 10%;
-        position: relative;
-        top:50%;
-        transform: translateY(80%)
-    } */
 }
 
 .heart-shape {

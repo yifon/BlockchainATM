@@ -1,8 +1,19 @@
 extends ../layout 
 block content
     .container
-        .text-center.form-group.input-form
-            input.input-value.form-control#enterAcc
-            .inputChecking#accChecking
-            button.btn.btn-success.btn-atm#confirmAcc Confirm
+        .row
+            .col-sm-12
+                .form-horizontal
+                    .form-group
+                        label.col-sm-2.input-label 卡号：
+                        .col-sm-8
+                            input.form-control.input-value#enterAcc
+                    .form-group
+                        label.col-sm-2.input-label 密码：
+                        .col-sm-8
+                            input.input-value.form-control(type="password")
+                    .text-center.form-group
+                        .inputChecking#accChecking
+                    .text-center.form-group
+                        button.btn.btn-success.btn-atm#confirmAcc 确认
     
