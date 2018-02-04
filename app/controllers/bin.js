@@ -64,10 +64,10 @@ exports.save = function (req, res) {
                 if (binMapping && binMapping._id != null) {
                     tempId = binMapping._id.toString();
                 }
-                resolve(tempId);
+                resolve(tempId, binMapping);
                 console.log("tempId:" + tempId);
             })
-        }).then(tempId => {
+        }).then((tempId, binMapping) => {
             if ("" != tempId && tempId != id) {
                 data = {
                     "success": false,
@@ -76,10 +76,7 @@ exports.save = function (req, res) {
                 res.json(data);
             }
             //证明bin是存储进数据库过的，需要对其进行更新
-            else Bin.findById(id, function (err, binMapping) {
-                if (err) {
-                    console.log(err);
-                }
+            else {
                 //需要将post过来的bin数据替换掉数据库中老的bin数据
                 _bin = _.extend(binMapping, binObj);
                 _bin.save(function (err, newBin) {
@@ -94,8 +91,7 @@ exports.save = function (req, res) {
                     }
                     res.json(data);
                 })
-            })
-
+            }
         })
     }
     //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据

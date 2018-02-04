@@ -16,7 +16,7 @@ block content
                         tbody
                             each item in cards
                                 tr(class='.item-id-#{item._id}')
-                                    td #{item.bank}
+                                    td #{item.bank.name}
                                     td #{item.number}
                                     td #{item.name}
                                     td #{item.balance}
@@ -25,7 +25,7 @@ block content
                                     td: a(href='/admin/card/update/#{item._id}') 修改
                                         span.glyphicon.glyphicon-pencil
                                     td
-                                        button.btn.btn-danger.tempCardObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}", data-number="#{item.number}",data-bank="#{item.bank}") 删除
+                                        button.btn.btn-danger.tempCardObj(data-toggle="modal",data-target="#delModal", data-id="#{item.id}", data-number="#{item.number}",data-bank="#{item.bank.name}") 删除
                                             span.glyphicon.glyphicon-trash
                 //-删除确认框
                 #delModal.modal.fade

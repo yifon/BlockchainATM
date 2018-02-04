@@ -16,17 +16,23 @@ block content
                             each bank in banks
                                 label.radio-inline
                                     if card._id
-                                        input(type="radio",name="card[bank]",value="#{bank._id}",checked=bank.name.toString()==card.bank.toString(),data-bins="#{bank.bins}")
+                                        input(disabled type="radio",name="card[bank]",value="#{bank._id}",checked=bank._id.toString()==card.bank.toString(),data-bins="#{bank.bins}")
                                         | #{bank.name}
                                     else
                                         input(type="radio",name="card[bank]",value="#{bank._id}",data-bins="#{bank.bins}")
                                         | #{bank.name}
+                           
+                                
                     //-前六位为选择的银行对应可以选择的bin，若该银行无可选的bin则需提示
                     .form-group
                         label.col-sm-4.control-label(for='cardNumber') 卡号:
-                        select.col-sm-2.form-control#cardBin
-                            if card._id
+                        if card._id
+                            select.col-sm-2.form-control#cardBin(disabled)
                                 option#oldCardBin(name="card[bin]") #{card.number.substring(0,6)}
+                        else
+                            select.col-sm-2.form-control#cardBin
+                                if card._id
+                                    option#oldCardBin(name="card[bin]") #{card.number.substring(0,6)}
 
                         .col-sm-4
                             if card._id

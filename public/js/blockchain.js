@@ -188,6 +188,7 @@ $(function () {
 
     //新创建银行卡
     $("#createCard").bind("click", function () {
+        $(this).attr("disabled", "true");
         var checkResult = "";
         var cardCnType = /[0-9]{10,13}$/;//以0-9开头的10-13位数字
         var cardPwdType = /[0-9]{6}$/;//以0-9开头的6位数字
@@ -237,10 +238,12 @@ $(function () {
                         checkResult = data.msg;
                     }
                     $("#checkCard").html(checkResult);
+                    $(this).attr("disabled", "false");
                 },
                 error: function (jqXHR) {
                     checkResult = "服务器异常：" + jqXHR.status;
                     $("#checkCard").html(checkResult);
+                    $(this).attr("disabled", "false");
                 }
             })
         }
@@ -370,11 +373,12 @@ $(function () {
         $("#cardBin").find("option").remove();
         $("#checkCard").empty();
         var target = $(e.target);
-        var bins = String(target.data("bins"));
+        var bins = target.data("bins");
+        //bins="{ bin: 622202 },{ bin: 622201 }";
         var binsArr = [];
         var html = "";
-        if (bins.indexOf(",") != -1) {
-            binsArr = bins.split(",");
+        if (bins != "" || bins.indexOf(",") != -1) {
+            binsArr = bins.replace(/{ bin: | }/g, "").split(",");
             $.each(binsArr, (index, bin) => {
                 html += "<option name='card[bin]'>" + bin + "</option>";
             })
