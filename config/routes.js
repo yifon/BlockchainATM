@@ -5,7 +5,7 @@ var Bin = require('../app/controllers/bin');
 var Bank = require('../app/controllers/bank');
 var Card = require('../app/controllers/card');
 var Transaction = require('../app/controllers/transaction');
-
+var Blockchain = require('../app/controllers/blockchain');//ATM<->Blockchain部分
 module.exports = function (app) {
     //为客人信息设置缓存
     app.use(function (req, res, next) {
@@ -53,4 +53,9 @@ module.exports = function (app) {
 
     //transaction信息
     app.get('/admin/transaction/list', Transaction.transactionlist);//transaction信息
+
+    //处理ATM与区块链部分的事件交互
+    app.get('/startTrx', Blockchain.startTrx);//ATM->Blockchain,通知Blockchain开始交易
+    app.get('/confirmDebit', Blockchain.confirmDebit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认扣款
+    app.get('/confirmCredit', Blockchain.confirmCredit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认收款
 }

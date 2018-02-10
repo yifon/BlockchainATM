@@ -7,9 +7,10 @@ var port = process.env.PORT || 4000;//从命令行中设置port口，默认是30
 app.listen(port);//监听端口
 
 var mongoose = require('mongoose');//引入mongoose模块，来连接本地数据库
-var dbUrl = "mongodb://localhost:12345/BlockchainAtm";
+var dbUrl = "mongodb://localhost:27017/BlockchainAtm";
 mongoose.Promise = global.Promise;//Promise化mongodb的回调操作
-mongoose.connect(dbUrl, { useMongoClient: true });
+// mongoose.connect(dbUrl, { useMongoClient: true });
+mongoose.connect(dbUrl);
 
 var path = require('path');//处理样式、脚本文件等路径等对象
 app.use(express.static(path.join(__dirname, 'public')))//静态资源的获取，__dirname当前文件目录

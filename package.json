@@ -1,14 +1,14 @@
 {
-  "name": "ajax-learning",
+  "name": "BlockchainATM",
   "version": "1.0.0",
-  "description": "ajax-learning, may use node.js,mongodb,jade,jquery,bootstrap...",
+  "description": "BlockchainATM",
   "main": "app.js",
   "scripts": {
     "test": "grunt"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yifon/WebLearning.git"
+    "url": "git+https://github.com/yifon/BlockchainATM.git"
   },
   "keywords": [
     "ajax",
@@ -21,9 +21,9 @@
   "author": "June",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yifon/WebLearning/issues"
+    "url": "https://github.com/yifon/BlockchainATM/issues"
   },
-  "homepage": "https://github.com/yifon/WebLearning#readme",
+  "homepage": "https://github.com/yifon/BlockchainATM#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-concurrent": "^2.3.1",
@@ -35,11 +35,14 @@
     "body-parser": "^1.18.2",
     "connect-mongo": "^2.0.1",
     "connect-multiparty": "^2.1.0",
+    "express": "^4.16.2",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
     "http-proxy-middleware": "^0.17.4",
     "moment": "^2.20.1",
+    "mongoose": "^5.0.3",
     "path": "^0.12.7",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "web3": "^1.0.0-beta.29"
   }
 }

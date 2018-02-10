@@ -10,7 +10,7 @@ var cardlistUrl = "/admin/card/list";
 
 $(function () {
     //加载侧边导航栏
-    var currentUrl = String(window.location);//转为string
+    var currentUrl = window.location.pathname;//获取路径
     var html;
     if (currentUrl.indexOf("atm") != -1) {
         html = "<li><a href='/admin/atm/list'>ATM列表页</a></li><li><a href='/admin/atm/new'>创建ATM</a></li>";
