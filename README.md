@@ -101,3 +101,19 @@ ATM ID：ATM ID在所有银行中必须唯一［必填项］
   b.显示blockchain中支持的所有ATM   
 3.分离不同银行的数据库  
 
+### 区块链部分实现
+#### 任务 1:
+1.1 生成合约地址  
+1.2 节点地址
+1.3 了解节点的增加和删除  
+
+#### 任务 2:
+在blockchain后台注册生成合约调用时需要的以太坊帐户地址，http地址，银行地址，并保存在数据库中，再由前台在选取atm时去获取  
+contractInitVars: {    
+  contractfile: "BTM",  
+  web3http: "http://localhost:7101",  
+  atmAdd: "0xca843569e3427144cead5e4d5999a3d0ccf92b8e",  
+  ownerBank: "0x01751f1b5a22aaee0824d68b888f2190a663d768",  
+  contractAdd: "0x8182dd293942ff6839e6e8c8a71981bb8ad655e5"  
+}
+

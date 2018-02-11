@@ -55,7 +55,8 @@ module.exports = function (app) {
     app.get('/admin/transaction/list', Transaction.transactionlist);//transaction信息
 
     //处理ATM与区块链部分的事件交互
-    app.get('/startTrx', Blockchain.startTrx);//ATM->Blockchain,通知Blockchain开始交易
-    app.get('/confirmDebit', Blockchain.confirmDebit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认扣款
-    app.get('/confirmCredit', Blockchain.confirmCredit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认收款
+    app.get('/test', Blockchain.test);
+    app.post('/startTrx', Blockchain.startTrx);//ATM->Blockchain,通知Blockchain开始交易
+    app.post('/confirmDebit', Blockchain.confirmDebit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认扣款
+    app.post('/confirmCredit', Blockchain.confirmCredit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认收款
 }
