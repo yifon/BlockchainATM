@@ -1,0 +1,38 @@
+ERROR[02-12|23:00:32] Can't load node file /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/static-nodes.json: JSON syntax error at /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/static-nodes.json:1: unexpected end of JSON input 
+INFO [02-12|23:00:32] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|23:00:32] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+WARN [02-12|23:00:32] Upgrading database to use lookup entries 
+INFO [02-12|23:00:32] Database deduplication successful        deduped=0
+INFO [02-12|23:00:32] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|23:00:32] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-12|23:00:32] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|23:00:32] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|23:00:32] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:00:32] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:00:32] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:00:32] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|23:00:32] Starting P2P networking 
+INFO [02-12|23:05:47] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|23:05:47] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+INFO [02-12|23:05:47] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|23:05:47] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-12|23:05:47] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|23:05:47] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|23:05:47] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:47] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:47] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:47] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-12|23:05:47] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|23:05:47] Starting P2P networking 
+INFO [02-12|23:05:58] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|23:05:58] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+INFO [02-12|23:05:58] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|23:05:58] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-12|23:05:58] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|23:05:58] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|23:05:58] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:58] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:58] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:58] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-12|23:05:58] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|23:05:58] Starting P2P networking 

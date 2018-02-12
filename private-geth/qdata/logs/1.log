@@ -1,0 +1,84 @@
+flag provided but not defined: -raft
+flag provided but not defined: -emitcheckpoints
+flag provided but not defined: -raftport
+ERROR[02-12|22:56:23] Can't load node file /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/static-nodes.json: JSON syntax error at /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/static-nodes.json:1: unexpected end of JSON input 
+INFO [02-12|22:56:23] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|22:56:23] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata cache=128 handles=1024
+WARN [02-12|22:56:23] Upgrading database to use lookup entries 
+INFO [02-12|22:56:23] Database deduplication successful        deduped=0
+INFO [02-12|22:56:23] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|22:56:23] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/ethash count=3
+INFO [02-12|22:56:23] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|22:56:23] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|22:56:23] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|22:56:23] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|22:56:23] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|22:56:23] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|22:56:23] Starting P2P networking 
+INFO [02-12|22:56:25] UDP listener up                          self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+INFO [02-12|22:56:25] RLPx listener up                         self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+INFO [02-12|22:56:25] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|22:56:25] HTTP endpoint opened: http://localhost:7101 
+INFO [02-12|22:56:55] Block synchronisation started 
+WARN [02-12|22:56:56] Node data write error                    err="state node c30172…5bb902 failed with all peers (0 tries, 0 peers)"
+WARN [02-12|22:56:56] Synchronisation failed, retrying         err="receipt download canceled (requested)"
+WARN [02-12|22:59:46] Synchronisation failed, retrying         err="receipt download canceled (requested)"
+INFO [02-12|23:00:32] Got interrupt, shutting down... 
+INFO [02-12|23:00:32] HTTP endpoint closed: http://localhost:7101 
+INFO [02-12|23:00:32] IPC endpoint closed: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|23:00:32] Blockchain manager stopped 
+INFO [02-12|23:00:32] Stopping Ethereum protocol 
+INFO [02-12|23:00:32] Ethereum protocol stopped 
+INFO [02-12|23:00:32] Transaction pool stopped 
+INFO [02-12|23:00:32] Database closed                          database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata
+INFO [02-12|23:04:42] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|23:04:42] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata cache=128 handles=1024
+INFO [02-12|23:04:42] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|23:04:42] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/ethash count=3
+INFO [02-12|23:04:42] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|23:04:42] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|23:04:42] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:04:42] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:04:42] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:04:42] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-12|23:04:42] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|23:04:42] Starting P2P networking 
+INFO [02-12|23:04:44] UDP listener up                          self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+INFO [02-12|23:04:44] RLPx listener up                         self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+WARN [02-12|23:04:44] Removing static dial candidate           id=3474c4f37b6d3057 addr=127.0.0.1:7301 err="is self"
+INFO [02-12|23:04:44] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|23:04:44] HTTP endpoint opened: http://localhost:7101 
+INFO [02-12|23:05:47] Got interrupt, shutting down... 
+INFO [02-12|23:05:47] HTTP endpoint closed: http://localhost:7101 
+INFO [02-12|23:05:47] IPC endpoint closed: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|23:05:47] Blockchain manager stopped 
+INFO [02-12|23:05:47] Stopping Ethereum protocol 
+INFO [02-12|23:05:47] Ethereum protocol stopped 
+INFO [02-12|23:05:47] Transaction pool stopped 
+INFO [02-12|23:05:47] Database closed                          database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata
+INFO [02-12|23:05:51] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-12|23:05:51] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata cache=128 handles=1024
+INFO [02-12|23:05:51] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-12|23:05:51] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/ethash count=3
+INFO [02-12|23:05:51] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-12|23:05:51] Initialising Ethereum protocol           versions="[63 62]" network=1
+INFO [02-12|23:05:51] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:51] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:51] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
+INFO [02-12|23:05:51] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-12|23:05:51] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-12|23:05:51] Starting P2P networking 
+INFO [02-12|23:05:53] UDP listener up                          self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+INFO [02-12|23:05:53] RLPx listener up                         self=enode://3474c4f37b6d305783c7ce28f6df15ae343064426abd7432405dc5d5152c12be9526ddd0733b91ee1d3b6389cce46dd0ed739a41bc9580743b8c1c16c3794090@[::]:7301
+WARN [02-12|23:05:53] Removing static dial candidate           id=3474c4f37b6d3057 addr=127.0.0.1:7301 err="is self"
+INFO [02-12|23:05:53] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|23:05:53] HTTP endpoint opened: http://localhost:7101 
+INFO [02-12|23:05:57] Got interrupt, shutting down... 
+INFO [02-12|23:05:57] HTTP endpoint closed: http://localhost:7101 
+INFO [02-12|23:05:57] IPC endpoint closed: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth.ipc 
+INFO [02-12|23:05:57] Blockchain manager stopped 
+INFO [02-12|23:05:57] Stopping Ethereum protocol 
+WARN [02-12|23:05:58] Already shutting down, interrupt more to panic. times=9
+INFO [02-12|23:05:58] Ethereum protocol stopped 
+INFO [02-12|23:05:58] Transaction pool stopped 
+INFO [02-12|23:05:58] Database closed                          database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd1/geth/chaindata
