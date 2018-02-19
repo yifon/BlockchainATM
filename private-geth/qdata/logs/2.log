@@ -1,38 +1,424 @@
-ERROR[02-12|23:00:32] Can't load node file /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/static-nodes.json: JSON syntax error at /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/static-nodes.json:1: unexpected end of JSON input 
-INFO [02-12|23:00:32] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
-INFO [02-12|23:00:32] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
-WARN [02-12|23:00:32] Upgrading database to use lookup entries 
-INFO [02-12|23:00:32] Database deduplication successful        deduped=0
-INFO [02-12|23:00:32] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
-INFO [02-12|23:00:32] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
-INFO [02-12|23:00:32] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
-INFO [02-12|23:00:32] Initialising Ethereum protocol           versions="[63 62]" network=1
-INFO [02-12|23:00:32] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:00:32] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:00:32] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:00:32] Regenerated local transaction journal    transactions=0 accounts=0
-INFO [02-12|23:00:32] Starting P2P networking 
-INFO [02-12|23:05:47] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
-INFO [02-12|23:05:47] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
-INFO [02-12|23:05:47] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
-INFO [02-12|23:05:47] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
-INFO [02-12|23:05:47] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
-INFO [02-12|23:05:47] Initialising Ethereum protocol           versions="[63 62]" network=1
-INFO [02-12|23:05:47] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:47] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:47] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:47] Loaded local transaction journal         transactions=0 dropped=0
-INFO [02-12|23:05:47] Regenerated local transaction journal    transactions=0 accounts=0
-INFO [02-12|23:05:47] Starting P2P networking 
-INFO [02-12|23:05:58] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
-INFO [02-12|23:05:58] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
-INFO [02-12|23:05:58] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
-INFO [02-12|23:05:58] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
-INFO [02-12|23:05:58] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
-INFO [02-12|23:05:58] Initialising Ethereum protocol           versions="[63 62]" network=1
-INFO [02-12|23:05:58] Loaded most recent local header          number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:58] Loaded most recent local full block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:58] Loaded most recent local fast block      number=0 hash=c23b4e…8b1b71 td=0
-INFO [02-12|23:05:58] Loaded local transaction journal         transactions=0 dropped=0
-INFO [02-12|23:05:58] Regenerated local transaction journal    transactions=0 accounts=0
-INFO [02-12|23:05:58] Starting P2P networking 
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+appending output to nohup.out
+INFO [02-19|14:27:12] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-19|14:27:12] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+INFO [02-19|14:27:12] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-19|14:27:12] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-19|14:27:12] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-19|14:27:12] Initialising Ethereum protocol           versions="[63 62]" network=999
+INFO [02-19|14:27:12] Loaded most recent local header          number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:27:12] Loaded most recent local full block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:27:12] Loaded most recent local fast block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:27:12] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-19|14:27:12] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [02-19|14:27:12] Blockchain not empty, fast sync disabled 
+INFO [02-19|14:27:12] Starting P2P networking 
+INFO [02-19|14:27:15] UDP listener up                          self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+INFO [02-19|14:27:15] RLPx listener up                         self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+WARN [02-19|14:27:15] Removing static dial candidate           id=0ba6b9f606a43a95 addr=100.64.217.233:7302 err="is self"
+INFO [02-19|14:27:15] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth.ipc 
+INFO [02-19|14:27:15] Mapped network port                      proto=tcp extport=7302 intport=7302 interface="UPNP IGDv1-IP1"
+INFO [02-19|14:27:15] HTTP endpoint opened: http://localhost:7102 
+appending output to nohup.out
+INFO [02-19|14:30:15] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-19|14:30:15] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+INFO [02-19|14:30:15] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-19|14:30:15] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-19|14:30:15] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-19|14:30:15] Initialising Ethereum protocol           versions="[63 62]" network=999
+INFO [02-19|14:30:15] Loaded most recent local header          number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:30:15] Loaded most recent local full block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:30:15] Loaded most recent local fast block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:30:15] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-19|14:30:15] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [02-19|14:30:15] Blockchain not empty, fast sync disabled 
+INFO [02-19|14:30:15] Starting P2P networking 
+INFO [02-19|14:30:17] UDP listener up                          self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+INFO [02-19|14:30:17] RLPx listener up                         self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+WARN [02-19|14:30:17] Removing static dial candidate           id=0ba6b9f606a43a95 addr=100.64.217.233:7302 err="is self"
+INFO [02-19|14:30:17] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth.ipc 
+INFO [02-19|14:30:17] HTTP endpoint opened: http://localhost:7102 
+INFO [02-19|14:30:17] Mapped network port                      proto=tcp extport=7302 intport=7302 interface="UPNP IGDv1-IP1"
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+appending output to nohup.out
+INFO [02-19|14:40:57] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-19|14:40:57] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/chaindata cache=128 handles=1024
+INFO [02-19|14:40:57] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-19|14:40:57] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth/ethash count=3
+INFO [02-19|14:40:57] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-19|14:40:57] Initialising Ethereum protocol           versions="[63 62]" network=999
+INFO [02-19|14:40:57] Loaded most recent local header          number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:40:57] Loaded most recent local full block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:40:57] Loaded most recent local fast block      number=50 hash=73a238…1675a2 td=6629000
+INFO [02-19|14:40:57] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-19|14:40:57] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [02-19|14:40:57] Blockchain not empty, fast sync disabled 
+INFO [02-19|14:40:57] Starting P2P networking 
+INFO [02-19|14:41:00] UDP listener up                          self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+INFO [02-19|14:41:00] RLPx listener up                         self=enode://0ba6b9f606a43a95edc6247cdb1c1e105145817be7bcafd6b2c0ba15d58145f0dc1a194f70ba73cd6f4cdd6864edc7687f311254c7555cc32e4d45aeb1b80416@100.64.217.233:7302
+WARN [02-19|14:41:00] Removing static dial candidate           id=0ba6b9f606a43a95 addr=100.64.217.233:7302 err="is self"
+INFO [02-19|14:41:00] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd2/geth.ipc 
+INFO [02-19|14:41:00] Mapped network port                      proto=tcp extport=7302 intport=7302 interface="UPNP IGDv1-IP1"
+INFO [02-19|14:41:00] HTTP endpoint opened: http://localhost:7102 
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+INFO [02-19|14:45:03] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.908ms mgasps=0.000 number=51 hash=fcc415…a5ed4e
+INFO [02-19|14:45:03] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.355ms mgasps=0.000 number=52 hash=7de5bf…5ae2ad
+INFO [02-19|14:45:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.408ms mgasps=0.000 number=53 hash=ee7fc7…32f463
+INFO [02-19|14:45:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.804ms mgasps=0.000 number=54 hash=b11c59…2b04fd
+INFO [02-19|14:45:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.342ms mgasps=0.000 number=55 hash=b1230d…aaace6
+INFO [02-19|14:45:09] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.927ms mgasps=0.000 number=56 hash=2b3931…bec045
+INFO [02-19|14:45:12] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.790ms mgasps=0.000 number=57 hash=521329…621853
+INFO [02-19|14:45:13] Block synchronisation started 
+INFO [02-19|14:45:13] Imported new chain segment               blocks=3 txs=0 mgas=0.000 elapsed=6.869ms mgasps=0.000 number=60 hash=862345…b025e5 ignored=9
+INFO [02-19|14:45:14] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.089ms mgasps=0.000 number=61 hash=20877f…758653
+INFO [02-19|14:45:18] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=13.600ms mgasps=0.000 number=62 hash=53d2d6…693dd5
+INFO [02-19|14:45:20] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.416ms  mgasps=0.000 number=63 hash=acc73c…0c9b2d
+INFO [02-19|14:45:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.573ms  mgasps=0.000 number=64 hash=715c05…b22a9b
+INFO [02-19|14:45:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.539ms  mgasps=0.000 number=65 hash=58d514…0daf77
+INFO [02-19|14:45:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.962ms  mgasps=0.000 number=66 hash=9a468a…13222e
+INFO [02-19|14:45:27] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.186ms  mgasps=0.000 number=67 hash=ff7264…974a58
+INFO [02-19|14:45:28] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.095ms  mgasps=0.000 number=68 hash=31eb56…99a7de
+INFO [02-19|14:45:28] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.320ms  mgasps=0.000 number=69 hash=169624…f4abc8
+INFO [02-19|14:45:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.310ms  mgasps=0.000 number=70 hash=4490fc…fbfa92
+INFO [02-19|14:45:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.069ms  mgasps=0.000 number=71 hash=f58c7a…3f5fc8
+INFO [02-19|14:45:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.627ms  mgasps=0.000 number=72 hash=ffc76e…e15b7d
+INFO [02-19|14:45:35] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.236ms  mgasps=0.000 number=73 hash=df7d64…5f5277
+INFO [02-19|14:45:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.313ms  mgasps=0.000 number=74 hash=c68211…794d95
+INFO [02-19|14:45:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.240ms  mgasps=0.000 number=75 hash=394736…bfd9b7
+INFO [02-19|14:45:37] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.344ms  mgasps=0.000 number=76 hash=0b567f…3eef4e
+INFO [02-19|14:45:37] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.503ms  mgasps=0.000 number=77 hash=1f5d62…a80592
+INFO [02-19|14:45:40] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.529ms  mgasps=0.000 number=78 hash=b6cff0…c83304
+INFO [02-19|14:45:40] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.193ms  mgasps=0.000 number=79 hash=51adfe…7028e9
+INFO [02-19|14:45:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.116ms  mgasps=0.000 number=80 hash=31e1ea…fe2652
+INFO [02-19|14:45:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.926ms  mgasps=0.000 number=81 hash=2d258a…9b728a
+INFO [02-19|14:45:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.941ms  mgasps=0.000 number=82 hash=78eab8…7e5c5a
+INFO [02-19|14:45:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.445ms  mgasps=0.000 number=83 hash=6d6835…e921e6
+INFO [02-19|14:45:44] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.406ms  mgasps=0.000 number=84 hash=0a85d4…6a8e54
+INFO [02-19|14:45:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.900ms  mgasps=0.000 number=87 hash=8ed505…686fd3
+INFO [02-19|14:45:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.953ms  mgasps=0.000 number=88 hash=e915b6…9f1538
+INFO [02-19|14:45:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.499ms  mgasps=0.000 number=89 hash=751f8d…3233ba
+INFO [02-19|14:45:54] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.215ms  mgasps=0.000 number=90 hash=f94f52…19d1bd
+INFO [02-19|14:45:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.043ms  mgasps=0.000 number=91 hash=a26a1b…6680e9
+INFO [02-19|14:45:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.055ms  mgasps=0.000 number=92 hash=3bd057…2a21cc
+INFO [02-19|14:45:59] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.193ms  mgasps=0.000 number=93 hash=c90a11…4b4d9e
+INFO [02-19|14:46:00] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.952ms  mgasps=0.000 number=94 hash=b00dd9…21bef3
+INFO [02-19|14:46:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.206ms  mgasps=0.000 number=95 hash=555a8f…ac9f4e
+INFO [02-19|14:46:03] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=12.610ms mgasps=0.000 number=97 hash=0c62d6…47f3dd ignored=15
+INFO [02-19|14:46:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=10.990ms mgasps=0.000 number=98 hash=455793…1cc456
+INFO [02-19|14:46:06] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.202ms  mgasps=0.000 number=99 hash=13f2d8…84de5d
+INFO [02-19|14:46:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.430ms  mgasps=0.000 number=100 hash=74263e…19689a
+INFO [02-19|14:46:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.359ms  mgasps=0.000 number=101 hash=c482d6…e0ad88
+INFO [02-19|14:46:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.500ms  mgasps=0.000 number=102 hash=f1471e…0d6fdb
+INFO [02-19|14:46:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.179ms  mgasps=0.000 number=103 hash=62c5f1…682cf7
+INFO [02-19|14:46:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.136ms  mgasps=0.000 number=104 hash=beccc1…a514dd
+INFO [02-19|14:46:11] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.458ms  mgasps=0.000 number=105 hash=231072…d61c54
+INFO [02-19|14:46:14] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.785ms  mgasps=0.000 number=106 hash=11a79e…136815
+INFO [02-19|14:46:14] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.393ms  mgasps=0.000 number=107 hash=d21781…9bb397
+INFO [02-19|14:46:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=11.773ms mgasps=0.000 number=108 hash=c44550…bba5f8
+INFO [02-19|14:46:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.795ms  mgasps=0.000 number=109 hash=1fa18d…429b8a
+INFO [02-19|14:46:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.388ms  mgasps=0.000 number=110 hash=823a29…991e64
+INFO [02-19|14:46:18] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.480ms  mgasps=0.000 number=111 hash=1fd485…14e904
+INFO [02-19|14:46:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.333ms  mgasps=0.000 number=112 hash=b10025…43bf3d
+INFO [02-19|14:46:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.307ms  mgasps=0.000 number=113 hash=3be93f…dfb319
+INFO [02-19|14:46:22] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.331ms  mgasps=0.000 number=114 hash=b5de61…7c2496
+INFO [02-19|14:46:22] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.828ms  mgasps=0.000 number=115 hash=e9871e…f6f18a
+INFO [02-19|14:46:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.428ms  mgasps=0.000 number=116 hash=453844…270f4f
+INFO [02-19|14:46:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.295ms  mgasps=0.000 number=117 hash=2c0815…0be3a6
+INFO [02-19|14:46:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.081ms  mgasps=0.000 number=118 hash=352787…ca98e8
+INFO [02-19|14:46:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.078ms  mgasps=0.000 number=119 hash=ccf04a…27b671
+INFO [02-19|14:46:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.999ms  mgasps=0.000 number=120 hash=770f37…10ddd1
+INFO [02-19|14:46:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.119ms  mgasps=0.000 number=121 hash=a5036c…72a5bf
+INFO [02-19|14:46:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.205ms  mgasps=0.000 number=122 hash=271ab3…d5e2ad
+INFO [02-19|14:46:32] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.967ms  mgasps=0.000 number=123 hash=7613c4…8fb2db
+INFO [02-19|14:46:34] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.009ms  mgasps=0.000 number=124 hash=a859be…7908e5
+INFO [02-19|14:46:35] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.679ms  mgasps=0.000 number=125 hash=fa7ef6…654b1f
+INFO [02-19|14:46:37] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.463ms  mgasps=0.000 number=126 hash=0d9622…5829d1
+INFO [02-19|14:46:40] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.046ms  mgasps=0.000 number=127 hash=2afed4…3945c8
+INFO [02-19|14:46:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.529ms  mgasps=0.000 number=128 hash=6ad9c5…6f8fc1
+INFO [02-19|14:46:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.255ms  mgasps=0.000 number=129 hash=2576ef…8d2fae
+INFO [02-19|14:46:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.935ms  mgasps=0.000 number=130 hash=7e95f9…fdd073
+INFO [02-19|14:46:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=10.984ms mgasps=0.000 number=131 hash=dc2b31…a5827b
+INFO [02-19|14:46:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.401ms  mgasps=0.000 number=132 hash=b2396d…b44167
+INFO [02-19|14:46:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.986ms  mgasps=0.000 number=133 hash=c7cffc…1906e5
+INFO [02-19|14:46:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.295ms  mgasps=0.000 number=134 hash=883af0…4669f2
+INFO [02-19|14:46:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.394ms  mgasps=0.000 number=135 hash=27b687…d6b3b0
+INFO [02-19|14:46:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.989ms  mgasps=0.000 number=136 hash=a6ff5b…d67570
+INFO [02-19|14:46:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.497ms  mgasps=0.000 number=137 hash=364d58…73ab79
+INFO [02-19|14:46:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.942ms  mgasps=0.000 number=138 hash=4ba2a4…bf13dd
+INFO [02-19|14:46:51] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.808ms  mgasps=0.000 number=139 hash=6a41da…300beb
+INFO [02-19|14:46:54] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.206ms  mgasps=0.000 number=140 hash=b42e2b…f2a53e
+INFO [02-19|14:46:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.871ms  mgasps=0.000 number=141 hash=dede31…7c4e4b
+INFO [02-19|14:46:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.462ms  mgasps=0.000 number=142 hash=677d7d…a57bde
+INFO [02-19|14:46:57] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.117ms  mgasps=0.000 number=143 hash=4fb7f4…6ed370
+INFO [02-19|14:46:59] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.235ms  mgasps=0.000 number=144 hash=b4079f…0abcd1
+INFO [02-19|14:47:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.673ms  mgasps=0.000 number=145 hash=6df474…687920
+INFO [02-19|14:47:03] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.319ms  mgasps=0.000 number=146 hash=bd68cf…e06798
+INFO [02-19|14:47:04] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.254ms  mgasps=0.000 number=147 hash=218939…40d035
+INFO [02-19|14:47:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.240ms  mgasps=0.000 number=148 hash=9a0a77…a679f0
+INFO [02-19|14:47:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.640ms  mgasps=0.000 number=149 hash=2027c5…801fd5
+INFO [02-19|14:47:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.625ms  mgasps=0.000 number=150 hash=77fb36…6986c9
+INFO [02-19|14:47:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.295ms  mgasps=0.000 number=151 hash=0bee13…d13b59
+INFO [02-19|14:47:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.283ms  mgasps=0.000 number=152 hash=966973…36c275
+INFO [02-19|14:47:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.284ms  mgasps=0.000 number=153 hash=caa7d2…f2e132
+INFO [02-19|14:47:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.312ms  mgasps=0.000 number=154 hash=33ae6d…2956e7
+INFO [02-19|14:47:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.078ms  mgasps=0.000 number=155 hash=b75f0c…74d0b7
+INFO [02-19|14:47:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.739ms  mgasps=0.000 number=156 hash=3f2069…d2164a
+INFO [02-19|14:47:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.146ms  mgasps=0.000 number=157 hash=e43cf6…86ad47
+INFO [02-19|14:47:18] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.981ms  mgasps=0.000 number=158 hash=493800…11a9c3
+INFO [02-19|14:47:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.929ms  mgasps=0.000 number=159 hash=838509…2f162a
+INFO [02-19|14:47:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.842ms  mgasps=0.000 number=160 hash=cc31ba…ca4732
+INFO [02-19|14:47:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.509ms  mgasps=0.000 number=161 hash=0354b2…8dcedf
+INFO [02-19|14:47:22] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.995ms  mgasps=0.000 number=162 hash=08d178…aaf6c1
+INFO [02-19|14:47:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.361ms  mgasps=0.000 number=163 hash=5d3950…e91396
+INFO [02-19|14:47:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.977ms  mgasps=0.000 number=164 hash=c1068d…26133b
+INFO [02-19|14:47:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.176ms  mgasps=0.000 number=165 hash=6d7db7…743ec1
+INFO [02-19|14:47:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.171ms  mgasps=0.000 number=166 hash=671f57…6658da
+INFO [02-19|14:47:28] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.528ms  mgasps=0.000 number=167 hash=f58db0…66bcbf
+INFO [02-19|14:47:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.838ms  mgasps=0.000 number=168 hash=48ff41…bbcc97
+INFO [02-19|14:47:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.458ms  mgasps=0.000 number=169 hash=3d2a43…8c39b6
+INFO [02-19|14:47:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.529ms  mgasps=0.000 number=170 hash=60ef8c…5ddddb
+INFO [02-19|14:47:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.497ms  mgasps=0.000 number=171 hash=b5b4bc…9e0ea5
+INFO [02-19|14:47:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.894ms  mgasps=0.000 number=172 hash=4630d1…7afdcb
+INFO [02-19|14:47:37] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.993ms  mgasps=0.000 number=173 hash=2e2523…45038a
+INFO [02-19|14:47:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.772ms  mgasps=0.000 number=174 hash=7df7a1…3f5c7b
+INFO [02-19|14:47:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.247ms  mgasps=0.000 number=175 hash=980908…6ab3fe
+INFO [02-19|14:47:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.375ms  mgasps=0.000 number=176 hash=195e72…e5ac65
+INFO [02-19|14:47:40] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.300ms  mgasps=0.000 number=177 hash=957434…b4280a
+INFO [02-19|14:47:44] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.086ms  mgasps=0.000 number=178 hash=badcb9…1ecce9
+INFO [02-19|14:47:45] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.051ms  mgasps=0.000 number=179 hash=da2587…354cd5
+INFO [02-19|14:47:46] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.709ms  mgasps=0.000 number=180 hash=5a14bd…053b98
+INFO [02-19|14:47:48] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.193ms  mgasps=0.000 number=181 hash=1c7689…75648c
+INFO [02-19|14:47:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.445ms  mgasps=0.000 number=182 hash=b0dd36…d9aa04
+INFO [02-19|14:47:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.017ms  mgasps=0.000 number=183 hash=95a480…57fbd3
+INFO [02-19|14:47:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.255ms  mgasps=0.000 number=184 hash=6657f7…fee0ca
+INFO [02-19|14:47:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.166ms  mgasps=0.000 number=185 hash=6f5da4…73e045
+INFO [02-19|14:47:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.517ms  mgasps=0.000 number=186 hash=87c895…e1983e
+INFO [02-19|14:47:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.712ms  mgasps=0.000 number=187 hash=ad4401…e9d3cd
+INFO [02-19|14:47:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.786ms  mgasps=0.000 number=188 hash=7f1318…533b99
+INFO [02-19|14:47:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.974ms  mgasps=0.000 number=189 hash=c927a5…986bd4
+INFO [02-19|14:47:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.909ms  mgasps=0.000 number=190 hash=10f2cf…a609ce
+INFO [02-19|14:48:02] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.964ms  mgasps=0.000 number=191 hash=47f8c4…1760c1
+INFO [02-19|14:48:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.067ms  mgasps=0.000 number=192 hash=e4d2fe…2bdcfa
+INFO [02-19|14:48:06] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.714ms  mgasps=0.000 number=193 hash=b7b06f…bc5819
+INFO [02-19|14:48:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.049ms  mgasps=0.000 number=194 hash=a42090…9e7127
+INFO [02-19|14:48:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.528ms  mgasps=0.000 number=195 hash=02cbad…2165a6
+INFO [02-19|14:48:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.522ms  mgasps=0.000 number=196 hash=4bcecb…651c30
+INFO [02-19|14:48:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.493ms  mgasps=0.000 number=197 hash=750363…8be0e6
+INFO [02-19|14:48:14] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.221ms  mgasps=0.000 number=198 hash=1d932c…d8b34c
+INFO [02-19|14:48:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.978ms  mgasps=0.000 number=199 hash=21e245…06ccc8
+INFO [02-19|14:48:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.271ms  mgasps=0.000 number=200 hash=6b583a…bb73ba
+INFO [02-19|14:48:18] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.356ms  mgasps=0.000 number=201 hash=6aed3f…e335ee
+INFO [02-19|14:48:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.271ms  mgasps=0.000 number=202 hash=2bfa73…658ea1
+INFO [02-19|14:48:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.857ms  mgasps=0.000 number=203 hash=27ce78…eb8548
+INFO [02-19|14:48:20] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.944ms  mgasps=0.000 number=204 hash=f16c9f…75b981
+INFO [02-19|14:48:22] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.179ms  mgasps=0.000 number=205 hash=1ebd7e…171ac9
+INFO [02-19|14:48:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.532ms  mgasps=0.000 number=206 hash=3215eb…e12215
+INFO [02-19|14:48:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.528ms  mgasps=0.000 number=207 hash=b0e8e3…f2a29f
+INFO [02-19|14:48:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.568ms  mgasps=0.000 number=208 hash=e3b363…b81722
+INFO [02-19|14:48:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.032ms  mgasps=0.000 number=209 hash=a063ed…c8142c
+INFO [02-19|14:48:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.515ms  mgasps=0.000 number=210 hash=c912d9…85a96b
+INFO [02-19|14:48:32] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.113ms  mgasps=0.000 number=211 hash=7c2df5…a03e2e
+INFO [02-19|14:48:34] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.720ms  mgasps=0.000 number=212 hash=00247e…36162c
+INFO [02-19|14:48:35] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.419ms  mgasps=0.000 number=213 hash=faf6ef…803e51
+INFO [02-19|14:48:35] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.313ms  mgasps=0.000 number=214 hash=564e8b…9b0d9d
+INFO [02-19|14:48:37] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.573ms  mgasps=0.000 number=215 hash=94a308…811343
+INFO [02-19|14:48:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.697ms  mgasps=0.000 number=216 hash=01e4cf…0cc1a2
+INFO [02-19|14:48:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.941ms  mgasps=0.000 number=217 hash=8b3c02…0e561e
+INFO [02-19|14:48:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.633ms  mgasps=0.000 number=218 hash=eff7c7…d942c7
+INFO [02-19|14:48:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.250ms  mgasps=0.000 number=219 hash=e90ae1…5d059f
+INFO [02-19|14:48:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.447ms  mgasps=0.000 number=220 hash=32ec5d…ff3c4c
+INFO [02-19|14:48:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.458ms  mgasps=0.000 number=221 hash=f59045…39ed7c
+INFO [02-19|14:48:46] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.251ms  mgasps=0.000 number=222 hash=0ba8af…9b199d
+INFO [02-19|14:48:46] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=9.213ms  mgasps=0.000 number=224 hash=0fac7c…4bba09
+INFO [02-19|14:48:48] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.825ms  mgasps=0.000 number=225 hash=f59180…a64a14
+INFO [02-19|14:48:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=10.498ms mgasps=0.000 number=226 hash=61ed0e…a8f6bc
+INFO [02-19|14:48:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.315ms  mgasps=0.000 number=227 hash=679948…194bc5
+appending output to nohup.out
+INFO [02-19|14:48:51] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.826ms  mgasps=0.000 number=228 hash=2e6648…c57395
+Fatal: Error starting protocol stack: datadir already used by another process
+INFO [02-19|14:48:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.800ms  mgasps=0.000 number=229 hash=c2ad90…ea6b40
+INFO [02-19|14:48:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.615ms  mgasps=0.000 number=230 hash=c78790…bd7078
+INFO [02-19|14:48:54] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=10.653ms mgasps=0.000 number=231 hash=5b9642…99451c
+INFO [02-19|14:48:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.608ms  mgasps=0.000 number=232 hash=421294…37534a
+INFO [02-19|14:48:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.952ms  mgasps=0.000 number=233 hash=408e87…150ae4
+INFO [02-19|14:48:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.267ms  mgasps=0.000 number=234 hash=3a40e6…e70f99
+INFO [02-19|14:48:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.220ms  mgasps=0.000 number=235 hash=19808f…d9e479
+INFO [02-19|14:48:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.859ms  mgasps=0.000 number=236 hash=c0dde1…b4339a
+INFO [02-19|14:49:02] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.223ms  mgasps=0.000 number=237 hash=e0217e…bb70f0
+INFO [02-19|14:49:06] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.239ms  mgasps=0.000 number=238 hash=dd4fb8…621e3b
+INFO [02-19|14:49:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.011ms  mgasps=0.000 number=239 hash=9ee178…c6c77e
+INFO [02-19|14:49:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.251ms  mgasps=0.000 number=240 hash=488647…b29c54
+INFO [02-19|14:49:12] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.440ms  mgasps=0.000 number=241 hash=196507…d6eb5e
+INFO [02-19|14:49:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.201ms  mgasps=0.000 number=242 hash=47fd28…d8a09c
+INFO [02-19|14:49:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=9.789ms  mgasps=0.000 number=243 hash=3518dc…5428cb
+INFO [02-19|14:49:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=11.695ms mgasps=0.000 number=244 hash=e828d5…7ea737
+INFO [02-19|14:49:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.305ms  mgasps=0.000 number=245 hash=08f31c…2b98a8
+INFO [02-19|14:49:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.226ms  mgasps=0.000 number=246 hash=0837a6…fdae46
+INFO [02-19|14:49:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=12.325ms mgasps=0.000 number=247 hash=b4e1e4…f38c8e
+INFO [02-19|14:49:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.468ms  mgasps=0.000 number=248 hash=f1a77f…462ff9
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+INFO [02-19|14:49:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.236ms  mgasps=0.000 number=249 hash=31199f…5ad163
+INFO [02-19|14:49:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.374ms  mgasps=0.000 number=250 hash=d87713…6fb51d
+INFO [02-19|14:49:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.334ms  mgasps=0.000 number=251 hash=1f7c63…b0d702
+INFO [02-19|14:49:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.744ms  mgasps=0.000 number=252 hash=66d095…dbe3f7
+INFO [02-19|14:49:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.832ms  mgasps=0.000 number=253 hash=305cec…aca392
+INFO [02-19|14:49:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.790ms  mgasps=0.000 number=254 hash=25baac…a2743e
+INFO [02-19|14:49:24] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.665ms  mgasps=0.000 number=255 hash=58e7f3…263add
+INFO [02-19|14:49:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.218ms  mgasps=0.000 number=256 hash=b7931b…37538b
+INFO [02-19|14:49:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.834ms  mgasps=0.000 number=257 hash=f2340f…faab6f
+INFO [02-19|14:49:28] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.004ms  mgasps=0.000 number=258 hash=151941…5df8c6
+INFO [02-19|14:49:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.635ms  mgasps=0.000 number=259 hash=069c57…24f772
+INFO [02-19|14:49:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.998ms  mgasps=0.000 number=260 hash=88360b…14c492
+INFO [02-19|14:49:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.844ms  mgasps=0.000 number=261 hash=2f6148…5e05db
+INFO [02-19|14:49:32] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.185ms  mgasps=0.000 number=262 hash=c2a195…22fe17
+INFO [02-19|14:49:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.219ms  mgasps=0.000 number=263 hash=276599…cf5525
+INFO [02-19|14:49:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.184ms  mgasps=0.000 number=264 hash=0eede6…baa848
+INFO [02-19|14:49:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=8.568ms  mgasps=0.000 number=265 hash=9382a0…b654e8
+INFO [02-19|14:49:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.751ms  mgasps=0.000 number=266 hash=382638…ba9ecf
+INFO [02-19|14:49:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.476ms  mgasps=0.000 number=267 hash=750e58…96b63d
+INFO [02-19|14:49:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.338ms  mgasps=0.000 number=268 hash=0b94e9…222bee
+INFO [02-19|14:49:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.681ms  mgasps=0.000 number=269 hash=296e7f…7e4bf2
+INFO [02-19|14:49:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.940ms  mgasps=0.000 number=270 hash=4da145…414d2c
+INFO [02-19|14:49:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.487ms  mgasps=0.000 number=271 hash=e6e58c…f847ec
+INFO [02-19|14:49:45] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.903ms  mgasps=0.000 number=272 hash=26810f…e45d0f
+INFO [02-19|14:49:46] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.318ms  mgasps=0.000 number=273 hash=08324c…b0156e
+appending output to nohup.out
+Fatal: Error starting protocol stack: datadir already used by another process
+INFO [02-19|14:49:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.667ms  mgasps=0.000 number=274 hash=b1e881…5b6b1b
+INFO [02-19|14:49:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.738ms  mgasps=0.000 number=275 hash=bca6d3…f9f37f
+INFO [02-19|14:49:48] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.945ms  mgasps=0.000 number=276 hash=9f47d8…127531
+INFO [02-19|14:49:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.027ms  mgasps=0.000 number=277 hash=8e0494…3d6326
+INFO [02-19|14:49:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.013ms  mgasps=0.000 number=278 hash=9c838d…090c2c
+INFO [02-19|14:49:51] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.094ms  mgasps=0.000 number=279 hash=25bf38…3f9791
+INFO [02-19|14:49:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.957ms  mgasps=0.000 number=280 hash=47d5a6…826ee3
+INFO [02-19|14:49:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.013ms  mgasps=0.000 number=281 hash=58f02a…ee3b79
+INFO [02-19|14:49:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.290ms  mgasps=0.000 number=282 hash=17ee3f…362db6
+INFO [02-19|14:49:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.587ms  mgasps=0.000 number=283 hash=2b08e0…3c7c4b
+INFO [02-19|14:49:59] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.602ms  mgasps=0.000 number=284 hash=702e07…8839c4
+INFO [02-19|14:50:00] Imported new chain segment               blocks=1 txs=1 mgas=0.133 elapsed=7.254ms  mgasps=18.290 number=285 hash=68bd2e…a171fe
+INFO [02-19|14:50:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.117ms  mgasps=0.000  number=286 hash=ad4199…1d519e
+INFO [02-19|14:50:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.797ms  mgasps=0.000  number=287 hash=0c9119…8799bc
+INFO [02-19|14:50:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.497ms  mgasps=0.000  number=288 hash=57492a…fe7b8a
+INFO [02-19|14:50:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.875ms  mgasps=0.000  number=289 hash=ce3496…cae7c7
+INFO [02-19|14:50:05] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.171ms  mgasps=0.000  number=290 hash=a333ba…ab8cdc
+INFO [02-19|14:50:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.295ms  mgasps=0.000  number=291 hash=73cc58…410a22
+INFO [02-19|14:50:09] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.418ms  mgasps=0.000  number=292 hash=c86751…d8421e
+INFO [02-19|14:50:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.201ms  mgasps=0.000  number=293 hash=7e629d…b75f1d
+INFO [02-19|14:50:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.546ms  mgasps=0.000  number=294 hash=889691…19e45e
+INFO [02-19|14:50:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.572ms  mgasps=0.000  number=295 hash=025aea…28ead9
+INFO [02-19|14:50:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.978ms  mgasps=0.000  number=296 hash=87f695…df6eca
+INFO [02-19|14:50:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.633ms  mgasps=0.000  number=297 hash=dda971…b81d3a
+INFO [02-19|14:50:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.462ms  mgasps=0.000  number=298 hash=b1a307…65e844
+INFO [02-19|14:50:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.321ms  mgasps=0.000  number=299 hash=c6a6ad…b82c60
+INFO [02-19|14:50:24] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.818ms  mgasps=0.000  number=300 hash=ca63ac…b3ae3b
+INFO [02-19|14:50:24] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.917ms  mgasps=0.000  number=301 hash=6ab0d0…caa07f
+INFO [02-19|14:50:27] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.682ms  mgasps=0.000  number=302 hash=118a71…fe46df
+INFO [02-19|14:50:27] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.980ms  mgasps=0.000  number=303 hash=ee2dac…c6277d
+INFO [02-19|14:50:27] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.686ms  mgasps=0.000  number=304 hash=ffcf3e…2bff4f
+INFO [02-19|14:50:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.810ms  mgasps=0.000  number=305 hash=42f4f4…bf32a3
+INFO [02-19|14:50:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.993ms  mgasps=0.000  number=306 hash=87fafc…d26fd1
+INFO [02-19|14:50:32] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.246ms  mgasps=0.000  number=307 hash=4e579c…7e75e1
+INFO [02-19|14:50:32] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.729ms  mgasps=0.000  number=308 hash=46b489…0c7cfd
+INFO [02-19|14:50:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.386ms  mgasps=0.000  number=309 hash=9f213d…952e77
+INFO [02-19|14:50:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.197ms  mgasps=0.000  number=310 hash=0fa157…72e90c
+INFO [02-19|14:50:38] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.365ms  mgasps=0.000  number=311 hash=f87225…80767c
+INFO [02-19|14:50:39] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.301ms  mgasps=0.000  number=312 hash=2b9c67…f27d2f
+INFO [02-19|14:50:39] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.792ms  mgasps=0.000  number=313 hash=87c579…0fa08d
+INFO [02-19|14:50:40] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.461ms  mgasps=0.000  number=314 hash=fa0687…89d344
+INFO [02-19|14:50:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.439ms  mgasps=0.000  number=315 hash=d2ffdd…2277d7
+INFO [02-19|14:50:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.883ms  mgasps=0.000  number=316 hash=985054…6b5aa9
+INFO [02-19|14:50:48] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=5.609ms  mgasps=0.000  number=318 hash=fad5eb…2d27a5
+INFO [02-19|14:50:49] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.104ms  mgasps=0.000  number=319 hash=6f21fb…fca311
+INFO [02-19|14:50:51] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.387ms  mgasps=0.000  number=320 hash=3dd33f…0f10e9
+INFO [02-19|14:50:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.334ms  mgasps=0.000  number=321 hash=7c9b17…a340ca
+INFO [02-19|14:50:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.035ms  mgasps=0.000  number=322 hash=cb0205…9d0ed4
+INFO [02-19|14:50:53] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.065ms  mgasps=0.000  number=323 hash=682fd1…767aab
+INFO [02-19|14:50:54] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.306ms  mgasps=0.000  number=324 hash=a15107…cf6142
+INFO [02-19|14:50:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.601ms  mgasps=0.000  number=325 hash=ef2368…e1c8db
+INFO [02-19|14:50:57] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.471ms  mgasps=0.000  number=326 hash=514907…8ddaa7
+INFO [02-19|14:50:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.478ms  mgasps=0.000  number=327 hash=7e0352…b9fa44
+INFO [02-19|14:50:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.104ms  mgasps=0.000  number=328 hash=e34e2e…e15e5d
+INFO [02-19|14:51:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.140ms  mgasps=0.000  number=329 hash=00d5f1…ab3d96
+INFO [02-19|14:51:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.281ms  mgasps=0.000  number=330 hash=bdd32a…f7769f
+INFO [02-19|14:51:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.978ms  mgasps=0.000  number=331 hash=0cf41b…3cccf0
+INFO [02-19|14:51:02] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.391ms  mgasps=0.000  number=332 hash=5dc037…2ffce7
+INFO [02-19|14:51:04] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.241ms  mgasps=0.000  number=333 hash=563e1c…a6e427
+INFO [02-19|14:51:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.075ms  mgasps=0.000  number=334 hash=683232…8ca95c
+INFO [02-19|14:51:07] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.502ms  mgasps=0.000  number=335 hash=cfd73c…222c1f
+INFO [02-19|14:51:08] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.018ms  mgasps=0.000  number=336 hash=fb588c…db37d2
+INFO [02-19|14:51:09] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.000ms  mgasps=0.000  number=337 hash=08e011…87a0f2
+INFO [02-19|14:51:11] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.814ms  mgasps=0.000  number=338 hash=61a95c…9568f8
+INFO [02-19|14:51:12] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.299ms  mgasps=0.000  number=339 hash=2d1110…4b132d
+INFO [02-19|14:51:13] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.159ms  mgasps=0.000  number=340 hash=fee85a…681673
+INFO [02-19|14:51:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.050ms  mgasps=0.000  number=341 hash=fb4887…993cf7
+INFO [02-19|14:51:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.276ms  mgasps=0.000  number=342 hash=0bd306…ba650f
+INFO [02-19|14:51:16] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.289ms  mgasps=0.000  number=343 hash=6a98d5…cb06ad
+INFO [02-19|14:51:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.097ms  mgasps=0.000  number=344 hash=765c8a…63de32
+INFO [02-19|14:51:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.173ms  mgasps=0.000  number=345 hash=7e3b12…272981
+INFO [02-19|14:51:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.073ms  mgasps=0.000  number=346 hash=ccae02…252053
+INFO [02-19|14:51:22] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.997ms  mgasps=0.000  number=347 hash=41eb74…15d12e
+INFO [02-19|14:51:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.387ms  mgasps=0.000  number=348 hash=bdec68…1ca218
+INFO [02-19|14:51:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.313ms  mgasps=0.000  number=349 hash=616647…487a86
+INFO [02-19|14:51:26] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.722ms  mgasps=0.000  number=350 hash=c6b0e6…f67198
+INFO [02-19|14:51:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.741ms  mgasps=0.000  number=351 hash=c14bd3…feae5f
+INFO [02-19|14:51:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.915ms  mgasps=0.000  number=352 hash=693d80…84c1b4
+INFO [02-19|14:51:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.750ms  mgasps=0.000  number=353 hash=ce10c7…faf3c0
+INFO [02-19|14:51:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.848ms  mgasps=0.000  number=354 hash=fca32a…9de61a
+INFO [02-19|14:51:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.563ms  mgasps=0.000  number=355 hash=74f5cd…4b8e48
+INFO [02-19|14:51:33] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.941ms  mgasps=0.000  number=356 hash=22651c…030f3a
+INFO [02-19|14:51:34] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.546ms  mgasps=0.000  number=357 hash=0868a3…456989
+INFO [02-19|14:51:35] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.286ms  mgasps=0.000  number=358 hash=203f4f…655b49
+INFO [02-19|14:51:36] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=12.893ms mgasps=0.000  number=359 hash=620b11…32f683
+INFO [02-19|14:51:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.313ms  mgasps=0.000  number=360 hash=5f9c1b…675cd8
+INFO [02-19|14:51:41] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.378ms  mgasps=0.000  number=361 hash=6b6dd5…1a6056
+INFO [02-19|14:51:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.493ms  mgasps=0.000  number=362 hash=ef2128…a0b3de
+INFO [02-19|14:51:42] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.685ms  mgasps=0.000  number=363 hash=3a21e6…4da8a1
+INFO [02-19|14:51:43] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.084ms  mgasps=0.000  number=364 hash=167f26…eb34b2
+INFO [02-19|14:51:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.612ms  mgasps=0.000  number=365 hash=d5056d…857fb6
+INFO [02-19|14:51:47] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.860ms  mgasps=0.000  number=366 hash=248d85…6ceceb
+INFO [02-19|14:51:48] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.010ms  mgasps=0.000  number=367 hash=2a8eff…90cbfe
+INFO [02-19|14:51:48] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.745ms  mgasps=0.000  number=368 hash=b94eda…32248a
+INFO [02-19|14:51:50] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.162ms  mgasps=0.000  number=369 hash=dde6bb…71bf50
+INFO [02-19|14:51:51] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.602ms  mgasps=0.000  number=370 hash=48bdb1…15258a
+INFO [02-19|14:51:52] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.878ms  mgasps=0.000  number=371 hash=e17aef…8f082d
+INFO [02-19|14:51:53] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=6.218ms  mgasps=0.000  number=373 hash=2a8d0d…01d428
+INFO [02-19|14:51:55] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.521ms  mgasps=0.000  number=374 hash=3a2b02…c1718c
+INFO [02-19|14:51:56] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.426ms  mgasps=0.000  number=375 hash=c38d09…6d0f95
+INFO [02-19|14:51:58] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.616ms  mgasps=0.000  number=376 hash=2c09f8…efecf7
+INFO [02-19|14:51:59] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.289ms  mgasps=0.000  number=377 hash=4694a5…edcd05
+INFO [02-19|14:52:01] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.069ms  mgasps=0.000  number=378 hash=69eb3d…a4e8ff
+INFO [02-19|14:52:02] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.050ms  mgasps=0.000  number=379 hash=e7fc87…dfbc7f
+INFO [02-19|14:52:03] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.236ms  mgasps=0.000  number=380 hash=76a444…731488
+INFO [02-19|14:52:03] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.298ms  mgasps=0.000  number=381 hash=4383e0…36e24d
+INFO [02-19|14:52:05] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=6.246ms  mgasps=0.000  number=383 hash=499799…9910fd
+INFO [02-19|14:52:06] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.876ms  mgasps=0.000  number=384 hash=a34afe…00854b
+INFO [02-19|14:52:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=7.152ms  mgasps=0.000  number=385 hash=df7a3d…8d662c
+INFO [02-19|14:52:10] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.173ms  mgasps=0.000  number=386 hash=3a0d57…c6e233
+INFO [02-19|14:52:11] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.019ms  mgasps=0.000  number=387 hash=a4a7d2…279b02
+INFO [02-19|14:52:11] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.766ms  mgasps=0.000  number=388 hash=41ceac…c13198
+INFO [02-19|14:52:12] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.196ms  mgasps=0.000  number=389 hash=d90432…466995
+INFO [02-19|14:52:14] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.428ms  mgasps=0.000  number=390 hash=256b0b…3397cc
+INFO [02-19|14:52:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.878ms  mgasps=0.000  number=391 hash=8f9b62…877f7c
+INFO [02-19|14:52:15] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.887ms  mgasps=0.000  number=392 hash=16c4d7…a94219
+INFO [02-19|14:52:17] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.259ms  mgasps=0.000  number=393 hash=5879da…cbc5db
+INFO [02-19|14:52:19] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.674ms  mgasps=0.000  number=394 hash=8e23ba…3f5a4c
+INFO [02-19|14:52:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=4.944ms  mgasps=0.000  number=395 hash=21119f…17ca30
+INFO [02-19|14:52:21] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.247ms  mgasps=0.000  number=396 hash=9c7efe…396a82
+INFO [02-19|14:52:23] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.810ms  mgasps=0.000  number=397 hash=c83161…06605e
+INFO [02-19|14:52:24] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.187ms  mgasps=0.000  number=398 hash=bc6932…e9f2cb
+INFO [02-19|14:52:24] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.068ms  mgasps=0.000  number=399 hash=4ccec0…ab62a1
+INFO [02-19|14:52:25] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.931ms  mgasps=0.000  number=400 hash=aa7c26…9ec13d
+INFO [02-19|14:52:27] Imported new chain segment               blocks=2 txs=0 mgas=0.000 elapsed=8.382ms  mgasps=0.000  number=402 hash=1abc3f…4affa8
+INFO [02-19|14:52:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.162ms  mgasps=0.000  number=403 hash=c3928e…28c424
+INFO [02-19|14:52:30] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.640ms  mgasps=0.000  number=404 hash=b14d15…969d40
+INFO [02-19|14:52:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.253ms  mgasps=0.000  number=405 hash=298dca…b3bff9

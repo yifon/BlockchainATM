@@ -1,6 +1,16 @@
-=============== Feb 12, 2018 (CST) ===============
-22:53:32.218970 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-22:53:32.219529 db@open opening
-22:53:32.220461 version@stat F·[] S·0B[] Sc·[]
-22:53:32.220855 db@janitor F·2 G·0
-22:53:32.220873 db@open done T·1.330445ms
+=============== Feb 19, 2018 (CST) ===============
+12:45:38.353771 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+12:45:38.354299 db@open opening
+12:45:38.355120 version@stat F·[] S·0B[] Sc·[]
+12:45:38.355643 db@janitor F·2 G·0
+12:45:38.355667 db@open done T·1.356041ms
+=============== Feb 19, 2018 (CST) ===============
+13:17:49.196148 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:17:49.196852 version@stat F·[] S·0B[] Sc·[]
+13:17:49.196873 db@open opening
+13:17:49.196940 journal@recovery F·1
+13:17:49.200767 journal@recovery recovering @1
+13:17:49.202767 memdb@flush created L0@2 N·9 S·547B "H\xc2;..\x8b\x1bq,v3":"r\x00\x00..\x8b\x1bq,v5"
+13:17:49.203492 version@stat F·[1] S·547B[547B] Sc·[0.25]
+13:17:49.204487 db@janitor F·3 G·0
+13:17:49.204560 db@open done T·7.677563ms

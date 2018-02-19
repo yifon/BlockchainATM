@@ -1,1 +1,18 @@
+admin.peers
 admin.nodeInfo
+geth attach ipc:qdata/dd3/geth.ipc
+admin.peers
+admin.nodeInfo.enode
+admin.peers
+eth.accounts
+eth.getBalance(eth.accounts[0])
+eth.blockNumber
+miner.start()
+miner.stop()
+eth.blockNumber()
+eth.blockNumber
+miner.stop()
+eth.blockNumber
+eth.getBalance(eth.accounts[0])
+eth.accounts
+eth.getBalance(eth.accounts[1])
