@@ -1,7 +1,7 @@
 //加载编译的模型
 var Atm = require('../models/atm');
 var Bank = require('../models/bank');
-
+var async = require('async');
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
 var _ = require('underscore');
@@ -10,20 +10,31 @@ var fs = require('fs');
 var path = require('path');
 //atm列表页
 exports.atmlist = function (req, res) {
+    var tempAtmArr = [];
     Atm.fetch(function (err, atms) {
         if (err) {
             console.log(err);
         }
-        res.render('atmlist', {
-            pageTitle: "ATM列表页",
-            atms: atms
+        //关联查询，返回查询的数组，再渲染页面
+        async.each(atms, (atm, callback) => {
+            Atm.findOne({ _id: atm._id })
+                .populate({ path: 'bank', select: 'name' })
+                .exec((err, atm) => {
+                    tempAtmArr.push(atm);
+                    callback(null);
+                })
+        }, err => {
+            console.log(err);
+            res.render('atmlist', {
+                pageTitle: "ATM列表页",
+                atms: tempAtmArr,
+            })
         })
     })
 }
 
 //atm录入url，实现跳转到atm录入页
 exports.new = function (req, res) {
-    //返回所有可以选择的银行
     Bank.find({}, (err, banks) => {
         res.render('atmCreate', {
             pageTitle: "ATM信息录入页",
@@ -65,6 +76,7 @@ exports.save = function (req, res) {
     txnArray = atmObj.supportedTxns.split(',');//将formData传的字符串转换成数组
     console.log(txnArray);
     atmObj.supportedTxns = txnArray;
+    var bankId = atmObj.bank;//所属的银行id
     var _atm;
     var tempId = "";
     //传来atm图片，则要重写atm图片地址
@@ -78,12 +90,12 @@ exports.save = function (req, res) {
             if (atm && atm._id != null) {
                 tempId = atm._id;
             }
-            resolve(tempId);
+            resolve([tempId, atm]);
         })
-    }).then(tempId => {
+    }).then(([tempId, atm]) => {
         if (id) {
             //如果是修改，则需检查新post的atm id是否跟数据库中其它纪录重复
-            if (tempId.toString() != id) {
+            if ("" != tempId && tempId.toString() != id) {
                 data = {
                     "success": false,
                     "msg": "此ATM ID已被其它银行注册过，请使用其它ATM ID！"
@@ -91,10 +103,7 @@ exports.save = function (req, res) {
                 res.json(data);
             }
             //证明atm id是存储进数据库过的，需要对其进行更新
-            else Atm.findById(id, function (err, atm) {
-                if (err) {
-                    console.log(err);
-                }
+            else {
                 //如果有更新图片，则需要将原路径的图片删除
                 if (req.picture) {
                     var delPicturePath = path.join(__dirname, '../../', '/public/upload/' + atm.picture);
@@ -111,11 +120,7 @@ exports.save = function (req, res) {
                 _atm = _.extend(atm, atmObj);
                 _atm.save(function (err, atmObj) {
                     if (err) {
-                        console.log(err);
-                        data = {
-                            "success": false,
-                            "msg": "创建失败！"
-                        }
+                        throw (err);
                     }
                     //保存成功后，跳转到bin列表页
                     data = {
@@ -123,51 +128,57 @@ exports.save = function (req, res) {
                         "msg": "创建成功！"
                     }
                     res.json(data);
-                })
-            })
+                });
+            }
         }
         //如果atm id是新加的，则直接调用模型的构造函数，来传入atm数据
-        else if (tempId == "") {
+        else {
             _atm = new Atm(atmObj);
-            _atm.save(function (err, atm) {
-                if (err) {
-                    console.log(err);
-                }
-                //通过所属银行名字拿到当前atm对应的银行
-                Bank.findByName(atm.bank, (err, bank) => {
-                    bank.atms.push(atm.atmId);//将bin存到所属的银行中
-                    bank.save((err, bank) => {
-                        //保存成功后，跳转到bin列表页
-                        data = {
-                            "success": true,
-                            "message": "创建成功！"
-                        }
-                        res.json(data);
-                    })
+            const p = new Promise((resolve, reject) => {
+                _atm.save((err, atm) => {
+                    if (err) {
+                        console.log(err);
+                        throw (err);
+                    }
+                    //通过所属银行id拿到当前atm对应的银行
+                    if (bankId) {
+                        Bank.findById(bankId, (err, bank) => {
+                            bank.atms.push(atm._id);//将atm._id存到所属的银行中
+                            bank.save((err, bank) => {
+                                if (err) {
+                                    console.log(err);
+                                    throw (err);
+                                }
+                            })
+                        })
+                    }
+                    resolve();
                 })
-
+            }).then(() => {
+                //保存成功后，跳转到bin列表页
+                data = {
+                    "success": true,
+                    "message": "创建成功！"
+                }
+                res.json(data);
+            }).catch(error => {
+                data = {
+                    "success": false,
+                    "msg": "创建ATM失败!"
+                }
+                res.json(data);
             })
         }
-        //新创建的atm在数据库中存在过
-        else {
-            data = {
-                "success": false,
-                "msg": "服务器异常！"
-            }
-            res.json(data);
-        }
-
-    }).catch(error => {
-        console.log(error);
     })
 }
 
 //atm详情页
 exports.detail = function (req, res) {
     var id = req.params.id;//id为查询的id
-
     //传入id,从回调方法里拿到查询到的atm数据
-    Atm.findById(id, (err, atm) => {
+    Atm.findOne({ _id: id })
+    .populate({ path: 'bank', select: 'name' })
+    .exec((err, atm) => {
         res.render('atmDetail', {
             pageTitle: "ATM详情页",
             atm: atm//传入atm对象

@@ -93,20 +93,5 @@ contract BTM is owned{
     function getBalance(address _add) external view onlyOwner returns (int256) {
         return balanceOf[_add];
     }
-    
-    //返回消息发送者的帐户余额
-    function myBalance() external view returns (int256){
-        return balanceOf[msg.sender];
-    }
-    
-    //move balance between the 'anAccount' and owner account
-    function changeBalance(address anAccount, int256 _amount) external onlyOwner{
-        balanceOf[anAccount] += _amount;
-        balanceOf[owner] -= _amount;
-    }
-   
-    //返回日期
-    function getDate() view returns (uint256 a){
-        return now;
-    }  
+
 }

@@ -1,13 +1,16 @@
 geth --datadir qdata/dd1 init genesis.json
 geth --datadir qdata/dd1 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7101 --port 7301 --networkid 999
 geth attach ipc:qdata/dd1/geth.ipc
+0x3d2ed6d42f0b82b0987b370255db1222a189363b
 admin.nodeInfo.enode
 "enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@100.64.217.233:7301"
 
 geth --datadir qdata/dd2 init genesis.json
 geth --datadir qdata/dd2 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7102 --port 7302 --networkid 999
 geth attach ipc:qdata/dd2/geth.ipc
+0x2eaeb636fb167b2462e9cb0347fd2c37fdd0ca57
 admin.peers
 
 geth --datadir qdata/dd3 init genesis.json
 geth --datadir qdata/dd3 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7103 --port 7303 --networkid 999
+0x0865a666e0f6a102ffe7e9a59a0c5c28da6af062

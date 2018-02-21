@@ -14,16 +14,26 @@ block content
                         each bank in banks
                             label.radio-inline
                                 if atm._id
-                                    input(type="radio",name="atm[bank]",value="#{bank.name}",checked=bank.name.toString()==atm.bank.toString())
+                                    input(type="radio",name="atm[bank]",value="#{bank._id}",checked=bank._id.toString()==atm.bank.toString())
                                     | #{bank.name}
                                 else
-                                    input(type="radio",name="atm[bank]",value="#{bank.name}")
+                                    input(type="radio",name="atm[bank]",value="#{bank._id}")
                                     | #{bank.name}
 
                     .form-group
                         label.col-sm-4.control-label(for='inputAtmId') ATM ID:
                         .col-sm-6
                             input#inputAtmId.form-control(type='text',value=atm.atmId)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='inputIp') 区块链中注册IP:
+                        .col-sm-6
+                            input#inputIp.form-control(type='text',value=atm.ip,placeholder="请输入端口号，如127.0.0.1:7001")
+
+                    .form-group
+                        label.col-sm-4.control-label(for='inputAddress') 区块链中注册地址:
+                        .col-sm-6
+                            input#inputAddress.form-control(type='text',value=atm.address)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputLocation') 位置:

@@ -1,6 +1,15 @@
 extends ../layout 
 block content
     .container
-        .text-center.center-vertical
-            button.btn.btn-success.btn-atm#startTxn 开始交易
+        .row       
+            each atm in atms
+                .col-xs-6.col-sm-3.col-md-3.col-lg-3
+                    .thumbnail.confirmAtm(data-atmId="#{atm.atmId}",data-supportedTxns="#{atm.supportedTxns}",data-bank="#{atm.bank.name}")
+                        img.lazy(src="/upload/"+atm.picture)
+                        .caption
+                            p ATM ID: #{atm.atmId}
+                            p 支持交易: #{atm.supportedTxns}
+                            p 位置: #{atm.location}
+                            p 所属银行: #{atm.bank.name}
+                        //- button.test(data-atmId="#{atm.atmId}",data-supportedTxns="#{atm.supportedTxns}",data-bank="#{atm.bank.name}")
     

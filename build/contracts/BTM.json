@@ -539,7 +539,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 392,
+                                  "referencedDeclaration": 524,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -619,7 +619,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 395,
+                              "referencedDeclaration": 527,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -660,7 +660,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 392,
+                                      "referencedDeclaration": 524,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -4634,7 +4634,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 384,
+                                  "referencedDeclaration": 516,
                                   "type": "block",
                                   "value": "block"
                                 },
@@ -5088,7 +5088,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 392,
+                                  "referencedDeclaration": 524,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -5475,7 +5475,7 @@
                           "overloadedDeclarations": [
                             null
                           ],
-                          "referencedDeclaration": 394,
+                          "referencedDeclaration": 526,
                           "type": "uint256",
                           "value": "now"
                         },
@@ -5512,7 +5512,13 @@
     "name": "solc",
     "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1519025460749": {
+      "events": {},
+      "links": {},
+      "address": "0x21adfba5a9cf7cdbde52d4d4dfb65c0426779d31"
+    }
+  },
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-10T13:35:27.971Z"
+  "updatedAt": "2018-02-19T07:32:36.970Z"
 }

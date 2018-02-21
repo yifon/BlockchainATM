@@ -9,11 +9,13 @@ var AtmSchema = new Schema({
         unique: true,//atm id不可重复
         type: String
     },
+    ip:String,
+    address:String,
     location: String,//地理位置
     supportedTxns: Array,//支持的交易类型是一个数组，如INQ,CWD,TFR,DEP
     //数组，保存bank,一个atm只属于一个bank
     bank: {
-        type: String,
+        type: ObjectId,
         ref: 'Bank'
     },
     model: String,//设备模型，如SS23,SS27

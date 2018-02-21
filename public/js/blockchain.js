@@ -35,6 +35,8 @@ $(function () {
         var _id = $("#inputId").val();
         var bank = $("input[type='radio']:checked").val();
         var atmId = $("#inputAtmId").val();
+        var ip = $("#inputIp").val();
+        var address = $("#inputAddress").val();
         var location = $("#inputLocation").val();
         var supportedTxns = [];
         $("#selectSupportedTxns input[type='checkbox']:checked").each(function () {
@@ -52,6 +54,8 @@ $(function () {
         }
         formData.append('atm[bank]', bank);
         formData.append('atm[atmId]', atmId);
+        formData.append('atm[ip]', ip);
+        formData.append('atm[address]', address);
         formData.append('atm[location]', location);
         formData.append('atm[supportedTxns]', supportedTxns);//传的是字符串
         formData.append('atm[model]', model);
@@ -59,7 +63,7 @@ $(function () {
         formData.append('atm[picture]', picture);
         formData.append('uploadPicture', uploadPicture);
 
-        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture) {
+        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture|| !ip || !address) {
             if (!bank) {
                 checkResult += "必须选择一家银行！";
             }
@@ -81,6 +85,12 @@ $(function () {
             if (!picture) {
                 if (!uploadPicture)
                     checkResult += "必须输入图片地址或上传图片！";
+            }
+            if (!ip) {
+                checkResult += "必须输入区块链中注册IP！";
+            }
+            if (!address) {
+                checkResult += "必须输入区块链中注册地址！";
             }
         } else {
             $.ajax({

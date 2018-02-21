@@ -17,7 +17,7 @@ block content
                             each item in atms
                                 tr(class='.item-id-#{item._id}')
                                     td #{item.atmId}
-                                    td #{item.bank}
+                                    td #{item.bank.name}
                                     td #{item.supportedTxns}
                                     //-对录入时间进行格式化
                                     td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}

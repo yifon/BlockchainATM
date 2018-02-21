@@ -1,23 +1,6 @@
-//- jQuery基础（五）-Ajax应用与常用插件
-//- 1-6使用serialize()方法序列化表单元素值
 extends ../layout 
 block content
-    .col-md-3.col-md-offset-3
-        .form-group.form-inline
-            label(for="") 我的个人资料：
-            button.btn.btn-success#load 序列化
-        form
-            .form-group.form-inline
-                label(for="name") 姓名：
-                input(type="text" name="name").form-control#name
-            .form-group.form-inline
-                label(for="sex") 性别：
-                select#sex(name="sex") 
-                    option.active 女
-                    option 男
-            .form-group.form-inline
-                input(type="checkbox" name="visiable") 
-                |资料是否可见          
-        #sResult
-    script(src="/js/info_s.js")
-
+    .container
+        .text-center.center-vertical
+            p #{msg}
+    

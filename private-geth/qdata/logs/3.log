@@ -409,3 +409,33 @@ INFO [02-19|14:52:28] Imported new chain segment               blocks=1 txs=0 mg
 INFO [02-19|14:52:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=6.742ms  mgasps=0.000  number=403 hash=c3928e…28c424
 INFO [02-19|14:52:29] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.234ms  mgasps=0.000  number=404 hash=b14d15…969d40
 INFO [02-19|14:52:31] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=5.491ms  mgasps=0.000  number=405 hash=298dca…b3bff9
+appending output to nohup.out
+INFO [02-19|15:08:53] Starting peer-to-peer node               instance=Geth/v1.7.3-stable/darwin-amd64/go1.9.2
+INFO [02-19|15:08:53] Allocated cache and file handles         database=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd3/geth/chaindata cache=128 handles=1024
+INFO [02-19|15:08:53] Initialised chain configuration          config="{ChainID: 1 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: <nil> EIP155: <nil> EIP158: <nil> Byzantium: <nil> Engine: unknown}"
+INFO [02-19|15:08:53] Disk storage enabled for ethash caches   dir=/Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd3/geth/ethash count=3
+INFO [02-19|15:08:53] Disk storage enabled for ethash DAGs     dir=/Users/oueikun/.ethash                                                  count=2
+INFO [02-19|15:08:53] Initialising Ethereum protocol           versions="[63 62]" network=999
+INFO [02-19|15:08:53] Loaded most recent local header          number=405 hash=298dca…b3bff9 td=57390114
+INFO [02-19|15:08:53] Loaded most recent local full block      number=405 hash=298dca…b3bff9 td=57390114
+INFO [02-19|15:08:53] Loaded most recent local fast block      number=405 hash=298dca…b3bff9 td=57390114
+INFO [02-19|15:08:53] Loaded local transaction journal         transactions=0 dropped=0
+INFO [02-19|15:08:53] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [02-19|15:08:53] Blockchain not empty, fast sync disabled 
+INFO [02-19|15:08:53] Starting P2P networking 
+INFO [02-19|15:08:56] UDP listener up                          self=enode://579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778@100.64.217.233:7303
+INFO [02-19|15:08:56] RLPx listener up                         self=enode://579f786d4e2830bbcc02815a27e8a9bacccc9605df4dc6f20bcc1a6eb391e7225fff7cb83e5b4ecd1f3a94d8b733803f2f66b7e871961e7b029e22c155c3a778@100.64.217.233:7303
+WARN [02-19|15:08:56] Removing static dial candidate           id=579f786d4e2830bb addr=100.64.217.233:7303 err="is self"
+INFO [02-19|15:08:56] IPC endpoint opened: /Users/oueikun/Desktop/BlockchainATM/private-geth/qdata/dd3/geth.ipc 
+INFO [02-19|15:08:56] HTTP endpoint opened: http://localhost:7103 
+INFO [02-19|15:08:56] Mapped network port                      proto=tcp extport=7303 intport=7303 interface="UPNP IGDv1-IP1"
+INFO [02-19|16:18:09] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-19|17:18:09] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-19|18:18:09] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-19|21:24:02] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-19|22:24:01] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-19|23:24:01] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-20|00:37:58] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-20|06:47:06] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-21|11:58:00] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [02-21|12:58:01] Regenerated local transaction journal    transactions=0 accounts=0

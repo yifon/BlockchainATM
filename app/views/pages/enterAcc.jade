@@ -2,16 +2,16 @@ extends ../layout
 block content
     .container
         .row
-            .col-sm-12
+            .col-sm-12.col-xs-12
                 .form-horizontal
                     .form-group
-                        label.col-sm-2.input-label 卡号：
-                        .col-sm-8
+                        label.col-sm-2.col-xs-3.input-label 卡号：
+                        .col-sm-8.col-xs-8
                             input.form-control.input-value#enterAcc
                     .form-group
-                        label.col-sm-2.input-label 密码：
-                        .col-sm-8
-                            input.input-value.form-control(type="password")
+                        label.col-sm-2.col-xs-3.input-label 密码：
+                        .col-sm-8.col-xs-8
+                            input.input-value.form-control#enterPwd(type="password")
                     .text-center.form-group
                         .inputChecking#accChecking
                     .text-center.form-group

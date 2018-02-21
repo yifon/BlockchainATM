@@ -1,6 +1,6 @@
 var enterAccUrl = "/enterAcc";
 var submitAccUrl = "/submitAcc";
-var submitPwdUrl="/submitPwd";
+var confirmAtmUrl = "/confirmAtm";
 
 $(function () {
     /**
@@ -13,18 +13,24 @@ $(function () {
      * 验证输入的卡号是否有效
      * 1.必须不为空
      * 2.必须为数字
-     * 3.在数组库中存在(卡有bin,会根据bin去blockchain找到对应的银行去查询)
+     * 3.在数组库中存在
      */
     $("#confirmAcc").bind("click", function () {
         var acc = $("#enterAcc").val();
+        var pwd = $("#enterPwd").val();
         var type = /^[0-9]*[0-9]$/;//以0-9开头和结尾
         var reg = new RegExp(type);
-        if (acc === "") {
-            $(".input-form").toggleClass("has-error");
-            $("#accChecking").html("Please input your card number!");
-        } else if (!acc.match(reg)) {
-            $(".input-form").toggleClass("has-error");
-            $("#accChecking").html("Please input the number 0-9!");
+        var html = "";
+        if (acc === "" || !acc.match(reg) || pwd === "" || !pwd.match(reg)) {
+            if (acc === "" || !acc.match(reg)) {
+                $(".input-form").toggleClass("has-error");
+                html += "请输入银行卡号（0-9）!"
+            }
+            if (pwd === "" || !pwd.match(reg)) {
+                $(".input-form").toggleClass("has-error");
+                html += "请输入密码（0-9）!"
+            }
+            $("#accChecking").html(html);
         } else {
             $.ajax({
                 type: "POST",
@@ -32,83 +38,61 @@ $(function () {
                 dataType: 'json',
                 data: {
                     customer: {
-                        debitAccount: acc
-                    }
-                },
-                success: function (data) {
-                    window.location = data.msg;
-                },
-                error: function (jqXHR) {
-                    $("#accChecking").html("Service error [" + jqXHR.status + "], please contact the bank assistance!");
-                }
-            })
-        }
-    })
-    /**
-     * 验证输入的密码是否有效
-     * 1.必须不为空
-     * 2.与数据库相同（上一个输入卡的步骤已经知道卡所属的银行了，再去对应的银行做查询）
-     */
-    $("#confirmPwd").bind("click", function () {
-        var pwd = $("#enterPwd").val();
-        if (pwd === "") {
-            $(".input-form").toggleClass("has-error");
-            $("#pwdChecking").html("Please input your password!");
-        } else {
-            $.ajax({
-                type: "POST",
-                url: submitPwdUrl,
-                dataType: 'json',
-                data: {
-                    customer: {
+                        debitAccount: acc,
                         password: pwd
                     }
                 },
                 success: function (data) {
-                    window.location = data.msg;
+                    if (data.success) {
+                        window.location = data.msg;
+                    } else {
+                        html = data.msg;
+                    }
+                    $("#accChecking").html(html);
                 },
                 error: function (jqXHR) {
-                    $("#pwdChecking").html("Service error [" + jqXHR.status + "], please contact the bank assistance!");
+                    html = "服务异常：[" + jqXHR.status + "], 请联系银行管理员";
+                    $("#accChecking").html(html);
                 }
             })
         }
     })
-    /**
-     * 选择ATM页面加载前
-     * 1.应该根据后台区块链状态和对外服务状态觉得该ATM是否可让客人使用
-     * 若不可选用，则该对外提醒，并将ATM状态设置为不可选
-     * 2.应加载ATM编号和所属银行
-     */
 
     /**
      * 选择ATM
      * 1.未选中ATM前，确认按钮为禁用状态
      * 2.以按确认前选择的ATM为准
      */
-    $("#confirmAtm").bind("click", function () {
-        var pwd = $("#enterPwd").val();
-        if (pwd === "") {
-            $(".input-form").toggleClass("has-error");
-            $("#pwdChecking").html("Please input your password!");
-        } else {
-            $.ajax({
-                type: "POST",
-                url: submitPwdUrl,
-                dataType: 'json',
-                data: {
-                    atmNode: {
-                        fromAtm: xxx,//操作ATM
-                        issueBank:xxx,//ATM所属行
-                    }
-                },
-                success: function (data) {
-                    window.location = data.msg;
-                },
-                error: function (jqXHR) {
-                    $("#").html("Service error [" + jqXHR.status + "], please contact the bank assistance!");
+    $(".confirmAtm").bind("click", e => {
+        $(".confirmAtm").attr("disabled", "true");
+        var target = $(e.currentTarget);//监听注册了事件监听器的div对象
+        var atmId = target.data('atmid');
+        console.log(atmId)
+        var supportedTxns = target.data('supportedtxns');//使用小写
+        var bank = target.data('bank');
+        console.log(bank)
+        $.ajax({
+            type: "POST",
+            url: confirmAtmUrl,
+            dataType: 'json',
+            data: {
+                txn: {
+                    atmId: atmId,//操作ATM
+                    supportedTxns: supportedTxns,//支持的交易
+                    bank: bank//ATM所属行
                 }
-            })
-        }
+            },
+            success: function (data) {
+                if (data.success) {
+                    window.location = data.msg;
+                }
+                console.log(data.success + "," + data.msg);
+            },
+            error: function (jqXHR) {
+                $(".confirmAtm").attr("disabled", "false");
+                console.log(jqXHR.status);
+            }
+        })
     })
 
     /**
@@ -116,8 +100,30 @@ $(function () {
      * 1.此处显示的交易，是根据上一步的ATM去查看其在blockchain数据库中注册的交易而显示的
      * 2.不同的ATM注册的交易可能不同
      */
-
-     /**
-      * 
-      */
+    $(".confirmTxn").bind("click", e => {
+        $(".confirmTxn").attr("disabled", "true");
+        var type = $(this).val();
+        console.log(type)
+        $.ajax({
+            type: "POST",
+            url: confirmAtmUrl,
+            dataType: 'json',
+            data: {
+                type: type//交易类型
+            },
+            success: function (data) {
+                if (data.success) {
+                    window.location = data.msg;
+                }
+                console.log(data.success + "," + data.msg);
+            },
+            error: function (jqXHR) {
+                $(".confirmTxn").attr("disabled", "false");
+                console.log(jqXHR.status);
+            }
+        })
+    })
+    /**
+     * 
+     */
 })
