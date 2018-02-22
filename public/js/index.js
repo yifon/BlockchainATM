@@ -1,6 +1,7 @@
 var enterAccUrl = "/enterAcc";
 var submitAccUrl = "/submitAcc";
 var confirmAtmUrl = "/confirmAtm";
+var confirmTxnUrl = "/confirmTxn";
 
 $(function () {
     /**
@@ -69,18 +70,16 @@ $(function () {
         var atmId = target.data('atmid');
         console.log(atmId)
         var supportedTxns = target.data('supportedtxns');//使用小写
-        var bank = target.data('bank');
+        var _id = target.data('id');
         console.log(bank)
         $.ajax({
             type: "POST",
             url: confirmAtmUrl,
             dataType: 'json',
             data: {
-                txn: {
-                    atmId: atmId,//操作ATM
-                    supportedTxns: supportedTxns,//支持的交易
-                    bank: bank//ATM所属行
-                }
+                atmId: atmId,//操作ATM
+                supportedTxns: supportedTxns,//支持的交易
+                _id: _id//ATM所属行
             },
             success: function (data) {
                 if (data.success) {
@@ -106,7 +105,7 @@ $(function () {
         console.log(type)
         $.ajax({
             type: "POST",
-            url: confirmAtmUrl,
+            url: confirmTxnUrl,
             dataType: 'json',
             data: {
                 type: type//交易类型

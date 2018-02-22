@@ -4,7 +4,7 @@ block content
         .row       
             each atm in atms
                 .col-xs-6.col-sm-3.col-md-3.col-lg-3
-                    .thumbnail.confirmAtm(data-atmId="#{atm.atmId}",data-supportedTxns="#{atm.supportedTxns}",data-bank="#{atm.bank.name}")
+                    .thumbnail.confirmAtm(data-atmId="#{atm.atmId}",data-supportedTxns="#{atm.supportedTxns}",data-id="#{atm._id}")
                         img.lazy(src="/upload/"+atm.picture)
                         .caption
                             p ATM ID: #{atm.atmId}

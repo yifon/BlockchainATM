@@ -93,7 +93,7 @@ ATM ID：ATM ID在所有银行中必须唯一［必填项］
 1.2.一个bin只可以属于一个bank  
 2.1.一个bin可以有多个card  
 2.2.一个card只可以属于一个bin
-
+l
 ### 待完成项：
 1.设计查询余额交易与blockchain的交互  
 

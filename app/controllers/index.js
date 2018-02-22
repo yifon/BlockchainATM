@@ -4,6 +4,7 @@ var async = require('async');
 //首页，开始交易
 exports.welcome = function (req, res) {
     delete req.session.transaction;//清除transaction的session数据
+    delete req.session.atm;//清除atm的session数据
     req.session.transaction = {
         debitAccount: "",
         type: "",
@@ -17,6 +18,9 @@ exports.welcome = function (req, res) {
         amount: "",
         fee: "",
         status: ""
+    };
+    req.session.atm = {
+        _id: ""
     }
     res.render('welcome', {
         bigTitle: "欢迎使用区块链ATM系统!"
@@ -95,13 +99,14 @@ exports.chooseAtm = function (req, res) {
 }
 //确认选择的ATM后，跳转到选择交易页
 exports.confirmAtm = (req, res) => {
-    console.log(req.body.txn.atmId);
-    req.session.transaction["fromAtm"] = req.body.txn.atmId;
+    console.log(req.body.atmId);
+    req.session.transaction["fromAtm"] = req.body.atmId;
+    req.session.atm["_id"] = req.body._id;
     console.log(req.session.transaction)
     var data;
     data = {
         "success": true,
-        "msg": "/chooseTxn?supportedTxns=" + req.body.txn.supportedTxns
+        "msg": "/chooseTxn?supportedTxns=" + req.body.supportedTxns
     }
     res.json(data);
 }
