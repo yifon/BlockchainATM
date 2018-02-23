@@ -1,0 +1,16 @@
+extend ../blockchainInfo
+block content
+    .container
+        .row
+            table.table.table-hover.table-bordered
+                thead
+                    tr.active
+                        th 名字
+                        th 区块链地址
+                        th 区块链余额
+                    tbody
+                        each item in accounts
+                            tr
+                                td #{item.name}
+                                td #{item.address}
+                                td #{item.balance}

@@ -1,4 +1,7 @@
-module.exports = function nodeContract() {
+var http = require('http');
+var Web3 = require('web3');
+var fs = require('fs');
+module.exports.nodeContract = () => {
   /**
    *  初始化节点合约
    * contractfile - .abi/.bin文件前缀
@@ -12,9 +15,6 @@ module.exports = function nodeContract() {
   function initContract(contractInitVars, checkDebitCallback, checkCreditCallback, commitCallback) {
     console.log("initContract");
 
-    var http = require('http');
-    var Web3 = require('web3');
-    var fs = require('fs');
 
     web3 = new Web3(new Web3.providers.HttpProvider(contractInitVars.web3http));//不同node端口不同
     web3.personal.unlockAccount(web3.eth.accounts[0], '', 0);
@@ -61,4 +61,5 @@ module.exports = function nodeContract() {
     });
     return contract;
   }
+
 }

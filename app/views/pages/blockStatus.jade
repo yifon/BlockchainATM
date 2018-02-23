@@ -1,0 +1,33 @@
+extend ../blockchainInfo
+block content
+    .container
+        .row
+            table.table.table-hover.table-bordered
+                thead
+                    tr.active
+                        th 区块号
+                        th 时间戳
+                        th 操作ATM
+                        th ATM区块链地址
+                        th 扣款行
+                        th 扣款行区块链地址
+                        th 收款行
+                        th 收款行区块链地址
+                        th 交易数额
+                        th 手续费
+                        th 交易哈希值
+                        th 状态
+                    tbody
+                        each item in blockRecords
+                            tr
+                                td #{item.blockNo}
+                                td #{item.time}
+                                td #{item.fromAtmName}
+                                td #{item._fromAtm}
+                                td #{item.debitBankName}
+                                td #{item._debitBank}
+                                td #{item.creditBankName}
+                                td #{item._creditBank}
+                                td #{item._amount}
+                                td #{item._fee}
+                                td #{item._status}

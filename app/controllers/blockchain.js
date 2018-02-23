@@ -12,32 +12,37 @@ var NodeContract = require('../models/nodeContract');
  */
 exports.execute = (req, res) => {
     var _id = req.session.atm["_id"];
-    var ip;
-    var address;
-    var bank;
-    var contractInitVars = { contractfile: "BTM", web3http: ip, atmAddress: address, atmBank: bank, contractAddress: "0x8182dd293942ff6839e6e8c8a71981bb8ad655e5" };
+    var debitBank = req.session.transaction["debitBank"];//发卡行／扣款行
+    var type = req.session.transaction["type"];//交易类型决定发送给blockchain的部分数据
+    var atmIp;//atm节点在区块链中的ip
+    var atmAddress;//atm节点在区块链中的地址
+    var atmBank;//atm所属银行
+    var contractInitVars = { contractfile: "BTM", web3http: atmIp, atmAddress: atmAddress, atmBank: atmBank, contractAddress: "0x8182dd293942ff6839e6e8c8a71981bb8ad655e5" };
     var contract = NodeContract.initContract(contractInitVars, checkDebitCallback, checkCreditCallbak, commitCallback);
+    var contractInput = {
+        _fromAtm: atmAddress,
+        _debitBank: debitBank,
+        _creditBank: "",
+        _trxHash: "",
+        _amount: 0,
+        _fee: 0,
+        _status: 1000
+    }
+    if (type == "查询余额") {
+        contractInput["_creditBank"] = "0x0";//查询余额不设计帐户金钱转移，无收款行
+    }
     //传入id,从回调方法里拿到查询到的atm数据
-    Atm.findOne({ _id: id })
-        .populate({ path: 'bank', select: 'name' })
-        .exec((err, atm) => {
-            ip = atm.ip;
-            address = atm.address;
-            bank = atm.bank.name;
-        })
-}
-
-
-
-
-
-exports.test = (req, res) => {
-    res.render('testNode', {
-        bigTitle: "测试blockchain node"
-    });
-}
-exports.startTrx = (req, res) => {
-    var node = req.body.node;
-    req.body.node.status = 1000;
-    contract.startTrx(node._fromAtm, node._debitBank, node._creditBank, node._trxHash, parseInt(node._amount), parseInt(node._fee), node.status);
+    const p = new Promise((resolve, reject) => {
+        Atm.findOne({ _id: id })
+            .populate({ path: 'bank', select: 'name' })
+            .exec((err, atm) => {
+                atmIp = atm.ip;
+                atmAddress = atm.address;
+                atmBank = atm.bank.name;
+                resolve();
+            })
+    }).then(() => {
+        //ATM->Blockchain
+        contract.startTrx(contractInput._fromAtm, contractInput._debitBank, contractInput._creditBank, contractInput._trxHash, parseInt(contractInput._amount), parseInt(contractInput._fee), contractInput._status);
+    })
 }
