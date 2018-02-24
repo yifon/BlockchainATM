@@ -20,7 +20,9 @@ var CardSchema = new Schema({
     },
     name: String,//客人姓名
     password: Number,//银行卡密码
-    balance: Number,//银行卡余额
+    cashAccountBalance: Number,//现金账户余额
+    blockAccount: String,//区块链账户地址
+    blockAccountBalance: Number,//区块链账户余额
     //meta存放的是录入或者更新数据时的时间纪录
     meta: {
         //创建时间

@@ -28,7 +28,7 @@ module.exports = function (grunt) {
                     debug: true,
                     delayTime: 1,//如果有大批量文件要改动时，则等待x ms再重启服务器
                     env: {
-                        PORT: 8080
+                        PORT: 4000
                     },
                     cwd: __dirname//目录
                 }

@@ -63,7 +63,7 @@ $(function () {
         formData.append('atm[picture]', picture);
         formData.append('uploadPicture', uploadPicture);
 
-        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture|| !ip || !address) {
+        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture || !ip || !address) {
             if (!bank) {
                 checkResult += "必须选择一家银行！";
             }
@@ -210,8 +210,10 @@ $(function () {
         var cardName = $("#cardName").val();
         var cardPassword = $("#cardPassword").val();
         var cardPasswordAgain = $("#cardPasswordAgain").val();
-        var cardBalance = !$("#cardBalance").val().match(cardBalType) ? 0 : $("#cardBalance").val();
-        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
+        var cashAccountBalance = !$("#cashAccountBalance").val().match(cardBalType) ? 0 : $("#cashAccountBalance").val();
+        var blockAccount = $("#blockAccount").val();
+        var blockAccountBalance = !$("#blockAccountBalance").val().match(cardBalType) ? 0 : $("#blockAccountBalance").val();
+        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain || !blockAccount) {
             if (!cardBin) {
                 checkResult += "必须选择有注册了BIN的银行！";
             }
@@ -223,6 +225,12 @@ $(function () {
             }
             if (!cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
                 checkResult += "必须输入6位数字的银行卡密码且保持两次输入密码相同！";
+            }
+            if (!cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
+                checkResult += "必须输入6位数字的银行卡密码且保持两次输入密码相同！";
+            }
+            if (!blockAccount) {
+                checkResult += "必须输入区块链账户地址！";
             }
 
         } else {
@@ -238,7 +246,9 @@ $(function () {
                         number: cardBin + cardCustomerNumber,
                         name: cardName,
                         password: cardPassword,
-                        balance: cardBalance
+                        cashAccountBalance: cashAccountBalance,
+                        blockAccount: blockAccount,
+                        blockAccountBalance: blockAccountBalance
                     }
                 },
                 success: function (data) {

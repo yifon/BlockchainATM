@@ -6,20 +6,24 @@ block content
                 table.table.table-hover.table-bordered
                     thead
                         tr.active
-                            th 所属银行
-                            th 卡号
                             th 客户姓名
-                            th 余额
+                            th 卡号
+                            th 所属银行
+                            th 现金账户余额
+                            th 区块链账户地址
+                            th 区块链账户余额
                             th 录入时间
                             th 更新
                             th 删除
                         tbody
                             each item in cards
                                 tr(class='.item-id-#{item._id}')
-                                    td #{item.bank.name}
-                                    td #{item.number}
                                     td #{item.name}
-                                    td #{item.balance}
+                                    td #{item.number}
+                                    td #{item.bank.name}
+                                    td #{item.cashAccountBalance}
+                                    td #{item.blockAccount}
+                                    td #{item.blockAccountBalance}
                                     //-对录入时间进行格式化
                                     td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
                                     td: a(href='/admin/card/update/#{item._id}') 修改

@@ -54,10 +54,21 @@ block content
                         label.col-sm-4.control-label(for='cardPasswordAgain') 再次确认密码:
                         .col-sm-6
                             input#cardPasswordAgain.form-control(type='password')
+
                     .form-group
-                        label.col-sm-4.control-label(for='cardBalance') 账户余额:
+                        label.col-sm-4.control-label(for='cashAccountBalance') 现金账户余额:
                         .col-sm-6
-                            input#cardBalance.form-control(type='text')
+                            input#cashAccountBalance.form-control(type='text')
+
+                    .form-group
+                        label.col-sm-4.control-label(for='blockAccount') 区块链账户地址:
+                        .col-sm-6
+                            input#blockAccount.form-control(type='text')
+
+                    .form-group
+                        label.col-sm-4.control-label(for='blockAccountBalance') 区块链账户余额:
+                        .col-sm-6
+                            input#blockAccountBalance.form-control(type='text')
                     //-验证结果，只有失败才会提醒
                     .form-group
                         .col-sm-10.col-sm-offset-4

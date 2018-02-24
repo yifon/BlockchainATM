@@ -3,7 +3,7 @@
  */
 var express = require('express');//加载express模块
 var app = express();//启动一个web服务器，将实例赋予给app变量
-var port = process.env.PORT || 8080;//从命令行中设置port口，默认是3000
+var port = process.env.PORT || 4000;//从命令行中设置port口，默认是3000
 app.listen(port);//监听端口
 
 var mongoose = require('mongoose');//引入mongoose模块，来连接本地数据库
