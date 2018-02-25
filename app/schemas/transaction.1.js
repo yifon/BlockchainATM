@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;//声明一个对象ID类型，等同于MongooseDB内置的_id类型，由24位Hash字符串组成
 
-//传入与card有关的字段和类型
-var CardSchema = new Schema({
-    //获取在BIN创建页创建过的银行,一个Card只有一个Bin
+//传入与transaction有关的字段和类型
+var TransactionSchema = new Schema({
+    //获取在BIN创建页创建过的银行,一个transaction只有一个Bin
     bank: {
         type: ObjectId,
         ref: 'Bank'
@@ -20,10 +20,7 @@ var CardSchema = new Schema({
     },
     name: String,//客人姓名
     password: Number,//银行卡密码
-    cashAccountBalance: Number,//现金账户余额
-    blockAccount: String,//区块链账户地址
-    blockPassword: String,//区块链账户密码
-    blockAccountBalance: Number,//区块链账户余额
+    balance: Number,//银行卡余额
     //meta存放的是录入或者更新数据时的时间纪录
     meta: {
         //创建时间
@@ -39,7 +36,7 @@ var CardSchema = new Schema({
     }
 })
 //为模式创建方法，pre-save表示每次存储前都会调用此方法
-CardSchema.pre('save', function (next) {
+TransactionSchema.pre('save', function (next) {
     //判断数据是否为新添加的，如果时，则将创建时间设置为当前时间
     if (this.isNew) {
         this.meta.createAt = this.meta.updateAt = Date.now();
@@ -51,7 +48,7 @@ CardSchema.pre('save', function (next) {
     next();//将存储流程走下去
 })
 //静态方法不会直接与数据库交互，只有经过模型编译和实例化后，才会具有此方法
-CardSchema.statics = {
+TransactionSchema.statics = {
     //取出数据库中所有的纪录(按更新时间排序，执行茶叙，并将结果传入回调方法)
     fetch: function (cb) {
         return this.find({}).sort('meta.updateAt').exec(cb);
@@ -66,4 +63,4 @@ CardSchema.statics = {
     }
 }
 //将模式导出
-module.exports = CardSchema;
+module.exports = TransactionSchema;

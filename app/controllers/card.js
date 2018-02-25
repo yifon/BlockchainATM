@@ -233,7 +233,7 @@ exports.del = function (req, res) {
                     throw (err);
                 }
             });
-            resolve();
+            // resolve();
         }).then(() => {
             data = {
                 "success": true,

@@ -1,6 +1,7 @@
 //加载编译的模型
 var Bin = require('../models/bin');
 var Bank = require('../models/bank');
+var Card = require('../models/card');
 var async = require('async');
 //传入mongoose的建模工具模块
 var mongoose = require('mongoose');
@@ -53,6 +54,7 @@ exports.save = function (req, res) {
     //需要拿到传过来的id
     var id = req.body.binMapping._id;
     var binObj = req.body.binMapping;//拿到传过来的bin对象
+    var bankId = binObj.bank;
     var _bin;
     var data;
     var tempId = "";//查看当前的bin是否在数据库中有其它人注册过
@@ -60,14 +62,14 @@ exports.save = function (req, res) {
     if (id) {
         //如果是修改，则需检查新post的bin是否跟数据库中其它纪录重复
         const p = new Promise((resolve, reject) => {
-            Bin.findByBin(binObj.bin, function (err, binMapping) {
-                if (binMapping && binMapping._id != null) {
-                    tempId = binMapping._id.toString();
+            Bin.findByBin(binObj.bin, function (err, bin) {
+                if (bin && bin._id != null) {
+                    tempId = bin._id.toString();
                 }
-                resolve(tempId, binMapping);
+                resolve([tempId, bin]);
                 console.log("tempId:" + tempId);
             })
-        }).then((tempId, binMapping) => {
+        }).then(([tempId, bin]) => {
             if ("" != tempId && tempId != id) {
                 data = {
                     "success": false,
@@ -77,8 +79,23 @@ exports.save = function (req, res) {
             }
             //证明bin是存储进数据库过的，需要对其进行更新
             else {
+                //如果有更新bank,则需要修改
+                if (bin.bank != bankId) {
+                    //从旧bank中删除该bin
+                    Bank.update({ _id: bin.bank }, { $pull: { "bins": mongoose.Types.ObjectId(tempId) } }, (err, bank) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    //在新bank中添加该bin
+                    Bank.update({ _id: bankId }, { $push: { "bins": mongoose.Types.ObjectId(tempId) } }, (err, bank) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                }
                 //需要将post过来的bin数据替换掉数据库中老的bin数据
-                _bin = _.extend(binMapping, binObj);
+                _bin = _.extend(bin, binObj);
                 _bin.save(function (err, newBin) {
                     if (err) {
                         console.log(err);
@@ -97,9 +114,8 @@ exports.save = function (req, res) {
     //如果bin是新加的，则直接调用模型的构造函数，来传入bin数据
     else {
         _bin = new Bin(binObj);
-        var bankId = binObj.bank;
         console.log(_bin)
-        _bin.save(function (err, binMapping) {
+        _bin.save(function (err, bin) {
             if (err) {
                 console.log(err);
             }
@@ -153,6 +169,12 @@ exports.del = function (req, res) {
                 console.log(err);
             }
         });
+        //将所有有该bin的卡删除
+        Card.remove({ "bin": id }, (err, newCardObj) => {
+            if (err) {
+                console.log(err);
+            }
+        })
         //将bin在注册的银行中删除
         Bank.update({ "name": bank }, { $pull: { "bins": mongoose.Types.ObjectId(id) } }, (err, bank) => {
             if (err) {
@@ -165,7 +187,6 @@ exports.del = function (req, res) {
                 };
                 res.json(data);
             }
-
         });
     }
 }

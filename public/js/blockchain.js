@@ -32,11 +32,15 @@ $(function () {
     //新创建ATM，则需要去数据库中查询ATM ID是否被使用过了
     $("#createAtm").bind("click", function () {
         var checkResult = "";
+        var cardBalType = /^[0-9]*$/;//以1-9开头的n位数字
         var _id = $("#inputId").val();
         var bank = $("input[type='radio']:checked").val();
         var atmId = $("#inputAtmId").val();
-        var ip = $("#inputIp").val();
-        var address = $("#inputAddress").val();
+        var ip = $("#inputIp").val();//区块链中http地址
+        var blockAccount = $("#blockAccount").val();//区块链账户地址
+        var blockPassword = $("#blockPassword").val();//区块链账户密码
+        var cashAccountBalance = !$("#cashAccountBalance").val().match(cardBalType) ? 0 : $("#cashAccountBalance").val();//现金账户余额
+        var blockAccountBalance = !$("#blockAccountBalance").val().match(cardBalType) ? 0 : $("#blockAccountBalance").val();//区块链账户地址
         var location = $("#inputLocation").val();
         var supportedTxns = [];
         $("#selectSupportedTxns input[type='checkbox']:checked").each(function () {
@@ -55,7 +59,10 @@ $(function () {
         formData.append('atm[bank]', bank);
         formData.append('atm[atmId]', atmId);
         formData.append('atm[ip]', ip);
-        formData.append('atm[address]', address);
+        formData.append('atm[cashAccountBalance]', cashAccountBalance);
+        formData.append('atm[blockAccount]', blockAccount);
+        formData.append('atm[blockPassword]', blockPassword);
+        formData.append('atm[blockAccountBalance]', blockAccountBalance);
         formData.append('atm[location]', location);
         formData.append('atm[supportedTxns]', supportedTxns);//传的是字符串
         formData.append('atm[model]', model);
@@ -63,7 +70,7 @@ $(function () {
         formData.append('atm[picture]', picture);
         formData.append('uploadPicture', uploadPicture);
 
-        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture || !ip || !address) {
+        if (!bank || !atmId || !location || !supportedTxns || !model || !vendor || !picture && !uploadPicture || !ip || !blockAccount || !blockPassword) {
             if (!bank) {
                 checkResult += "必须选择一家银行！";
             }
@@ -89,8 +96,11 @@ $(function () {
             if (!ip) {
                 checkResult += "必须输入区块链中注册IP！";
             }
-            if (!address) {
+            if (!blockAccount) {
                 checkResult += "必须输入区块链中注册地址！";
+            }
+            if (!blockPassword) {
+                checkResult += "必须输入区块链账户密码！";
             }
         } else {
             $.ajax({
@@ -209,11 +219,11 @@ $(function () {
         var cardCustomerNumber = $("#cardCustomerNumber").val();
         var cardName = $("#cardName").val();
         var cardPassword = $("#cardPassword").val();
-        var cardPasswordAgain = $("#cardPasswordAgain").val();
+        var blockPassword = $("#blockPassword").val();
         var cashAccountBalance = !$("#cashAccountBalance").val().match(cardBalType) ? 0 : $("#cashAccountBalance").val();
         var blockAccount = $("#blockAccount").val();
         var blockAccountBalance = !$("#blockAccountBalance").val().match(cardBalType) ? 0 : $("#blockAccountBalance").val();
-        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain || !blockAccount) {
+        if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || !blockPassword || !blockAccount) {
             if (!cardBin) {
                 checkResult += "必须选择有注册了BIN的银行！";
             }
@@ -223,11 +233,11 @@ $(function () {
             if (!cardName) {
                 checkResult += "必须输入客户姓名！";
             }
-            if (!cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
-                checkResult += "必须输入6位数字的银行卡密码且保持两次输入密码相同！";
+            if (!cardPassword.match(cardPwdType)) {
+                checkResult += "必须输入6位数字的银行卡密码！";
             }
-            if (!cardPassword.match(cardPwdType) || cardPassword != cardPasswordAgain) {
-                checkResult += "必须输入6位数字的银行卡密码且保持两次输入密码相同！";
+            if (!blockPassword) {
+                checkResult += "必须输入区块链账户密码！";
             }
             if (!blockAccount) {
                 checkResult += "必须输入区块链账户地址！";
@@ -248,6 +258,7 @@ $(function () {
                         password: cardPassword,
                         cashAccountBalance: cashAccountBalance,
                         blockAccount: blockAccount,
+                        blockPassword: blockPassword,
                         blockAccountBalance: blockAccountBalance
                     }
                 },
@@ -316,7 +327,6 @@ $(function () {
         $("#delBin").bind("click", () => {
             $.ajax({
                 type: "DELETE",//异步请求类型为del
-                // url: "/admin/bin/list?_id=" + id
                 url: "/admin/bin/list?_id=" + id + "&bank=" + bank
             })//删除后，服务器返回的状态
                 .done(data => {

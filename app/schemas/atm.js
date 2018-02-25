@@ -9,8 +9,11 @@ var AtmSchema = new Schema({
         unique: true,//atm id不可重复
         type: String
     },
-    ip:String,
-    address:String,
+    ip: String,//区块链http地址
+    cashAccountBalance: Number,//现金账户余额
+    blockAccount: String,//区块链账户地址
+    blockPassword: String,//区块链账户密码
+    blockAccountBalance: Number,//区块链账户余额
     location: String,//地理位置
     supportedTxns: Array,//支持的交易类型是一个数组，如INQ,CWD,TFR,DEP
     //数组，保存bank,一个atm只属于一个bank

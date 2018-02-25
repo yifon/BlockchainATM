@@ -5,8 +5,8 @@ var Bin = require('../app/controllers/bin');
 var Bank = require('../app/controllers/bank');
 var Card = require('../app/controllers/card');
 var Transaction = require('../app/controllers/transaction');
-var Blockchain = require('../app/controllers/blockchain');
-// var Blockchain = require('../app/controllers/blockchain');//ATM<->Blockchain部分
+var Balance = require('../app/controllers/balance');
+// var Blockchain = require('../app/controllers/blockchain');
 module.exports = function (app) {
     //为客人信息设置缓存
     app.use(function (req, res, next) {
@@ -24,7 +24,7 @@ module.exports = function (app) {
     app.get('/chooseTxn', Index.chooseTxn);//选择交易类型
     app.post('/confirmTxn', Index.confirmTxn);//确认交易类型
     app.get('/enterValue', Index.enterValue);//取款／存款：跳转到输入取款／存款数额页面;转账：跳转到输入收款银行卡卡页面
-    app.get('/result' + Blockchain.execute, Index.result);//查询余额：跳转到结果页面；取款／存款：输入完数额后跳转到结果页面；转账：输入收款银行卡后跳转到结果页面
+    // app.get('/result' + Blockchain.execute, Index.result);//查询余额：跳转到结果页面；取款／存款：输入完数额后跳转到结果页面；转账：输入收款银行卡后跳转到结果页面
 
     //atm信息
     app.get('/admin/atm/new', Atm.new);//atm录入页
@@ -57,6 +57,9 @@ module.exports = function (app) {
 
     //transaction信息
     app.get('/admin/transaction/list', Transaction.transactionlist);//transaction信息
+
+    //balance信息
+    app.get('/admin/balance/list', Balance.balancelist);//transaction信息
 
     //处理ATM与区块链部分的事件交互
     // app.get('/test', Blockchain.test);

@@ -28,7 +28,12 @@ block content
                     .form-group
                         label.col-sm-4.control-label(for='cashAccountBalance') 现金账户余额:
                         .col-sm-6
-                            input#cashAccountBalance.form-control(type='text')
+                            input#cashAccountBalance.form-control(type='text',value=atm.cashAccountBalance)
+
+                    .form-group
+                        label.col-sm-4.control-label(for='blockAccountBalance') 区块链账户余额:
+                        .col-sm-6
+                            input#blockAccountBalance.form-control(type='text',value=atm.blockAccountBalance)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputIp') 区块链中http地址:
@@ -38,12 +43,12 @@ block content
                     .form-group
                         label.col-sm-4.control-label(for='blockAccount') 区块链账户地址:
                         .col-sm-6
-                            input#blockAccount.form-control(type='text')
+                            input#blockAccount.form-control(type='text',value=atm.blockAccount)
 
                     .form-group
-                        label.col-sm-4.control-label(for='blockAccountBalance') 区块链账户余额:
+                        label.col-sm-4.control-label(for='blockPassword') 区块链账户密码:
                         .col-sm-6
-                            input#blockAccountBalance.form-control(type='text')
+                            input#blockPassword.form-control(type='password',value=atm.blockPassword)
 
                     .form-group
                         label.col-sm-4.control-label(for='inputLocation') 位置:

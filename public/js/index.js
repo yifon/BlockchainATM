@@ -71,7 +71,6 @@ $(function () {
         console.log(atmId)
         var supportedTxns = target.data('supportedtxns');//使用小写
         var _id = target.data('id');
-        console.log(bank)
         $.ajax({
             type: "POST",
             url: confirmAtmUrl,

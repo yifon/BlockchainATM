@@ -9,6 +9,8 @@ block content
                             th ATM ID
                             th 所属银行
                             th 支持交易
+                            th 节点网络状态
+                            th 区块链账户状态
                             th 录入时间
                             th 查看
                             th 更新
@@ -19,6 +21,8 @@ block content
                                     td #{item.atmId}
                                     td #{item.bank.name}
                                     td #{item.supportedTxns}
+                                    td 暂时保留
+                                    td 暂时保留
                                     //-对录入时间进行格式化
                                     td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
                                     td: a(href='/atm/#{item._id}') 查看

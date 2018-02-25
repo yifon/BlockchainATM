@@ -10,8 +10,9 @@ block content
                             th 卡号
                             th 所属银行
                             th 现金账户余额
-                            th 区块链账户地址
                             th 区块链账户余额
+                            th 区块链账户地址
+                            th 区块链账户状态
                             th 录入时间
                             th 更新
                             th 删除
@@ -22,8 +23,9 @@ block content
                                     td #{item.number}
                                     td #{item.bank.name}
                                     td #{item.cashAccountBalance}
-                                    td #{item.blockAccount}
                                     td #{item.blockAccountBalance}
+                                    td #{item.blockAccount}
+                                    td 暂时保留
                                     //-对录入时间进行格式化
                                     td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
                                     td: a(href='/admin/card/update/#{item._id}') 修改

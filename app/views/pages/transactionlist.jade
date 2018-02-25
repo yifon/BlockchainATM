@@ -5,32 +5,28 @@ block content
             table.table.table-hover.table-bordered
                 thead
                     tr.active
-                        th 交易Id
-                        th 类型
-                        th 卡号
-                        th 开始时间
-                        th 完成时间
-                        th 操作ATM
-                        th 扣款银行
-                        th 代理扣款ATM
-                        th 收款银行
-                        th 代理收款ATM
-                        th 手续费
+                        th 区块号
+                        th 时间戳
+                        th 客人姓名
+                        th 交易类型
                         th 交易数额
+                        th 扣款区块链账户所属用户
+                        th 扣款区块链账户
+                        th 收款区块链账户所属用户
+                        th 收款区块链账户
+                        th 交易哈希值
                         th 状态
                     tbody
                         each item in transactions
-                            tr(class='.item-id-#{item._id}')
-                                td #{item._id}
+                            tr
+                                td #{item.blockNo}
+                                td #{item.time}
+                                td #{item.customer}
                                 td #{item.type}
-                                td #{item.number}
-                                td #{item.startTime}
-                                td #{item.endTime}
-                                td #{item.fromAtm}
-                                td #{item.debitBank}
-                                td #{item.debitAtm}
-                                td #{item.creditBank}
-                                td #{item.creditAtm}
-                                td #{item.fee}
                                 td #{item.amount}
+                                td #{item.fromName}
+                                td #{item.fromAccount}
+                                td #{item.tonName}
+                                td #{item.toAccount}
+                                td #{item.transactionHash}
                                 td #{item.status}

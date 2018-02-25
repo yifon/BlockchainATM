@@ -47,19 +47,21 @@ exports.new = function (req, res) {
 //atm上传图片
 exports.savePicture = (req, res, next) => {
     var atmPicture = req.files.uploadPicture;//通过name值拿到上传的ATM图片
-    var filePath = atmPicture.path;
-    var originalFilename = atmPicture.originalFilename;//拿到原始名字
-    if (originalFilename) {
-        fs.readFile(filePath, function (err, data) {
-            var timestamp = Date.now();
-            var type = atmPicture.type.split('/')[1];//jpeg,png..
-            var picture = timestamp + '.' + type;
-            var newPath = path.join(__dirname, '../../', '/public/upload/' + picture)//生成服务器的存储地址
-            fs.writeFile(newPath, data, function (err) {
-                req.picture = picture;
-                next();
+    if (atmPicture) {
+        var filePath = atmPicture.path;
+        var originalFilename = atmPicture.originalFilename;//拿到原始名字
+        if (originalFilename) {
+            fs.readFile(filePath, function (err, data) {
+                var timestamp = Date.now();
+                var type = atmPicture.type.split('/')[1];//jpeg,png..
+                var picture = timestamp + '.' + type;
+                var newPath = path.join(__dirname, '../../', '/public/upload/' + picture)//生成服务器的存储地址
+                fs.writeFile(newPath, data, function (err) {
+                    req.picture = picture;
+                    next();
+                })
             })
-        })
+        }
     }
     else {
         next();//若无文件上传，则进入下一个环节
@@ -177,13 +179,13 @@ exports.detail = function (req, res) {
     var id = req.params.id;//id为查询的id
     //传入id,从回调方法里拿到查询到的atm数据
     Atm.findOne({ _id: id })
-    .populate({ path: 'bank', select: 'name' })
-    .exec((err, atm) => {
-        res.render('atmDetail', {
-            pageTitle: "ATM详情页",
-            atm: atm//传入atm对象
+        .populate({ path: 'bank', select: 'name' })
+        .exec((err, atm) => {
+            res.render('atmDetail', {
+                pageTitle: "ATM详情页",
+                atm: atm//传入atm对象
+            })
         })
-    })
 }
 
 //修改atm录入信息
