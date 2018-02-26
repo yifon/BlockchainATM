@@ -9,7 +9,7 @@ var fs = require('fs');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 function test() {
     var metacoin;
-    var contractPath = path.join(__dirname, '../', '/build/contracts/MetaCoin.json')//生成服务器的存储地址
+    var contractPath = path.join(__dirname, '../', '/build/contracts/MetaCoin.json')//生成服务器的存储地址x
     //要与合约交互，需要获取部署后的合约ABI以及地址
     const p=new Promise((resolve,reject)=>{
         fs.readFile(contractPath, 'utf8', (err, data) => {
