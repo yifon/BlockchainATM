@@ -1,26 +1,25 @@
 var Card = require('../models/card');
 var Atm = require('../models/atm');
+var NodeContract = require('../models/nodeContract');//传入与合约交互部分
 var async = require('async');
 //首页，开始交易
 exports.welcome = function (req, res) {
     delete req.session.transaction;//清除transaction的session数据
     delete req.session.atm;//清除atm的session数据
     req.session.transaction = {
-        debitAccount: "",
         type: "",
-        startTime: "",
-        endTime: "",
-        fromAtm: "",
-        debitAtm: "",
-        debitBank: "",
-        creditAtm: "",
-        creditAtm: "",
+        debitAccount: "",
+        creditAccount: "",
+        fromBlockAccount: "",
+        fromBlockAccountPwd: "",
+        toBlockAccount: "",
+        toBlockAccountPwd: "",
         amount: "",
-        fee: "",
         status: ""
     };
     req.session.atm = {
-        _id: ""
+        _id: "",
+        atmId: ""
     }
     res.render('welcome', {
         bigTitle: "欢迎使用区块链ATM系统!"
@@ -46,8 +45,7 @@ exports.submitAcc = function (req, res) {
                         "msg": "密码错误！"
                     }
                 } else {
-                    req.session.transaction["debitAccount"] = _customer.debitAccount;//将debitAccount存储在session中
-                    req.session.transaction['debitBank'] = card.bank;
+                    req.session.transaction["debitAccount"] = _customer.debitAccount;//将卡号存储在session中
                     data = {
                         "success": true,
                         "msg": "/chooseAtm"
@@ -71,7 +69,6 @@ exports.submitAcc = function (req, res) {
 exports.chooseAtm = function (req, res) {
     var _transaction = req.session.transaction;
     console.log("debitAccount:" + req.session.transaction["debitAccount"]);
-    console.log("debitBank:" + req.session.transaction["debitBank"]);
     if (typeof _transaction == "undefined" || !_transaction.hasOwnProperty("debitAccount") || _transaction.debitAccount == "") {
         return res.redirect("/");//若未输入过卡号，则因跳转到首页
     }
@@ -100,9 +97,11 @@ exports.chooseAtm = function (req, res) {
 //确认选择的ATM后，跳转到选择交易页
 exports.confirmAtm = (req, res) => {
     console.log(req.body.atmId);
-    req.session.transaction["fromAtm"] = req.body.atmId;
+    // req.session.transaction["fromAtm"] = req.body.atmId;
     req.session.atm["_id"] = req.body._id;
-    console.log(req.session.transaction)
+    req.session.atm["atmId"] = req.body.atmId;;
+    console.log(req.session.transaction);
+    console.log(req.session.atm);
     var data;
     data = {
         "success": true,
@@ -130,7 +129,6 @@ exports.confirmTxn = (req, res) => {
     console.log(type);
     req.session.transaction["type"] = type;
     console.log(req.session.transaction);
-    var result = "/";
     switch (type) {
         case '查询余额':
             data = {
@@ -138,14 +136,14 @@ exports.confirmTxn = (req, res) => {
                 "msg": "/result"
             }
             break;
-        case '取款':
-        case '存款':
-        case '转账':
-            data = {
-                "success": true,
-                "msg": "/enterValue"
-            }
-            break;
+        // case '取款':
+        // case '存款':
+        // case '转账':
+        //     data = {
+        //         "success": true,
+        //         "msg": "/enterValue"
+        //     }
+        //     break;
         default:
             data = {
                 "success": false,
@@ -173,15 +171,39 @@ exports.enterValue = (req, res) => {
  */
 exports.result = (req, res) => {
     var type = req.session.transaction["type"];
-    var cardNumber = req.session.transaction["debitAccount"];
+    var debitAccount = req.session.transaction["debitAccount"];
     var msg = "";
-    if (type == "取款" || type == "存款" || type == "转账") {
-        var amount = req.session.transaction["amount"];
-        msg += "您的" + type + "数额为:" + amount + "\n";
+    var balance = ""
+    //调用智能合约，查看余额
+    // if (type == "取款" || type == "存款" || type == "转账") {
+    //     var amount = req.session.transaction["amount"];
+    //     msg += "您的" + type + "数额为:" + amount + "\n";
+    // }
+    if (type == "查询余额") {
+        var fromBlockAccount = "";
+        var fromBlockAccountPwd = "";
+        //获取区块链地址
+        const p = new Promise((resolve, reject) => {
+            Card.findByNumber(debitAccount, (err, card) => {
+                console.log(card)
+                fromBlockAccount = card.blockAccount;
+                fromBlockAccountPwd = card.blockPassword;
+                resolve();
+            });
+        }).then(() => {
+            if (fromBlockAccount != "" && fromBlockAccountPwd != "") {
+                console.log(fromBlockAccount);
+                console.log(fromBlockAccountPwd);
+                balance = NodeContract.queryBalance(fromBlockAccount, fromBlockAccountPwd);
+            }
+            msg += "您当前的卡号" + debitAccount + "的余额为：" + balance;
+            res.render('result', {
+                bigTitle: type + "结果：",
+                msg: msg,
+            })
+        }).catch(err=>{
+            console.log(err);
+        })
     }
-    msg += "您当前的卡号" + cardNumber + "的余额为：";
-    res.render('result', {
-        bigTitle: type + "结果：",
-        msg: msg,
-    })
+
 }

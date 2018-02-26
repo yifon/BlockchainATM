@@ -23,8 +23,8 @@ module.exports = function (app) {
     app.post('/confirmAtm', Index.confirmAtm);//确认ATM
     app.get('/chooseTxn', Index.chooseTxn);//选择交易类型
     app.post('/confirmTxn', Index.confirmTxn);//确认交易类型
-    app.get('/enterValue', Index.enterValue);//取款／存款：跳转到输入取款／存款数额页面;转账：跳转到输入收款银行卡卡页面
-    // app.get('/result' + Blockchain.execute, Index.result);//查询余额：跳转到结果页面；取款／存款：输入完数额后跳转到结果页面；转账：输入收款银行卡后跳转到结果页面
+    // app.get('/enterValue', Index.enterValue);//取款／存款：跳转到输入取款／存款数额页面;转账：跳转到输入收款银行卡卡页面
+    app.get('/result', Index.result);//查询余额：跳转到结果页面；取款／存款：输入完数额后跳转到结果页面；转账：输入收款银行卡后跳转到结果页面
 
     //atm信息
     app.get('/admin/atm/new', Atm.new);//atm录入页

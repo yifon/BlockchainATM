@@ -100,8 +100,7 @@ $(function () {
      */
     $(".confirmTxn").bind("click", e => {
         $(".confirmTxn").attr("disabled", "true");
-        var type = $(this).val();
-        console.log(type)
+        var type = $(e.currentTarget).html();
         $.ajax({
             type: "POST",
             url: confirmTxnUrl,
