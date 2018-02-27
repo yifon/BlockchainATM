@@ -1,6 +1,9 @@
 extends ../layout 
 block content
     .container
-        .text-center.center-vertical
-            p #{msg}
-    
+        .row-fluid
+            .span12.result-box
+                .text-center
+                    p 您当前的卡号为: #{debitAccount}
+                    p 余额为: #{blockAccountBlance}
+            

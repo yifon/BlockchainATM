@@ -196,12 +196,13 @@ exports.result = (req, res) => {
                 console.log(fromBlockAccountPwd);
                 balance = NodeContract.getBalance(fromBlockAccount, fromBlockAccountPwd);
             }
-            msg += "您当前的卡号" + debitAccount + "的余额为：" + balance;
+            msg += "您当前的卡号" + debitAccount + "的余额为：" + balance
             res.render('result', {
                 bigTitle: type + "结果：",
-                msg: msg,
+                debitAccount: debitAccount,
+                blockAccountBlance: balance
             })
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err);
         })
     }

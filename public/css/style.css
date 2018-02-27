@@ -34,13 +34,20 @@ input {
     position: fixed;
 }
 
-.pwd-area {
-    width: 60% !important;
+.result-box {
     height: 280px;
     line-height: 200px;
-    margin-top: -100px;
+    border: 1px dashed #fff;
 }
 
+.result-box p {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: rgb(233, 223, 223);
+    font-size: 30px;
+    padding-top: 20px;
+}
 .input-label {
     font-size: 30px;
     height: 100px;
@@ -57,25 +64,6 @@ input {
     margin-bottom: 30px;
 }
 
-.pwd-area .form-horizontal .control-label {
-    width: 100%;
-}
-
-.pwd-area #amt {
-    font-size: 80px;
-}
-
-.pwd-area p {
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
-    color: rgb(233, 223, 223);
-    font-size: 30px;
-}
-
-.amt-area {
-    border: 1px dashed #fff;
-}
 
 .submitBtn {
     margin-top: 50px;
