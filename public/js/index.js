@@ -1,3 +1,4 @@
+//所需路由
 var enterAccUrl = "/enterAcc";
 var submitAccUrl = "/submitAcc";
 var confirmAtmUrl = "/confirmAtm";
@@ -108,19 +109,16 @@ $(function () {
             data: {
                 type: type//交易类型
             },
-            success: function (data) {
+            success: data => {
                 if (data.success) {
                     window.location = data.msg;
                 }
                 console.log(data.success + "," + data.msg);
             },
-            error: function (jqXHR) {
+            error: jqXHR => {
                 $(".confirmTxn").attr("disabled", "false");
                 console.log(jqXHR.status);
             }
         })
     })
-    /**
-     * 
-     */
 })

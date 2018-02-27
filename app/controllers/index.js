@@ -194,7 +194,7 @@ exports.result = (req, res) => {
             if (fromBlockAccount != "" && fromBlockAccountPwd != "") {
                 console.log(fromBlockAccount);
                 console.log(fromBlockAccountPwd);
-                balance = NodeContract.queryBalance(fromBlockAccount, fromBlockAccountPwd);
+                balance = NodeContract.getBalance(fromBlockAccount, fromBlockAccountPwd);
             }
             msg += "您当前的卡号" + debitAccount + "的余额为：" + balance;
             res.render('result', {

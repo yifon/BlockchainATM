@@ -2,7 +2,7 @@
 var Web3 = require('web3');
 var fs = require('fs');
 
-var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7101"));
+var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
 var json = JSON.parse(fs.readFileSync("Coin.json"));//合约编译后的json文件
 var abi = json.abi;
 var contract = web3.eth.contract(abi).at("0x03eaf264d8d8b1d2e450745393136b10029c5bcc");

@@ -2,6 +2,7 @@
 var Bin = require('../models/bin');
 var Bank = require('../models/bank');
 var Card = require('../models/card');
+var NodeContract = require('../models/nodeContract');
 var async = require('async');
 var mongoose = require('mongoose');
 
@@ -66,9 +67,11 @@ exports.save = function (req, res) {
     var data;
     var bankId = cardObj.bank;//所属的银行id
     var bin = cardObj.bin;//所属的bin
+    var blockAccount = cardObj.blockAccount;
     var binId;//所属的bin id
     var tempId = "";//查看当前的卡号是否在数据库中有其它人注册过
     const p = new Promise((resolve, reject) => {
+        //查看区块链账户是否存在
         if (bin) {
             Bin.findByBin(bin, (err, bin) => {
                 binId = bin._id;//bin id

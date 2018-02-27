@@ -7,6 +7,7 @@ var bankCreateUrl = "/admin/bank";
 var banklistUrl = "/admin/bank/list";
 var cardCreateUrl = "/admin/card";
 var cardlistUrl = "/admin/card/list";
+var findAccUrl = "/admin/blockchain/findAccount";
 
 $(function () {
     //加载侧边导航栏
@@ -419,7 +420,37 @@ $(function () {
         }
         $("#cardBin").append(html);
     })
-
+    /**
+     * 查看区块链账户是否存在
+     */
+    $("#blockAccount").blur((e) => {
+        $("#checkCard").empty();
+        var blockAccount = $(e.currentTarget).val();
+        console.log(blockAccount);
+        if (blockAccount) {
+            $.ajax({
+                type: "Post",
+                url: findAccUrl,
+                dataType: "json",
+                data: {
+                    blockAccount: blockAccount
+                },
+                success: data => {
+                    console.log(data.success)
+                    if (data.success) {
+                        $("#createCard").attr("disabled", "false");//允许提交账户
+                        
+                    } else {
+                        $("#checkCard").html("不存在该区块链账户");
+                        $("#createCard").attr("disabled", "true");//禁止提交账户
+                    }
+                },
+                error: jqXHR => {
+                    console.log(jqXHR.status);
+                }
+            })
+        }
+    })
 
 
 });

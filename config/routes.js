@@ -6,6 +6,7 @@ var Bank = require('../app/controllers/bank');
 var Card = require('../app/controllers/card');
 var Transaction = require('../app/controllers/transaction');
 var Balance = require('../app/controllers/balance');
+var Blockchain = require('../app/controllers/blockchain');
 // var Blockchain = require('../app/controllers/blockchain');
 module.exports = function (app) {
     //为客人信息设置缓存
@@ -51,7 +52,7 @@ module.exports = function (app) {
     //card信息
     app.get('/admin/card/new', Card.new);//card
     app.get('/admin/card/list', Card.cardlist);//card列表页
-    app.post('/admin/card', Card.save);//将card录入页的信息存储到数据库中
+    app.post('/admin/card', Blockchain.setBalance, Card.save);//将区块链余额设置到区块链中，将card录入页的信息存储到数据库中
     app.get('/admin/card/update/:id', Card.update);//修改card信息
     app.delete('/admin/card/list', Card.del);//删除card
 
@@ -61,9 +62,7 @@ module.exports = function (app) {
     //balance信息
     app.get('/admin/balance/list', Balance.balancelist);//transaction信息
 
-    //处理ATM与区块链部分的事件交互
-    // app.get('/test', Blockchain.test);
-    // app.post('/startTrx', Blockchain.startTrx);//ATM->Blockchain,通知Blockchain开始交易
-    // app.post('/confirmDebit', Blockchain.confirmDebit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认扣款
-    // app.post('/confirmCredit', Blockchain.confirmCredit);//ATM->Blockchain,ATM与银行交互结束后,通知Blockchain可以确认收款
+    //处理前端与区块链部分的事件交互
+    app.post('/admin/blockchain/findAccount', Blockchain.findAccount);//查找区块链账户是否存在
+
 }

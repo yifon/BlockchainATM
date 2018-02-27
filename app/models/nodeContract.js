@@ -1,20 +1,77 @@
 var Web3 = require('web3');
 var fs = require('fs');
 var path = require('path');
+var async = require('async');
+var web3Admin = require('web3admin');
 
-var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));//私有网络
+var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:7101"));//私有网络
+web3Admin.extend(web3);
 var contractFile = path.join(__dirname, '../../', '/build/contracts/BTM.json')//合约地址
 var json = JSON.parse(fs.readFileSync(contractFile));//合约编译后的json文件
 var abi = json.abi;//调用ABI
-var contract = web3.eth.contract(abi).at("0x7f4f9e96ecbc92725952871d234fa157f81b471f");//传入合约地址，返回合约对象
+var contract = web3.eth.contract(abi).at("0xe50d344ea254afea1eeaa28874789ea3526dd13d");//传入合约地址，返回合约对象
+web3.personal.unlockAccount(web3.eth.accounts[0], "123456", 0);//传入区块链账户，密码
+//注册账户
+exports.registerAccount = (account) => {
 
-//查询余额
-exports.queryBalance = (fromBlockAccount, fromBlockAccountPwd)=> {
-  console.log(web3.eth.accounts)
-  // web3.personal.unlockAccount("0x6c4449e1e9476ac52f149cc9710544e75616cd37", "123456", 0);//传入区块链账户，密码
-  contract.setBalance("0x6c4449e1e9476ac52f149cc9710544e75616cd37",5000,{ from: web3.eth.accounts[0], gas: 0x47b760 });
-  var balance = contract.getBalance("0x6c4449e1e9476ac52f149cc9710544e75616cd37");
+}
+
+//取消账户
+exports.unRegisterAccount = (account) => {
+
+}
+
+//查询账户是否存在
+exports.findAccount = (account) => {
+  var accounts = web3.eth.accounts;
+  for (var i = 0; i < accounts.length; i++) {
+    if (account == accounts[i]) {
+      return true;
+    }
+  }
+  return false;
+  //异步的调用暂时处理有点问题
+  //返回当前节点持有的账户列表 [Array]
+  // web3.eth.getAccounts((err, accounts) => {
+  //   console.log(accounts);
+  //   accounts.forEach(acc => {
+  //     if (acc == account) {
+  //       console.log("true")
+  //       return true;
+  //     }
+  //   }, err => {
+  //     return false;
+  //   })
+  // })
+}
+
+//设置余额 [传入区块链账户，密码,设置数额]
+exports.setBalance = (fromBlockAccount, fromBlockAccountPwd, amount) => {
+  console.log("from:" + fromBlockAccount)
+  console.log("pwd:" + fromBlockAccountPwd)
+  console.log("amount:" + amount);
+
+  var hash = contract.setBalance(fromBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
+  console.log("turning on mining", web3.miner.start())
+  console.log("isMining?", web3.eth.mining)
+  console.log(hash)
+}
+
+//查询余额 [传入区块链账户，密码]
+exports.getBalance = (fromBlockAccount, fromBlockAccountPwd) => {
+  var balance = contract.getBalance(fromBlockAccount);
   return balance.toNumber();//返回余额
 }
 
+//账户资产转移
+exports.startTransfer = (fromBlockAccount, toBlockAccount, amount) => {
+  contract.startTransfer(fromBlockAccount, toBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
+  finishTransfer();
+}
 
+//接收来自Blockchain结束交易的通知
+exports.finishTransfer = () => {
+  contract.finishTransfer().watch((err, args) => {
+    console.log(args.result);
+  })
+}

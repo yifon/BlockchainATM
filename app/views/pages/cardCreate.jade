@@ -48,27 +48,27 @@ block content
                     .form-group
                         label.col-sm-4.control-label(for='cardPassword') 银行卡密码:
                         .col-sm-6
-                            input#cardPassword.form-control(type='password')
+                            input#cardPassword.form-control(type='password',value=card.password)
 
                     .form-group
                         label.col-sm-4.control-label(for='blockPassword') 区块链账户密码:
                         .col-sm-6
-                            input#blockPassword.form-control(type='blockPassword')
+                            input#blockPassword.form-control(type='password',value=card.blockPassword)
 
                     .form-group
                         label.col-sm-4.control-label(for='cashAccountBalance') 现金账户余额:
                         .col-sm-6
-                            input#cashAccountBalance.form-control(type='text')
+                            input#cashAccountBalance.form-control(type='text',value=card.cashAccountBalance)
 
                     .form-group
                         label.col-sm-4.control-label(for='blockAccountBalance') 区块链账户余额:
                         .col-sm-6
-                            input#blockAccountBalance.form-control(type='text')
-                            
+                            input#blockAccountBalance.form-control(type='text',value=card.blockAccountBalance)
+
                     .form-group
                         label.col-sm-4.control-label(for='blockAccount') 区块链账户地址:
                         .col-sm-6
-                            input#blockAccount.form-control(type='text')
+                            input#blockAccount.form-control(type='text',value=card.blockAccount)
 
                     //-验证结果，只有失败才会提醒
                     .form-group

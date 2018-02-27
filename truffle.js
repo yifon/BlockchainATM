@@ -9,10 +9,10 @@ module.exports = {
       network_id: "*"//匹配所有的network id
     },
     //truffle migrate --network live
-    // live: {
-      // host: "119.23.51.71", //
-      // port: 80,
-      // network_id: 1,        // Ethereum public network
+    live: {
+      host: "127.0.0.1", //
+      port: 7101,
+      network_id: 999,   //本地以太坊私有链
       // optional config values:
       // gas
       // gasPrice
@@ -20,6 +20,6 @@ module.exports = {
       // provider - web3 provider instance Truffle should use to talk to the Ethereum network.
       //          - function that returns a web3 provider instance (see below.)
       //          - if specified, host and port are ignored.
-    // }
+    }
   }
 };
