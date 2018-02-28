@@ -21,10 +21,10 @@ module.exports = function (app) {
     app.get('/enterAcc', Index.enterAcc);//下一个页面是enter account
     app.post('/submitAcc', Index.submitAcc);//验证输入的账户和密码
     app.get('/chooseAtm', Index.chooseAtm);//选择服务的ATM
-    app.post('/confirmAtm', Index.confirmAtm);//确认ATM
+    app.post('/confirmAtm', Atm.findAccount, Index.confirmAtm);//确认ATM
     app.get('/chooseTxn', Index.chooseTxn);//选择交易类型
     app.post('/confirmTxn', Index.confirmTxn);//确认交易类型
-    // app.get('/enterValue', Index.enterValue);//取款／存款：跳转到输入取款／存款数额页面;转账：跳转到输入收款银行卡卡页面
+    app.get('/enterValue', Index.enterValue);//取款／存款：跳转到输入取款／存款数额页面;转账：跳转到输入收款银行卡卡页面
     app.get('/result', Index.result);//查询余额：跳转到结果页面；取款／存款：输入完数额后跳转到结果页面；转账：输入收款银行卡后跳转到结果页面
 
     //atm信息
@@ -64,5 +64,6 @@ module.exports = function (app) {
 
     //处理前端与区块链部分的事件交互
     app.post('/admin/blockchain/findAccount', Blockchain.findAccount);//查找区块链账户是否存在
+    app.post('/confirmCwd', Blockchain.confirmCwd);//若支持取款，则直接扣款
 
 }

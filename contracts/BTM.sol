@@ -17,7 +17,7 @@ contract BTM{
         return balanceOf[blockAccount];
     }
     //ATM->Blockchain,传入扣款账户，收款账户，数额，返回扣款结果 ［无论是存款，取款还是转帐，实际上都是两个区块链之间账户资产的转移］
-    function startTransfer(address fromAccount, address toAccount, int256 amount)external returns(bool){
+    function startTransfer(address fromAccount, address toAccount, int256 amount)external{
         bool debitResult = executeDebit(fromAccount, amount);
         bool creditResult = executeCredit(toAccount, amount);
         if (debitResult && creditResult) {

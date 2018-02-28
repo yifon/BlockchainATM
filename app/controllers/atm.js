@@ -246,3 +246,18 @@ exports.del = function (req, res) {
         }
     }
 }
+
+//查询区块链账户和密码
+exports.findAccount = (req, res, next) => {
+    console.log(req.body.atmId);
+    req.session.atm["_id"] = req.body._id;
+    req.session.atm["atmId"] = req.body.atmId;
+    console.log(req.session.transaction);
+    //获取atm的区块链账户和密码
+    Atm.findById(req.body._id, (err, atm) => {
+        req.session.atm["blockAccount"] = atm.blockAccount;
+        req.session.atm["blockPassword"] = atm.blockPassword;
+        console.log(req.session.atm);
+        next();
+    });
+}

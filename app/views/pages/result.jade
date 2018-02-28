@@ -5,5 +5,9 @@ block content
             .span12.result-box
                 .text-center
                     p 您当前的卡号为: #{debitAccount}
+                    if(type=="取款"||type=="转帐"||type=="存款")
+                        p #{type}数额为: #{amount}
+                        p 结果: #{status}
                     p 余额为: #{blockAccountBlance}
+                    button.btn.btn-success.btn-atm#takeCard 取卡  
             

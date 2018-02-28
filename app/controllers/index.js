@@ -19,7 +19,9 @@ exports.welcome = function (req, res) {
     };
     req.session.atm = {
         _id: "",
-        atmId: ""
+        atmId: "",
+        blockAccount: "",
+        blockPassword: ""
     }
     res.render('welcome', {
         bigTitle: "欢迎使用区块链ATM系统!"
@@ -96,14 +98,7 @@ exports.chooseAtm = function (req, res) {
 }
 //确认选择的ATM后，跳转到选择交易页
 exports.confirmAtm = (req, res) => {
-    console.log(req.body.atmId);
-    // req.session.transaction["fromAtm"] = req.body.atmId;
-    req.session.atm["_id"] = req.body._id;
-    req.session.atm["atmId"] = req.body.atmId;;
-    console.log(req.session.transaction);
-    console.log(req.session.atm);
-    var data;
-    data = {
+    var data = {
         "success": true,
         "msg": "/chooseTxn?supportedTxns=" + req.body.supportedTxns
     }
@@ -128,30 +123,49 @@ exports.confirmTxn = (req, res) => {
     var type = req.body.type;
     console.log(type);
     req.session.transaction["type"] = type;
-    console.log(req.session.transaction);
     switch (type) {
         case '查询余额':
             data = {
                 "success": true,
                 "msg": "/result"
+            };
+            res.json(data);
+            break;
+        case '取款':
+            req.session.transaction["creditAccount"] = req.session.atm["atmId"];
+            req.session.transaction["toBlockAccount"] = req.session.atm["blockAccount"];
+            req.session.transaction["toBlockAccountPwd"] = req.session.atm["blockPassword"];
+            const p = new Promise((resolve, reject) => {
+                Card.findByNumber(req.session.transaction["debitAccount"], (err, card) => {
+                    console.log("card:" + card);
+                    req.session.transaction["fromBlockAccount"] = card.blockAccount;
+                    req.session.transaction["fromBlockAccountPwd"] = card.blockPassword;
+                    resolve();
+                });
+            }).then(() => {
+                data = {
+                    "success": true,
+                    "msg": "/enterValue"
+                };
+                console.log(req.session.transaction);
+                res.json(data);
+            });
+            break;
+        case '存款':
+        case '转账':
+            data = {
+                "success": true,
+                "msg": "/enterValue"
             }
             break;
-        // case '取款':
-        // case '存款':
-        // case '转账':
-        //     data = {
-        //         "success": true,
-        //         "msg": "/enterValue"
-        //     }
-        //     break;
         default:
             data = {
                 "success": false,
                 "msg": "服务器异常"
             }
+            res.json(data);
             break;
     }
-    res.json(data);
 }
 
 /**
@@ -159,9 +173,13 @@ exports.confirmTxn = (req, res) => {
  */
 exports.enterValue = (req, res) => {
     var type = req.session.transaction["type"];
-    res.render('enterValue', {
-        bigTitle: "请输入您的" + type + "数额："
-    })
+    //输入账户
+    if (type) {
+        res.render('enterAcc', {
+            bigTitle: "请输入您的" + type + "数额：",
+            type: type
+        })
+    }
 }
 /**
  * 结果页面：
@@ -172,13 +190,22 @@ exports.enterValue = (req, res) => {
 exports.result = (req, res) => {
     var type = req.session.transaction["type"];
     var debitAccount = req.session.transaction["debitAccount"];
-    var msg = "";
-    var balance = ""
+    var balance = 0;
+    var status = false;
     //调用智能合约，查看余额
-    // if (type == "取款" || type == "存款" || type == "转账") {
-    //     var amount = req.session.transaction["amount"];
-    //     msg += "您的" + type + "数额为:" + amount + "\n";
-    // }
+    if (type == "取款") {
+        var amount = req.session.transaction["amount"];
+        balance = NodeContract.getBalance(req.session.transaction["fromBlockAccount"], req.session.transaction["fromBlockAccountPwd"]);
+        status = req.session.transaction["status"];
+        res.render('result', {
+            bigTitle: type + "结果：",
+            type: type,
+            debitAccount: debitAccount,
+            amount: amount,
+            status: status == true ? "成功" : "失败",
+            blockAccountBlance: balance
+        })
+    }
     if (type == "查询余额") {
         var fromBlockAccount = "";
         var fromBlockAccountPwd = "";
@@ -196,9 +223,9 @@ exports.result = (req, res) => {
                 console.log(fromBlockAccountPwd);
                 balance = NodeContract.getBalance(fromBlockAccount, fromBlockAccountPwd);
             }
-            msg += "您当前的卡号" + debitAccount + "的余额为：" + balance
             res.render('result', {
                 bigTitle: type + "结果：",
+                type: type,
                 debitAccount: debitAccount,
                 blockAccountBlance: balance
             })

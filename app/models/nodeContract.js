@@ -9,7 +9,7 @@ web3Admin.extend(web3);
 var contractFile = path.join(__dirname, '../../', '/build/contracts/BTM.json')//合约地址
 var json = JSON.parse(fs.readFileSync(contractFile));//合约编译后的json文件
 var abi = json.abi;//调用ABI
-var contract = web3.eth.contract(abi).at("0xe50d344ea254afea1eeaa28874789ea3526dd13d");//传入合约地址，返回合约对象
+var contract = web3.eth.contract(abi).at("0x04c5a48bb7be77dd9f2bcf8e9cc1c9f9731d1fdf");//传入合约地址，返回合约对象
 web3.personal.unlockAccount(web3.eth.accounts[0], "123456", 0);//传入区块链账户，密码
 //注册账户
 exports.registerAccount = (account) => {
@@ -52,26 +52,44 @@ exports.setBalance = (fromBlockAccount, fromBlockAccountPwd, amount) => {
   console.log("amount:" + amount);
 
   var hash = contract.setBalance(fromBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  console.log("turning on mining", web3.miner.start())
-  console.log("isMining?", web3.eth.mining)
-  console.log(hash)
+  console.log("turning on mining", web3.miner.start());
+  console.log("isMining?", web3.eth.mining);
+  console.log(hash);
+  var balance = contract.getBalance(fromBlockAccount);
+  console.log("balance:" + balance);
 }
 
 //查询余额 [传入区块链账户，密码]
 exports.getBalance = (fromBlockAccount, fromBlockAccountPwd) => {
+  console.log("from:" + fromBlockAccount)
   var balance = contract.getBalance(fromBlockAccount);
+  console.log("balance:" + balance);
   return balance.toNumber();//返回余额
 }
 
 //账户资产转移
 exports.startTransfer = (fromBlockAccount, toBlockAccount, amount) => {
-  contract.startTransfer(fromBlockAccount, toBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  finishTransfer();
+  console.log("from:" + fromBlockAccount)
+  console.log("to:" + toBlockAccount)
+  console.log("amount:" + amount);
+  var balance0 = contract.getBalance(fromBlockAccount);
+  console.log("before: from acc balance:" + balance0);
+  var balance1 = contract.getBalance(toBlockAccount);
+  console.log("before: to acc balance:" + balance1);
+  var hash = contract.startTransfer(fromBlockAccount, toBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
+  console.log("turning on mining", web3.miner.start());
+  console.log("isMining?", web3.eth.mining);
+  console.log(hash);
+  return this.finishTransfer();
 }
 
 //接收来自Blockchain结束交易的通知
 exports.finishTransfer = () => {
-  contract.finishTransfer().watch((err, args) => {
-    console.log(args.result);
+  console.log(1)
+  contract.finishTransfer().watch((err, res) => {
+    console.log(2);
+    var result = res.args.result;
+    console.log(result);
+    return result;
   })
 }

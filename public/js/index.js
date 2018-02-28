@@ -3,6 +3,7 @@ var enterAccUrl = "/enterAcc";
 var submitAccUrl = "/submitAcc";
 var confirmAtmUrl = "/confirmAtm";
 var confirmTxnUrl = "/confirmTxn";
+var confirmCwdUrl = "/confirmCwd";
 
 $(function () {
     /**
@@ -69,7 +70,6 @@ $(function () {
         $(".confirmAtm").attr("disabled", "true");
         var target = $(e.currentTarget);//监听注册了事件监听器的div对象
         var atmId = target.data('atmid');
-        console.log(atmId)
         var supportedTxns = target.data('supportedtxns');//使用小写
         var _id = target.data('id');
         $.ajax({
@@ -120,5 +120,51 @@ $(function () {
                 console.log(jqXHR.status);
             }
         })
+    })
+
+    /**
+ * 验证输入的数额
+ * 1.必须不为空
+ * 2.必须为数字
+ * 3.账户中存在足够的钱
+ */
+    $("#confirmCwd").bind("click", function () {
+        $(this).attr("disabled", "true");
+        var amt = $("#enterAmt").val();
+        var type = /^[0-9]*[0-9]$/;//以0-9开头和结尾
+        var reg = new RegExp(type);
+        var html = "";
+        if (amt === "" || !amt.match(reg)) {
+            html += "请输入取款数额（0-9）!"
+            $("#amtChecking").html(html);
+        } else {
+            $.ajax({
+                type: "POST",
+                url: confirmCwdUrl,
+                dataType: 'json',
+                data: {
+                    amount: amt
+                },
+                success: function (data) {
+                    if(data.success){
+                        window.location = data.msg;
+                    }else{
+                        html += data.msg
+                        $("#amtChecking").html(html);
+                    }
+                    $(this).attr("disabled", "false");
+                },
+                error: function (jqXHR) {
+                    $(this).attr("disabled", "false");
+                    html = "服务异常：[" + jqXHR.status + "], 请联系银行管理员";
+                    $("#amtChecking").html(html);
+                }
+            })
+        }
+    })
+
+    //
+    $("#takeCard").bind("click",()=>{
+        window.location="/";
     })
 })

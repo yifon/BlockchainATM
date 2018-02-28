@@ -4,16 +4,48 @@ block content
         .row
             .col-sm-12.col-xs-12
                 .form-horizontal
-                    .form-group
-                        label.col-sm-2.col-xs-3.input-label 卡号：
-                        .col-sm-8.col-xs-8
-                            input.form-control.input-value#enterAcc
-                    .form-group
-                        label.col-sm-2.col-xs-3.input-label 密码：
-                        .col-sm-8.col-xs-8
-                            input.input-value.form-control#enterPwd(type="password")
-                    .text-center.form-group
-                        .inputChecking#accChecking
-                    .text-center.form-group
-                        button.btn.btn-success.btn-atm#confirmAcc 确认
-    
+                    //-输入账户，密码页面
+                    if(!type)
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 卡号：
+                            .col-sm-8.col-xs-8
+                                input.form-control.input-value#enterAcc
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 密码：
+                            .col-sm-8.col-xs-8
+                                input.input-value.form-control#enterPwd(type="password")
+                        .text-center.form-group
+                            .inputChecking#accChecking
+                        .text-center.form-group
+                            button.btn.btn-success.btn-atm#confirmAcc 确认
+                    if type == "取款"
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 取款数额：
+                            .col-sm-8.col-xs-8
+                                input.input-value.form-control#enterAmt(type="text")
+                        .text-center.form-group
+                            .inputChecking#amtChecking
+                        .text-center.form-group
+                            button.btn.btn-success.btn-atm#confirmCwd 确认
+                    if type == "存款"
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 存款数额：
+                            .col-sm-8.col-xs-8
+                                input.input-value.form-control#enterAmt(type="text")
+                        .text-center.form-group
+                            .inputChecking#amtChecking
+                        .text-center.form-group
+                            button.btn.btn-success.btn-atm#confirmDep 确认                            
+                    if type == "转帐"
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 收款银行卡账户：
+                            .col-sm-8.col-xs-8
+                                input.form-control.input-value#enterAcc                    
+                        .form-group
+                            label.col-sm-2.col-xs-3.input-label 转账数额：
+                            .col-sm-8.col-xs-8
+                                input.input-value.form-control#enterAmt(type="text")
+                        .text-center.form-group
+                            .inputChecking#tfrChecking
+                        .text-center.form-group
+                            button.btn.btn-success.btn-atm#confirmTfr 确认                   
