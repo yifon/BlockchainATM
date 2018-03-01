@@ -30,7 +30,7 @@ module.exports = function (app) {
     //atm信息
     app.get('/admin/atm/new', Atm.new);//atm录入页
     app.get('/admin/atm/list', Atm.atmlist);//atm列表页
-    app.post('/admin/atm', Atm.savePicture, Atm.save);//将atm录入页的信息存储到数据库中
+    app.post('/admin/atm', Atm.savePicture, Blockchain.setBalance, Atm.save);//将atm录入页的信息存储到数据库中
     app.get('/atm/:id', Atm.detail);//具体某台atm的详情页
     app.get('/admin/atm/update/:id', Atm.update);//修改atm信息
     app.delete('/admin/atm/list', Atm.del);//删除atm
@@ -64,6 +64,6 @@ module.exports = function (app) {
 
     //处理前端与区块链部分的事件交互
     app.post('/admin/blockchain/findAccount', Blockchain.findAccount);//查找区块链账户是否存在
-    app.post('/confirmCwd', Blockchain.confirmCwd);//若支持取款，则直接扣款
+    app.post('/confirmAmt', Index.isTransfer, Blockchain.confirmAmt);//先判断是否为转帐
 
 }

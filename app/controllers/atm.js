@@ -1,6 +1,7 @@
 //加载编译的模型
 var Atm = require('../models/atm');
 var Bank = require('../models/bank');
+var NodeContract = require('../models/nodeContract');//传入与合约交互部分
 var async = require('async');
 
 //underscore内的extend方法可以实现用另外一个对象内新的字段来替换掉老的对象里对应的字段
@@ -181,6 +182,8 @@ exports.detail = function (req, res) {
     Atm.findOne({ _id: id })
         .populate({ path: 'bank', select: 'name' })
         .exec((err, atm) => {
+            //查找余额
+            atm.blockAccountBalance = NodeContract.getBalance(atm.blockAccount, atm.blockPassword);
             res.render('atmDetail', {
                 pageTitle: "ATM详情页",
                 atm: atm//传入atm对象

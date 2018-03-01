@@ -18,6 +18,10 @@ block content
                             .inputChecking#accChecking
                         .text-center.form-group
                             button.btn.btn-success.btn-atm#confirmAcc 确认
+
+                    if type
+                        input#type(type='hidden',value=type)
+                    //-取款页面需要输入取款数额
                     if type == "取款"
                         .form-group
                             label.col-sm-2.col-xs-3.input-label 取款数额：
@@ -26,7 +30,9 @@ block content
                         .text-center.form-group
                             .inputChecking#amtChecking
                         .text-center.form-group
-                            button.btn.btn-success.btn-atm#confirmCwd 确认
+                            button.btn.btn-success.btn-atm#confirmAmt 确认
+
+                    //-存款页面需要输入存款数额
                     if type == "存款"
                         .form-group
                             label.col-sm-2.col-xs-3.input-label 存款数额：
@@ -35,8 +41,10 @@ block content
                         .text-center.form-group
                             .inputChecking#amtChecking
                         .text-center.form-group
-                            button.btn.btn-success.btn-atm#confirmDep 确认                            
-                    if type == "转帐"
+                            button.btn.btn-success.btn-atm#confirmAmt 确认   
+
+                    //-转帐页面需要输入收款账户（银行卡卡号）和转帐数额
+                    if type == "转账"
                         .form-group
                             label.col-sm-2.col-xs-3.input-label 收款银行卡账户：
                             .col-sm-8.col-xs-8
@@ -46,6 +54,6 @@ block content
                             .col-sm-8.col-xs-8
                                 input.input-value.form-control#enterAmt(type="text")
                         .text-center.form-group
-                            .inputChecking#tfrChecking
+                            .inputChecking#amtChecking
                         .text-center.form-group
-                            button.btn.btn-success.btn-atm#confirmTfr 确认                   
+                            button.btn.btn-success.btn-atm#confirmAmt 确认                   

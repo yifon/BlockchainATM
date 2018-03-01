@@ -1,12 +1,11 @@
 //加载编译的模型
 var Atm = require('../models/atm');
 var Card = require('../models/card');
-
+var NodeContract = require('../models/nodeContract');//传入与合约交互部分
 var async = require('async');
 //balance列表页
 exports.balancelist = function (req, res) {
     var tempCustomerArr = [];
-    var totalCashBalance = 0;//所有现金账户余额
     var totalBlockBalance = 0;//所有区块链账户余额
 
     //获取所有的客人的现金账户余额和区块链账户余额
@@ -19,10 +18,8 @@ exports.balancelist = function (req, res) {
             async.each(cards, (card, callback) => {
                 var temp = {
                     name: card.name,
-                    cashBalance: card.cashAccountBalance,
-                    blockBalance: card.blockAccountBalance
+                    blockBalance: NodeContract.getBalance(card.blockAccount, card.blockPassword)
                 };
-                totalCashBalance += temp.cashBalance;
                 totalBlockBalance += temp.blockBalance;
                 tempCustomerArr.push(temp);
                 callback(null);
@@ -43,10 +40,8 @@ exports.balancelist = function (req, res) {
             async.each(atms, (atm, callback) => {
                 var temp = {
                     name: atm.atmId,
-                    cashBalance: atm.cashAccountBalance,
-                    blockBalance: atm.blockAccountBalance
+                    blockBalance: NodeContract.getBalance(atm.blockAccount, atm.blockPassword)
                 };
-                totalCashBalance += temp.cashBalance;
                 totalBlockBalance += temp.blockBalance;
                 tempCustomerArr.push(temp);
                 callback(null);
@@ -61,7 +56,6 @@ exports.balancelist = function (req, res) {
         res.render('balancelist', {
             pageTitle: "实时余额分布页",
             customers: tempCustomerArr,
-            totalCashBalance: totalCashBalance,
             totalBlockBalance: totalBlockBalance
         });
     })

@@ -20,7 +20,6 @@ var CardSchema = new Schema({
     },
     name: String,//客人姓名
     password: Number,//银行卡密码
-    cashAccountBalance: Number,//现金账户余额
     blockAccount: String,//区块链账户地址
     blockPassword: String,//区块链账户密码
     blockAccountBalance: Number,//区块链账户余额

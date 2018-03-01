@@ -3,7 +3,7 @@ var enterAccUrl = "/enterAcc";
 var submitAccUrl = "/submitAcc";
 var confirmAtmUrl = "/confirmAtm";
 var confirmTxnUrl = "/confirmTxn";
-var confirmCwdUrl = "/confirmCwd";
+var confirmAmtUrl = "/confirmAmt";
 
 $(function () {
     /**
@@ -123,16 +123,21 @@ $(function () {
     })
 
     /**
- * 验证输入的数额
- * 1.必须不为空
- * 2.必须为数字
- * 3.账户中存在足够的钱
- */
-    $("#confirmCwd").bind("click", function () {
+     * 验证输入的数额
+     * 1.必须不为空
+     * 2.必须为数字
+     * 3.账户中存在足够的钱
+     */
+    $("#confirmAmt").bind("click", function () {
         $(this).attr("disabled", "true");
         var amt = $("#enterAmt").val();
-        var type = /^[0-9]*[0-9]$/;//以0-9开头和结尾
-        var reg = new RegExp(type);
+        var type = $("#type").val();//获取交易类型
+        var creditAccount = null;
+        if (type == "转账") {
+            creditAccount = $("#enterAcc").val();//若是转帐，还有转帐账户
+        }
+        var valType = /^[0-9]*[0-9]$/;//以0-9开头和结尾
+        var reg = new RegExp(valType);
         var html = "";
         if (amt === "" || !amt.match(reg)) {
             html += "请输入取款数额（0-9）!"
@@ -141,9 +146,11 @@ $(function () {
             $("#amtChecking").html("交易正在进行中，请耐心等待....");
             $.ajax({
                 type: "POST",
-                url: confirmCwdUrl,
+                url: confirmAmtUrl,
                 dataType: 'json',
                 data: {
+                    type: type,//传入交易类型，方便判断是否为转帐
+                    creditAccount: creditAccount,//收款账户，若不是转帐，则不设置
                     amount: amt
                 },
                 success: function (data) {
@@ -163,7 +170,6 @@ $(function () {
             })
         }
     })
-
     //
     $("#takeCard").bind("click", () => {
         window.location = "/";

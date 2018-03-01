@@ -55,13 +55,10 @@ exports.setBalance = (fromBlockAccount, fromBlockAccountPwd, amount) => {
   console.log("turning on mining", web3.miner.start());
   console.log("isMining?", web3.eth.mining);
   console.log(hash);
-  var balance = contract.getBalance(fromBlockAccount);
-  console.log("balance:" + balance);
 }
 
 //查询余额 [传入区块链账户，密码]
 exports.getBalance = (fromBlockAccount, fromBlockAccountPwd) => {
-  console.log("from:" + fromBlockAccount)
   var balance = contract.getBalance(fromBlockAccount);
   console.log("balance:" + balance);
   return balance.toNumber();//返回余额
@@ -80,7 +77,11 @@ exports.startTransfer = (fromBlockAccount, toBlockAccount, amount) => {
   console.log("turning on mining", web3.miner.start());
   console.log("isMining?", web3.eth.mining);
   console.log(hash);
-  //接收来自Blockchain结束交易的通知
+  return this.finishTransfer();
+}
+
+//接收来自Blockchain结束交易的通知
+exports.finishTransfer = () => {
   return new Promise((resolve, reject) => {
     contract.finishTransfer().watch((err, res) => {
       if (err) {
@@ -91,4 +92,5 @@ exports.startTransfer = (fromBlockAccount, toBlockAccount, amount) => {
       resolve(result);
     })
   })
+
 }

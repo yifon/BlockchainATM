@@ -21,6 +21,7 @@ exports.cardlist = function (req, res) {
             Card.findOne({ _id: card._id })
                 .populate({ path: 'bank', select: 'name' })
                 .exec((err, card) => {
+                    card.blockAccountBalance = NodeContract.getBalance(card.blockAccount, card.blockPassword);
                     tempCardArr.push(card);
                     callback(null);
                 })

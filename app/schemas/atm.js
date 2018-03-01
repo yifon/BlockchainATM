@@ -10,7 +10,6 @@ var AtmSchema = new Schema({
         type: String
     },
     ip: String,//区块链http地址
-    cashAccountBalance: Number,//现金账户余额
     blockAccount: String,//区块链账户地址
     blockPassword: String,//区块链账户密码
     blockAccountBalance: Number,//区块链账户余额

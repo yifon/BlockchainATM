@@ -6,25 +6,17 @@ block content
                 thead
                     tr.active
                         th 用户名
-                        th 现金账户余额
                         th 区块链账户余额
-                        th 总余额
                     tbody
                         each item in customers
                             tr
                                 td #{item.name}
-                                td #{item.cashBalance}
                                 td #{item.blockBalance}
-                                td #{parseInt(item.cashBalance)+parseInt(item.blockBalance)}
             
             table.table.table-hover.table-bordered
                 thead
                     tr.active
-                        th 所有现金账户余额
-                        th 所有区块链账户余额
                         th 所有账户总余额
                     tbody
                         tr
-                            td #{totalCashBalance}
                             td #{totalBlockBalance}
-                            td #{parseInt(totalCashBalance)+parseInt(totalBlockBalance)}

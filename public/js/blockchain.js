@@ -40,7 +40,6 @@ $(function () {
         var ip = $("#inputIp").val();//区块链中http地址
         var blockAccount = $("#blockAccount").val();//区块链账户地址
         var blockPassword = $("#blockPassword").val();//区块链账户密码
-        var cashAccountBalance = !$("#cashAccountBalance").val().match(cardBalType) ? 0 : $("#cashAccountBalance").val();//现金账户余额
         var blockAccountBalance = !$("#blockAccountBalance").val().match(cardBalType) ? 0 : $("#blockAccountBalance").val();//区块链账户地址
         var location = $("#inputLocation").val();
         var supportedTxns = [];
@@ -60,7 +59,6 @@ $(function () {
         formData.append('atm[bank]', bank);
         formData.append('atm[atmId]', atmId);
         formData.append('atm[ip]', ip);
-        formData.append('atm[cashAccountBalance]', cashAccountBalance);
         formData.append('atm[blockAccount]', blockAccount);
         formData.append('atm[blockPassword]', blockPassword);
         formData.append('atm[blockAccountBalance]', blockAccountBalance);
@@ -221,7 +219,6 @@ $(function () {
         var cardName = $("#cardName").val();
         var cardPassword = $("#cardPassword").val();
         var blockPassword = $("#blockPassword").val();
-        var cashAccountBalance = !$("#cashAccountBalance").val().match(cardBalType) ? 0 : $("#cashAccountBalance").val();
         var blockAccount = $("#blockAccount").val();
         var blockAccountBalance = !$("#blockAccountBalance").val().match(cardBalType) ? 0 : $("#blockAccountBalance").val();
         if (!cardBin || !cardCustomerNumber.match(cardCnType) || !cardName || !cardPassword.match(cardPwdType) || !blockPassword || !blockAccount) {
@@ -257,7 +254,6 @@ $(function () {
                         number: cardBin + cardCustomerNumber,
                         name: cardName,
                         password: cardPassword,
-                        cashAccountBalance: cashAccountBalance,
                         blockAccount: blockAccount,
                         blockPassword: blockPassword,
                         blockAccountBalance: blockAccountBalance
@@ -439,7 +435,7 @@ $(function () {
                     console.log(data.success)
                     if (data.success) {
                         $("#createCard").attr("disabled", "false");//允许提交账户
-                        
+
                     } else {
                         $("#checkCard").html("不存在该区块链账户");
                         $("#createCard").attr("disabled", "true");//禁止提交账户
