@@ -80,16 +80,15 @@ exports.startTransfer = (fromBlockAccount, toBlockAccount, amount) => {
   console.log("turning on mining", web3.miner.start());
   console.log("isMining?", web3.eth.mining);
   console.log(hash);
-  return this.finishTransfer();
-}
-
-//接收来自Blockchain结束交易的通知
-exports.finishTransfer = () => {
-  console.log(1)
-  contract.finishTransfer().watch((err, res) => {
-    console.log(2);
-    var result = res.args.result;
-    console.log(result);
-    return result;
+  //接收来自Blockchain结束交易的通知
+  return new Promise((resolve, reject) => {
+    contract.finishTransfer().watch((err, res) => {
+      if (err) {
+        console.log(err)
+      }
+      var result = res.args.result;
+      console.log("获得交易结果：" + result);
+      resolve(result);
+    })
   })
 }

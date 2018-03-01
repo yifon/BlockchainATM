@@ -138,6 +138,7 @@ $(function () {
             html += "请输入取款数额（0-9）!"
             $("#amtChecking").html(html);
         } else {
+            $("#amtChecking").html("交易正在进行中，请耐心等待....");
             $.ajax({
                 type: "POST",
                 url: confirmCwdUrl,
@@ -146,9 +147,9 @@ $(function () {
                     amount: amt
                 },
                 success: function (data) {
-                    if(data.success){
+                    if (data.success) {
                         window.location = data.msg;
-                    }else{
+                    } else {
                         html += data.msg
                         $("#amtChecking").html(html);
                     }
@@ -164,7 +165,7 @@ $(function () {
     })
 
     //
-    $("#takeCard").bind("click",()=>{
-        window.location="/";
+    $("#takeCard").bind("click", () => {
+        window.location = "/";
     })
 })

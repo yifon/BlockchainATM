@@ -1,3 +1,7 @@
+//引入await/async
+require('babel-core/register');
+// require('./async.js');
+
 var NodeContract = require('../models/nodeContract');//传入与合约交互部分
 //查找账户
 exports.findAccount = (req, res) => {
@@ -35,13 +39,24 @@ exports.confirmCwd = (req, res) => {
         }
         res.json(data);
     } else {
-        //要结束转帐后才可以返回结果
-        var result = NodeContract.startTransfer(debitBlockAcc, creditBlockAcc, debitAmt);
-        data = {
-            "success": result,
-            "msg": "/result"
+        //转帐是一个异步的过程，要结束转帐后才可以返回结果
+        async function getTransferResult() {
+            try {
+                const result = await NodeContract.startTransfer(debitBlockAcc, creditBlockAcc, debitAmt);
+                console.log("result:" + result);
+                return result;
+            } catch (err) {
+                console.log(err);
+            }
         }
-        req.session.transaction["status"] = true;
-        res.json(data);
+        getTransferResult().then(result => {
+            data = {
+                "success": result,
+                "msg": "/result"
+            }
+            console.log("2,result:" + result);
+            req.session.transaction["status"] = result;
+            res.json(data);
+        })
     }
 }
