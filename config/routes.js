@@ -4,10 +4,8 @@ var Atm = require('../app/controllers/atm');
 var Bin = require('../app/controllers/bin');
 var Bank = require('../app/controllers/bank');
 var Card = require('../app/controllers/card');
-var Transaction = require('../app/controllers/transaction');
 var Balance = require('../app/controllers/balance');
 var Blockchain = require('../app/controllers/blockchain');
-// var Blockchain = require('../app/controllers/blockchain');
 module.exports = function (app) {
     //为客人信息设置缓存
     app.use(function (req, res, next) {
@@ -56,14 +54,12 @@ module.exports = function (app) {
     app.get('/admin/card/update/:id', Card.update);//修改card信息
     app.delete('/admin/card/list', Card.del);//删除card
 
-    //transaction信息
-    app.get('/admin/transaction/list', Transaction.transactionlist);//transaction信息
-
     //balance信息
     app.get('/admin/balance/list', Balance.balancelist);//transaction信息
 
     //处理前端与区块链部分的事件交互
     app.post('/admin/blockchain/findAccount', Blockchain.findAccount);//查找区块链账户是否存在
     app.post('/confirmAmt', Index.isTransfer, Blockchain.confirmAmt);//先判断是否为转帐
+    app.get('/admin/transaction/list', Blockchain.transaction);
 
 }

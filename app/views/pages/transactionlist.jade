@@ -7,26 +7,22 @@ block content
                     tr.active
                         th 区块号
                         th 时间戳
-                        th 客人姓名
                         th 交易类型
                         th 交易数额
                         th 扣款区块链账户所属用户
                         th 扣款区块链账户
                         th 收款区块链账户所属用户
                         th 收款区块链账户
-                        th 交易哈希值
                         th 状态
                     tbody
                         each item in transactions
                             tr
                                 td #{item.blockNo}
-                                td #{item.time}
-                                td #{item.customer}
+                                td #{moment(item.time).format('YYYY-MM-DD HH:mm:ss')}
                                 td #{item.type}
                                 td #{item.amount}
-                                td #{item.fromName}
+                                td #{item.debitAccount}
                                 td #{item.fromAccount}
-                                td #{item.tonName}
+                                td #{item.creditAccount}
                                 td #{item.toAccount}
-                                td #{item.transactionHash}
                                 td #{item.status}

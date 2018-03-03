@@ -17,13 +17,13 @@ contract BTM{
         return balanceOf[blockAccount];
     }
     //ATM->Blockchain,传入扣款账户，收款账户，数额，返回扣款结果 ［无论是存款，取款还是转帐，实际上都是两个区块链之间账户资产的转移］
-    function startTransfer(address fromAccount, address toAccount, int256 amount)external{
-        bool debitResult = executeDebit(fromAccount, amount);
-        bool creditResult = executeCredit(toAccount, amount);
+    function startTransfer(string trxType, string debitAccount, address fromAcc, string creditAccount, address toAcc, int256 amount)external{
+        bool debitResult = executeDebit(fromAcc, amount);
+        bool creditResult = executeCredit(toAcc, amount);
         if (debitResult && creditResult) {
-            finishTransfer(true);//交易成功
+            finishTransfer(trxType, debitAccount, fromAcc, creditAccount, toAcc, amount, true);//交易成功
         } else {
-            finishTransfer(false);//交易失败，暂且不处理失败
+            finishTransfer(trxType, debitAccount, fromAcc, creditAccount, toAcc, amount, false);//交易失败，暂且不处理失败
         }
     }
 
@@ -50,5 +50,5 @@ contract BTM{
         }
     }
     //Blockchain->ATM,通知操作ATM结束交易
-    event finishTransfer(bool result);
+    event finishTransfer(string trxType, string debitAccount, address fromAcc, string creditAccount, address toAcc, int256 amount, bool status);
 }
