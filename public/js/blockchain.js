@@ -207,7 +207,7 @@ $(function () {
 
     //新创建银行卡
     $("#createCard").bind("click", function () {
-        $(this).attr("disabled", "true");
+        // $(this).attr("disabled", "true");
         var checkResult = "";
         var cardCnType = /[0-9]{10,13}$/;//以0-9开头的10-13位数字
         var cardPwdType = /[0-9]{6}$/;//以0-9开头的6位数字

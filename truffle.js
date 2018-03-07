@@ -12,7 +12,7 @@ module.exports = {
     live: {
       host: "127.0.0.1", //
       port: 7101,
-      network_id: 999,   //本地以太坊私有链
+      network_id: "*",   //本地以太坊私有链
       // optional config values:
       // gas
       // gasPrice

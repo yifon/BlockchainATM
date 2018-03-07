@@ -23,7 +23,7 @@ block content
                                     td #{item.bank.name}
                                     td #{item.blockAccountBalance}
                                     td(style="width:80px") #{item.blockAccount}
-                                    td 暂时保留
+                                    td 正常
                                     //-对录入时间进行格式化
                                     td #{moment(item.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
                                     td: a(href='/admin/card/update/#{item._id}') 修改

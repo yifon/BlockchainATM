@@ -11,7 +11,7 @@ var contractFile = path.join(__dirname, '../../', '/build/contracts/BTM.json')//
 var json = JSON.parse(fs.readFileSync(contractFile));//合约编译后的json文件
 var abi = json.abi;//调用ABI
 abiDec.addABI(abi);
-var contractAddress = "0xed1be9aa51db857129a1d17c5f9c079fc9582e4e";
+var contractAddress = "0x8a8ab9ebddc522ece846e0e2113b1caf606f6812";
 var contract = web3.eth.contract(abi).at(contractAddress);//传入合约地址，返回合约对象
 web3.personal.unlockAccount(web3.eth.accounts[0], "", 0);//传入区块链账户，密码
 //注册账户
@@ -58,13 +58,13 @@ exports.setBalance = (fromBlockAccount, fromBlockAccountPwd, amount) => {
   var oldBlockNumber = web3.eth.blockNumber;
   console.log("oldBlockNumber:" + oldBlockNumber)
   var hash = contract.setBalance(fromBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  console.log("turning on mining", web3.miner.start());
-  if (web3.eth.blockNumber - oldBlockNumber == 1) {
-    web.miner.stop()
-    console.log("stop")
-  }
+  // console.log("turning on mining", web3.miner.start());
+  // if (web3.eth.blockNumber - oldBlockNumber == 1) {
+  //   web.miner.stop()
+  //   console.log("stop")
+  // }
   console.log("newBlockNumber:" + web3.eth.blockNumber)
-  console.log("isMining?", web3.eth.mining);
+  // console.log("isMining?", web3.eth.mining);
   console.log(hash);
 }
 
@@ -90,10 +90,10 @@ exports.startTransfer = (type, debitAcc, debitBlockAcc, creditAcc, creditBlockAc
   var oldBlockNumber = web3.eth.blockNumber;
   console.log("oldBlockNumber:" + oldBlockNumber)
   var hash = contract.startTransfer(type, debitAcc, debitBlockAcc, creditAcc, creditBlockAcc, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  console.log("turning on mining", web3.miner.start());
+  // console.log("turning on mining", web3.miner.start());
 
-  console.log("newBlockNumber:" + web3.eth.blockNumber)
-  console.log("isMining?", web3.eth.mining);
+  // console.log("newBlockNumber:" + web3.eth.blockNumber)
+  // console.log("isMining?", web3.eth.mining);
   console.log(hash);
   return this.finishTransfer();
 }
