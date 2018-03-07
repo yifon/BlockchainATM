@@ -1,0 +1,89 @@
+geth --datadir qdata/dd1 init genesis.json
+geth --datadir qdata/dd1 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7101 --port 7301 --networkid 999 console
+geth attach ipc:qdata/dd1/geth.ipc
+http://127.0.0.1:7101
+
+admin.nodeInfo.enode
+enode://ac6b1096ca56b9f6d004b779ae3728bf83f8e22453404cc3cef16a3d9b96608bc67c4b30db88e0a5a6c6390213f7acbe1153ff6d23ce57380104288ae19373ef@127.0.0.1:7301
+
+geth --datadir qdata/dd2 init genesis.json
+geth --datadir qdata/dd2 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7102 --port 7302 --networkid 999
+geth attach ipc:qdata/dd2/geth.ipc
+http://127.0.0.1:7102
+
+admin.peers
+
+geth --datadir qdata/dd3 init genesis.json
+geth --datadir qdata/dd3 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 7103 --port 7303 --networkid 999
+geth attach ipc:qdata/dd3/geth.ipc
+http://127.0.0.1:7103
+
+
+
+BTM.sol:0xed1be9aa51db857129a1d17c5f9c079fc9582e4e
+
+eth.accounts[0]:0xcb77e3256b046fdedc05c31a3081c34de85042ea
+root:0xb59629ddca6479009e955e7fb394ca0bba418567
+
+小A:
+123456
+0x5f8fc5394184456daee74354f958c7dec08614d3
+a12345678
+
+小B:
+0x031df348dc1519685f3fb96341b900b5ded9ea1c
+b12345678
+
+小C:
+0xdd8dde56bb0987e741bc9609e243db17efdd8d45
+c12345678
+
+A001:
+0x1fcf1452949d6e369270fbf9a30c2824e75a9fc1
+a001
+
+B001:
+0x19e0f0fa060586be24150112d998c2aaa1536363
+b001
+
+C001:
+0x105dff400378ef4cd1ee12ce01f60b2f1565aa58
+c001
+
+1234567890
+
+
+personal.unlockAccount(eth.accounts[0],"")
+eth.getBalance(eth.accounts[0])
+
+txpool.status
+{
+  pending: 1,
+  queued: 0
+}
+miner.start()
+
+Running migration: 1_initial_migration.js
+  Replacing Migrations...
+  ... 0x66df9876229651b46c319cd27521828579609363a76362bb4857dd17de610a08
+  Migrations: 0x20d5d2ae714ce3a61e5f347b96cc4924337fd246
+Saving successful migration to network...
+  ... 0x3349027d94ed232a60929642e245fe9c6c5fffcb87451fdb00f7aaeff5aea04f
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying BTM...
+  ... 0x2b24dc4a7131d61e23d19e3d860723b49f3a6c11289c8edcf351f2cda7bac585
+  BTM: 0x04c5a48bb7be77dd9f2bcf8e9cc1c9f9731d1fdf
+Saving successful migration to network...
+  ... 0x392a5a6f7de72bcd13dc70923aa3cbd2ceda1268a075ec8b82c3d3ea1a82dcdd
+
+miner.stop()
+
+jj:
+0x1355ce6e26c691fa36e9ec4b825771afade71527
+
+0x18f2447433636dcae5eb7a280c91c73af9cab52b74bd946f8e8865ddaf032138
+
+eth.sendTransaction({from:eth.coinbase,to:"0x5f8fc5394184456daee74354f958c7dec08614d3",value:web3.toWei(100,"ether")})
+
+eth.getBalance("0xbd9e47b2cf07fff640d57cac6976e5814a6c631f")

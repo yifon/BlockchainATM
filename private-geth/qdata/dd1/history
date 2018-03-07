@@ -1,0 +1,5 @@
+miner.start()
+txpool.status
+miner.start()
+txpool.status
+miner.start()
