@@ -1,4 +1,8 @@
-区块链ATM
+区块链ATM交易所
+
+## 重要的事情先说：
+本来想部署上公网blockchainatm.top的，无奈自己买的ECS太低配了，不够挖矿，所以要看系统背景介绍和demo截图说明的可以直接看wiki ：
+https://github.com/yifon/BlockchainATM/wiki/%E5%85%B3%E4%BA%8EBlockchainATM%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BB%8B%E7%BB%8D  
 
 ## 前端客人交易页
 ### 流程：
