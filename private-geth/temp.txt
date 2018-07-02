@@ -87,3 +87,7 @@ jj:
 eth.sendTransaction({from:eth.coinbase,to:"0x5f8fc5394184456daee74354f958c7dec08614d3",value:web3.toWei(100,"ether")})
 
 eth.getBalance("0xbd9e47b2cf07fff640d57cac6976e5814a6c631f")
+
+
+
+geth --datadir qdata/dd1 --rpc --rpcaddr localhost --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcport 8101 --port 8301 --networkid 999 console

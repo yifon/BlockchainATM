@@ -58,13 +58,13 @@ exports.setBalance = (fromBlockAccount, fromBlockAccountPwd, amount) => {
   var oldBlockNumber = web3.eth.blockNumber;
   console.log("oldBlockNumber:" + oldBlockNumber)
   var hash = contract.setBalance(fromBlockAccount, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  // console.log("turning on mining", web3.miner.start());
+  console.log("turning on mining", web3.miner.start());
   // if (web3.eth.blockNumber - oldBlockNumber == 1) {
   //   web.miner.stop()
   //   console.log("stop")
   // }
   console.log("newBlockNumber:" + web3.eth.blockNumber)
-  // console.log("isMining?", web3.eth.mining);
+  console.log("isMining?", web3.eth.mining);
   console.log(hash);
 }
 
@@ -90,10 +90,10 @@ exports.startTransfer = (type, debitAcc, debitBlockAcc, creditAcc, creditBlockAc
   var oldBlockNumber = web3.eth.blockNumber;
   console.log("oldBlockNumber:" + oldBlockNumber)
   var hash = contract.startTransfer(type, debitAcc, debitBlockAcc, creditAcc, creditBlockAcc, amount, { from: web3.eth.accounts[0], gas: 0x47b760 });
-  // console.log("turning on mining", web3.miner.start());
+  console.log("turning on mining", web3.miner.start());
 
   // console.log("newBlockNumber:" + web3.eth.blockNumber)
-  // console.log("isMining?", web3.eth.mining);
+  console.log("isMining?", web3.eth.mining);
   console.log(hash);
   return this.finishTransfer();
 }
